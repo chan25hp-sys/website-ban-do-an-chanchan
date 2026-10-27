@@ -4,41 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ChanChan Food - Your little happy place.">
-  <title>ChanChan Food | Món ngon mỗi ngày</title>
+  <meta name="theme-color" content="#fff5f5">
+  <meta name="description" content="ChanChan Food – Một chút ngon, thêm chút vui. Khám phá những món ăn vặt, mì ngon, bánh ngọt và thức uống yêu thích.">
+  <title>ChanChan Food | Một chút ngon, thêm chút vui</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --pink: #f4dce5;
-      --pink-deep: #d99caf;
-      --pink-soft: #fff5f7;
-      --green: #dce8d9;
-      --green-deep: #718b72;
-      --green-dark: #425c4a;
-      --cream: #fffdf8;
-      --ink: #4b5149;
-      --muted: #777c73;
-      --line: #e8e6dd;
-      --shadow: 0 12px 32px rgba(84, 95, 77, .10);
+      --pink: #f7cbd2;
+      --pink-light: #fff3f4;
+      --pink-dark: #c66d83;
+      --green: #718875;
+      --green-light: #edf2e9;
+      --ink: #343c35;
+      --muted: #777b75;
+      --white: #fff;
+      --border: #eee5e3;
+      --shadow: 0 8px 28px rgba(75, 61, 57, .07);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
+      font-family: 'Be Vietnam Pro', sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(ellipse at 8% 4%, rgba(244,220,229,.65), transparent 28rem),
-        radial-gradient(ellipse at 95% 18%, rgba(220,232,217,.75), transparent 30rem),
-        var(--cream);
-      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-      line-height: 1.6;
+      background: #fffdfb;
+      line-height: 1.7;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     a {
@@ -46,898 +51,1013 @@
       text-decoration: none;
     }
 
-    button, input, textarea {
-      font: inherit;
+    img {
+      display: block;
+      max-width: 100%;
     }
 
-    button {
-      cursor: pointer;
-    }
+    button { cursor: pointer; }
 
     .wrap {
-      width: min(1120px, calc(100% - 36px));
+      width: min(1120px, 90%);
       margin: auto;
     }
 
     .top-note {
-      padding: 8px 12px;
+      background: var(--green);
+      color: white;
       text-align: center;
-      font-size: .86rem;
-      color: var(--green-dark);
-      background: rgba(220,232,217,.72);
-      letter-spacing: .03em;
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: .3px;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,253,248,.90);
+      background: rgba(255,253,251,.96);
+      border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(232,230,221,.85);
     }
 
     .nav {
-      min-height: 76px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
+    .logo {
+      color: var(--green);
+      font-size: 23px;
       font-weight: 800;
-      color: var(--green-dark);
-      font-size: 1.15rem;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
 
-    .brand-mark {
-      width: 43px;
-      height: 43px;
-      border-radius: 50% 50% 48% 20%;
-      display: grid;
-      place-items: center;
-      background: var(--pink);
-      color: #8c6373;
-      transform: rotate(-8deg);
-      font-size: 1.35rem;
-    }
-
-    .brand small {
-      display: block;
-      font-size: .67rem;
-      letter-spacing: .14em;
-      font-weight: 600;
-      color: var(--muted);
-    }
+    .logo span { color: var(--pink-dark); }
 
     .nav-links {
       display: flex;
-      gap: 24px;
       align-items: center;
-      font-size: .94rem;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: 600;
     }
 
-    .nav-links a:hover {
-      color: var(--green-deep);
-    }
+    .nav-links a:hover { color: var(--pink-dark); }
 
-    .cart-pill {
+    .cart-button, .primary-button {
       border: 0;
       border-radius: 999px;
-      padding: 10px 16px;
-      background: var(--green-dark);
+      background: var(--green);
       color: white;
-      font-weight: 700;
+      padding: 11px 18px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .cart-button:hover, .primary-button:hover {
+      background: #536e58;
+      transform: translateY(-1px);
     }
 
     .hero {
-      padding: 54px 0 46px;
+      padding: 58px 0 66px;
+      background:
+        radial-gradient(ellipse at 85% 25%, #f8e2df 0, transparent 38%),
+        linear-gradient(120deg, #fff7f4, #f5f5ed);
+      overflow: hidden;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.02fr .98fr;
-      gap: 42px;
       align-items: center;
+      gap: 46px;
     }
 
     .eyebrow {
       display: inline-block;
-      border-radius: 999px;
-      padding: 7px 13px;
-      background: var(--pink-soft);
-      color: #a66c82;
-      font-size: .82rem;
+      color: var(--green);
+      font-size: 12px;
       font-weight: 700;
-      border: 1px solid #f0dbe3;
+      background: white;
+      padding: 7px 13px;
+      border-radius: 30px;
+      margin-bottom: 14px;
     }
 
-    h1 {
-      margin: 18px 0 16px;
-      color: var(--green-dark);
-      font-family: Georgia, serif;
-      font-size: clamp(2.5rem, 5.5vw, 4.6rem);
-      line-height: 1.04;
-      font-weight: 500;
-      letter-spacing: -.04em;
+    /* Tiêu đề được giới hạn cỡ chữ để không bị quá to */
+    .hero h1 {
+      font-size: clamp(27px, 3.1vw, 36px);
+      line-height: 1.4;
+      letter-spacing: -1.1px;
+      font-weight: 700;
+      margin: 0 0 15px;
+      max-width: 560px;
     }
 
-    h1 em {
-      color: #c27e96;
-      font-weight: 500;
+    .hero h1 em {
+      color: var(--pink-dark);
+      font-style: normal;
     }
 
     .hero p {
+      max-width: 510px;
       color: var(--muted);
-      max-width: 520px;
+      font-size: 14px;
+      line-height: 1.95;
+      margin: 0 0 24px;
     }
 
     .hero-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .secondary-button {
+      display: inline-block;
+      border: 1px solid #d8dfd3;
       border-radius: 999px;
-      padding: 12px 20px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: transform .2s, box-shadow .2s;
+      padding: 10px 17px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(255,255,255,.75);
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary {
-      background: var(--green-dark);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: white;
-      border-color: #e9d6de;
-      color: #8c6373;
-    }
-
-    /* Ảnh lớn ở đầu trang */
-    .hero-art {
-      min-height: 380px;
+    .hero-image {
       position: relative;
-      overflow: hidden;
-      border-radius: 30px;
-      background: #f4dce5;
+      padding: 12px;
+      background: white;
+      border-radius: 26px;
       box-shadow: var(--shadow);
-      border: 8px solid rgba(255,255,255,.7);
+      transform: rotate(1deg);
     }
 
-    .hero-art img {
+    .hero-image img {
       width: 100%;
-      height: 100%;
-      min-height: 364px;
-      position: absolute;
-      inset: 0;
+      height: 340px;
       object-fit: cover;
-      display: block;
+      border-radius: 19px;
     }
 
-    .hero-art::after {
-      content: "";
+    .image-note {
       position: absolute;
-      inset: 45% 0 0;
-      background: linear-gradient(transparent, rgba(35,35,25,.38));
-      pointer-events: none;
-    }
-
-    .floating-note {
-      position: absolute;
-      z-index: 2;
-      padding: 11px 15px;
-      border-radius: 16px;
-      background: rgba(255,253,248,.94);
+      bottom: 27px;
+      left: -15px;
+      background: white;
+      border-radius: 14px;
+      padding: 12px 17px;
       box-shadow: var(--shadow);
-      font-size: .88rem;
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    .note-one {
-      top: 22px;
-      left: 20px;
-      transform: rotate(-3deg);
+    .image-note span {
+      display: block;
+      color: var(--pink-dark);
+      font-size: 11px;
+      font-weight: 500;
     }
 
-    .note-two {
-      bottom: 22px;
-      right: 18px;
-      transform: rotate(2deg);
+    .features {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .section {
-      padding: 42px 0;
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
 
-    .section-head {
+    .feature {
       display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: end;
-      margin-bottom: 22px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
     }
 
-    .section-head h2 {
-      margin: 0;
-      color: var(--green-dark);
-      font: 500 clamp(1.9rem, 4vw, 2.6rem)/1.15 Georgia, serif;
+    .feature-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pink-light);
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
-    .section-head p {
-      margin: 8px 0 0;
+    section.content-section { padding: 65px 0; }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-heading .eyebrow { margin-bottom: 8px; }
+
+    .section-heading h2 {
+      font-size: clamp(23px, 3vw, 30px);
+      line-height: 1.4;
+      letter-spacing: -.7px;
+      margin: 0 0 8px;
+    }
+
+    .section-heading p {
       color: var(--muted);
+      font-size: 13px;
+      margin: 0 auto;
+      max-width: 540px;
+    }
+
+    .menu-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
     .filters {
       display: flex;
+      gap: 8px;
       flex-wrap: wrap;
-      gap: 9px;
-      margin: 22px 0 24px;
     }
 
     .filter-btn {
-      border: 1px solid #e4e6dc;
-      background: rgba(255,255,255,.8);
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 9px 15px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--ink);
+      border-radius: 30px;
+      padding: 8px 13px;
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    .filter-btn.active,
-    .filter-btn:hover {
-      background: var(--green-dark);
-      border-color: var(--green-dark);
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--green);
+      border-color: var(--green);
       color: white;
     }
 
-    .search {
-      width: min(100%, 310px);
-      border: 1px solid var(--line);
-      border-radius: 999px;
+    .search-box {
+      width: 220px;
+      max-width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      outline: none;
       background: white;
-      padding: 11px 15px;
-      outline-color: var(--pink-deep);
+      font-size: 12px;
+    }
+
+    .search-box:focus {
+      border-color: var(--green);
     }
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
     }
 
-    .food-card {
+    .product-card {
+      background: white;
+      border: 1px solid #f0e9e5;
+      border-radius: 17px;
       overflow: hidden;
-      border-radius: 22px;
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(232,230,221,.9);
-      box-shadow: 0 6px 20px rgba(84,95,77,.05);
       transition: transform .2s, box-shadow .2s;
     }
 
-    .food-card:hover {
+    .product-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow);
     }
 
-    /* Ảnh thật trên từng thẻ món ăn */
-    .food-photo {
-      width: 100%;
-      height: 190px;
+    .product-image {
+      position: relative;
+      background: #f4eee8;
       overflow: hidden;
-      background: #f5f1eb;
     }
 
-    .food-photo img {
+    .product-image img {
       width: 100%;
-      height: 100%;
+      height: 180px;
       object-fit: cover;
-      display: block;
-      transition: transform .3s ease;
+      transition: transform .35s;
     }
 
-    .food-card:hover .food-photo img {
-      transform: scale(1.05);
+    .product-card:hover .product-image img {
+      transform: scale(1.04);
     }
 
-    .food-info {
-      padding: 15px;
+    .product-tag {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      background: rgba(255,255,255,.94);
+      border-radius: 30px;
+      padding: 4px 9px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
     }
 
-    .food-info h3 {
+    .product-info { padding: 14px; }
+
+    .product-info h3 {
+      font-size: 14px;
+      line-height: 1.55;
       margin: 0 0 5px;
-      color: var(--green-dark);
-      font-size: 1.02rem;
+      font-weight: 700;
     }
 
-    .food-info p {
-      margin: 0 0 13px;
+    .product-desc {
       color: var(--muted);
-      font-size: .85rem;
-      min-height: 42px;
+      font-size: 11px;
+      line-height: 1.7;
+      min-height: 38px;
+      margin: 0 0 12px;
     }
 
-    .food-bottom {
+    .product-bottom {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
     }
 
     .price {
+      color: var(--pink-dark);
       font-weight: 800;
-      color: #b46f89;
+      font-size: 14px;
       white-space: nowrap;
     }
 
-    .add-btn {
+    .add-button {
       border: 0;
       border-radius: 50%;
-      width: 37px;
-      height: 37px;
-      color: white;
-      background: var(--green-dark);
-      font-size: 1.3rem;
+      width: 34px;
+      height: 34px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 21px;
+      line-height: 1;
+      font-weight: 500;
     }
 
-    .empty {
-      padding: 28px;
+    .add-button:hover {
+      background: var(--green);
+      color: white;
+    }
+
+    .empty-message {
+      grid-column: 1 / -1;
       text-align: center;
       color: var(--muted);
-      grid-column: 1/-1;
+      padding: 35px 10px;
     }
 
-    .about-strip {
-      margin: 24px 0 0;
-      padding: 25px;
-      border-radius: 24px;
+    .about-section { background: #f5f6ef; }
+
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 20px;
-      background: linear-gradient(110deg, #fbedf2, #f7fbf2);
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
     }
 
-    .about-item {
-      display: flex;
-      gap: 12px;
-      align-items: start;
+    .about-grid img {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      border-radius: 22px;
     }
 
-    .about-item .emoji {
-      font-size: 1.6rem;
+    .about-copy h2 {
+      font-size: 27px;
+      line-height: 1.45;
+      margin: 0 0 14px;
     }
 
-    .about-item strong {
-      display: block;
-      color: var(--green-dark);
-    }
+    .about-copy h2 span { color: var(--pink-dark); }
 
-    .about-item span {
-      font-size: .88rem;
+    .about-copy p {
       color: var(--muted);
+      font-size: 13px;
+      line-height: 2;
     }
+
+    .about-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .about-list span::first-letter { color: var(--green); }
 
     .contact-grid {
       display: grid;
       grid-template-columns: .9fr 1.1fr;
-      gap: 22px;
+      gap: 40px;
     }
 
-    .contact-card,
-    .form-card {
-      background: rgba(255,255,255,.86);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 25px;
+    .contact-info {
+      background: var(--pink-light);
+      border-radius: 20px;
+      padding: 26px;
     }
 
-    .contact-card h3,
-    .form-card h3 {
-      margin-top: 0;
-      color: var(--green-dark);
-      font: 500 1.6rem Georgia, serif;
+    .contact-info h3 {
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 22px;
     }
 
     .contact-line {
       display: flex;
+      align-items: flex-start;
       gap: 12px;
       margin: 16px 0;
-      align-items: start;
+      font-size: 13px;
     }
 
-    .contact-line .emoji {
-      font-size: 1.25rem;
-    }
-
-    .contact-line small {
+    .contact-line strong {
       display: block;
+      margin-bottom: 2px;
+    }
+
+    .contact-line small { color: var(--muted); }
+
+    .contact-form {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .contact-form h3 {
+      font-size: 21px;
+      margin: 0 0 4px;
+    }
+
+    .contact-form > p {
       color: var(--muted);
+      font-size: 12px;
+      margin: 0 0 8px;
     }
 
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .form-card label {
-      display: block;
-      font-weight: 700;
-      font-size: .9rem;
-      margin: 12px 0 5px;
-    }
-
-    .form-card input,
-    .form-card textarea {
+    .contact-form input,
+    .contact-form textarea {
       width: 100%;
-      padding: 11px 13px;
-      border: 1px solid var(--line);
+      padding: 12px 14px;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      background: #fffdfb;
-      outline-color: var(--pink-deep);
+      background: white;
+      outline: none;
+      font-size: 13px;
     }
 
-    .form-card textarea {
-      min-height: 90px;
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--green);
+    }
+
+    .contact-form textarea {
+      min-height: 110px;
       resize: vertical;
     }
 
-    .form-hint {
-      color: var(--muted);
-      font-size: .82rem;
+    .contact-form .primary-button {
+      justify-self: start;
     }
 
-    footer {
-      margin-top: 35px;
-      padding: 28px 0;
-      background: #e7eee2;
-      color: var(--green-dark);
-      text-align: center;
-      font-size: .9rem;
+    .faq-list {
+      max-width: 760px;
+      margin: auto;
     }
 
-    .chat-toggle {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 50;
-      border: 0;
-      border-radius: 999px;
-      background: #425c4a;
-      color: white;
-      padding: 14px 18px;
-      box-shadow: 0 10px 30px rgba(66,92,74,.25);
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 2px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 13px;
       font-weight: 700;
     }
 
-    .chat-box {
-      position: fixed;
-      right: 22px;
-      bottom: 84px;
-      z-index: 50;
-      width: min(340px, calc(100vw - 28px));
-      border: 1px solid #e6dfe0;
-      border-radius: 20px;
-      overflow: hidden;
-      background: white;
-      box-shadow: 0 18px 55px rgba(50,60,48,.2);
-      display: none;
+    details p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 0;
     }
 
-    .chat-box.open {
-      display: block;
-    }
-
-    .chat-head {
-      background: linear-gradient(100deg, #f4dce5, #dce8d9);
-      padding: 15px;
-      font-weight: 800;
-      color: var(--green-dark);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chat-head button {
-      border: 0;
-      background: transparent;
-      color: var(--green-dark);
-      font-size: 1.2rem;
-    }
-
-    .chat-messages {
-      padding: 14px;
-      height: 250px;
-      overflow-y: auto;
-      background: #fffdfb;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .bubble {
-      padding: 9px 12px;
-      border-radius: 14px;
-      max-width: 90%;
-      font-size: .9rem;
-    }
-
-    .bot {
-      background: #edf3e9;
-      align-self: flex-start;
-    }
-
-    .user {
-      background: #f9e8ee;
-      align-self: flex-end;
-    }
-
-    .chat-form {
-      padding: 10px;
-      display: flex;
-      gap: 7px;
-      border-top: 1px solid var(--line);
-    }
-
-    .chat-form input {
-      min-width: 0;
-      flex: 1;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 9px 12px;
-    }
-
-    .chat-form button {
-      border: 0;
-      border-radius: 999px;
-      background: var(--green-dark);
+    footer {
+      background: #35473a;
       color: white;
-      padding: 9px 13px;
+      padding: 34px 0 20px;
     }
 
+    .footer-main {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .footer-brand span { color: #f3b9c7; }
+
+    .footer-main p {
+      color: #dce3da;
+      font-size: 12px;
+      max-width: 360px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 17px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+
+    .copyright {
+      margin-top: 25px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.16);
+      text-align: center;
+      font-size: 11px;
+      color: #dce3da;
+    }
+
+    /* Giỏ hàng */
     .cart-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(41,50,41,.25);
-      z-index: 60;
-      display: none;
+      z-index: 40;
+      background: rgba(32,37,32,.35);
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s;
     }
 
     .cart-overlay.open {
-      display: block;
+      opacity: 1;
+      visibility: visible;
     }
 
     .cart-panel {
-      position: absolute;
-      right: 0;
+      position: fixed;
+      z-index: 41;
       top: 0;
+      right: 0;
       height: 100%;
-      width: min(430px, 100%);
-      background: var(--cream);
-      padding: 24px;
-      overflow-y: auto;
-      box-shadow: -10px 0 40px rgba(0,0,0,.1);
-    }
-
-    .cart-head {
+      width: min(410px, 100%);
+      background: #fffdfb;
+      padding: 22px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .25s;
+      box-shadow: -10px 0 35px rgba(0,0,0,.08);
     }
 
-    .cart-head h2 {
-      color: var(--green-dark);
-      font-family: Georgia, serif;
-      font-weight: 500;
+    .cart-panel.open { transform: translateX(0); }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .cart-header h2 {
+      font-size: 20px;
+      margin: 0;
     }
 
     .close-cart {
       border: 0;
-      background: transparent;
-      font-size: 1.6rem;
+      background: var(--pink-light);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 22px;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow: auto;
+      padding: 10px 0;
+    }
+
+    .cart-empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 40px 0;
+      font-size: 13px;
     }
 
     .cart-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
       padding: 13px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item h4 {
+      font-size: 13px;
+      margin: 0 0 5px;
     }
 
     .cart-item small {
-      display: block;
-      color: var(--muted);
+      color: var(--pink-dark);
+      font-weight: 700;
     }
 
-    .qty {
+    .quantity {
       display: flex;
       align-items: center;
-      gap: 8px;
-      white-space: nowrap;
+      gap: 9px;
+      margin-top: 7px;
     }
 
-    .qty button {
-      border: 1px solid var(--line);
+    .quantity button {
+      border: 1px solid var(--border);
       background: white;
-      border-radius: 50%;
-      width: 27px;
-      height: 27px;
+      border-radius: 7px;
+      width: 26px;
+      height: 26px;
+    }
+
+    .remove-item {
+      border: 0;
+      background: transparent;
+      color: #b45d70;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
     }
 
     .cart-total {
       display: flex;
       justify-content: space-between;
-      margin: 20px 0;
-      font-size: 1.1rem;
-      font-weight: 800;
+      font-weight: 700;
+      margin-bottom: 14px;
     }
 
-    .checkout {
+    .cart-footer .primary-button { width: 100%; }
+
+    .checkout-form {
+      display: none;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .checkout-form.show { display: grid; }
+
+    .checkout-form input,
+    .checkout-form textarea {
       width: 100%;
-      border: 0;
-      border-radius: 999px;
-      padding: 13px;
-      background: var(--green-dark);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+      font-size: 12px;
+    }
+
+    .checkout-form textarea { min-height: 60px; }
+
+    .checkout-note {
+      color: var(--muted);
+      font-size: 11px;
+      margin: 10px 0 0;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 60;
+      bottom: 22px;
+      left: 50%;
+      transform: translate(-50%, 20px);
+      background: #35473a;
       color: white;
-      font-weight: 800;
+      border-radius: 30px;
+      padding: 11px 18px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
 
     @media (max-width: 900px) {
-      .menu-grid {
-        grid-template-columns: repeat(3,1fr);
+      .menu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero-grid { gap: 28px; }
+      .hero-image img { height: 290px; }
+      .nav-links { gap: 13px; }
+    }
+
+    @media (max-width: 650px) {
+      .wrap { width: 91%; }
+
+      .top-note { font-size: 10px; }
+
+      .nav { min-height: 64px; gap: 8px; }
+
+      .logo { font-size: 20px; }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
       }
 
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) { display: none; }
+
+      .cart-button {
+        padding: 9px 12px;
+        font-size: 11px;
+      }
+
+      .hero { padding: 38px 0 44px; }
+
       .hero-grid {
+        grid-template-columns: 1fr;
         gap: 25px;
       }
 
-      .nav-links {
-        gap: 13px;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .wrap {
-        width: min(100% - 26px, 540px);
+      .hero h1 {
+        font-size: 27px;
+        line-height: 1.4;
+        letter-spacing: -.5px;
       }
 
-      .nav {
-        min-height: 68px;
-      }
+      .hero p { font-size: 13px; }
 
-      .nav-links {
-        display: none;
-      }
+      .hero-image img { height: 240px; }
 
-      .hero {
-        padding-top: 32px;
-      }
+      .image-note { left: -5px; bottom: 20px; }
 
-      .hero-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
+      .feature-grid { gap: 8px; }
 
-      .hero-art {
-        min-height: 280px;
-      }
-
-      .hero-art img {
-        min-height: 264px;
-      }
-
-      .section-head {
-        align-items: start;
+      .feature {
         flex-direction: column;
+        gap: 6px;
+        font-size: 10px;
       }
+
+      .feature-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      section.content-section { padding: 46px 0; }
+
+      .section-heading h2 { font-size: 24px; }
+
+      .menu-tools { align-items: stretch; }
+
+      .filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+      }
+
+      .filter-btn { white-space: nowrap; }
+
+      .search-box { width: 100%; }
 
       .menu-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
 
-      .food-photo {
-        height: 145px;
+      .product-image img { height: 145px; }
+
+      .product-info { padding: 10px; }
+
+      .product-info h3 { font-size: 12px; }
+
+      .product-desc {
+        font-size: 10px;
+        min-height: 48px;
       }
 
-      .food-info {
-        padding: 12px;
+      .price { font-size: 12px; }
+
+      .add-button {
+        width: 31px;
+        height: 31px;
       }
 
-      .food-info p {
-        min-height: 56px;
+      .product-tag {
+        font-size: 9px;
+        left: 7px;
+        top: 7px;
       }
 
-      .about-strip {
+      .about-grid, .contact-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
       }
 
-      .search {
-        width: 100%;
-      }
+      .about-grid img { height: 240px; }
 
-      .chat-toggle {
-        right: 14px;
-        bottom: 14px;
-      }
+      .about-copy h2 { font-size: 24px; }
 
-      .chat-box {
-        right: 14px;
-        bottom: 75px;
-      }
+      .contact-info { padding: 22px; }
+
+      .footer-main { gap: 15px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="top-note">
-    🌿 Một chút dịu dàng, một chút ngon lành — gửi đến bạn mỗi ngày 🌷
-  </div>
+  <div class="top-note">♡ ChanChan Food · Một chút ngon, thêm chút vui ♡</div>
 
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#home" aria-label="ChanChan Food trang chủ">
-        <span class="brand-mark">❀</span>
-        <span>
-          ChanChan Food
-          <small>ĂN NGON · VUI NHẸ NHÀNG</small>
-        </span>
-      </a>
+      <a href="#home" class="logo">ChanChan<span>Food.</span></a>
 
-      <nav class="nav-links" aria-label="Điều hướng">
+      <nav class="nav-links" aria-label="Điều hướng chính">
         <a href="#home">Trang chủ</a>
         <a href="#menu">Thực đơn</a>
         <a href="#about">Về chúng mình</a>
         <a href="#contact">Liên hệ</a>
       </nav>
 
-      <button class="cart-pill" id="openCart" type="button">
-        🛍 Giỏ hàng (<span id="cartCount">0</span>)
+      <button class="cart-button" id="openCart" type="button">
+        ♡ Giỏ hàng (<span id="cartCount">0</span>)
       </button>
     </div>
   </header>
 
-<main>
-  <section class="hero" id="home">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">♡ Ngon lành từ những điều giản dị</span>
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">♡ Ngon lành từ những điều giản dị</span>
 
-       <h1 class="hero-title">Chọn món yêu thích,<br><em>tận hưởng ngày vui.</em></h1>
+          <h1>
+            Chọn món yêu thích,<br>
+            <em>tận hưởng ngày vui.</em>
+          </h1>
 
-        <p>
-          Chào bạn đến với ChanChan Food — góc nhỏ có đồ ăn ấm bụng,
-          thức uống mát lành và bánh ngọt xinh xắn.
-          Chọn món yêu thích rồi để chúng mình chăm chút phần còn lại nhé!
-        </p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<style>
-  .hero-title {
-    font-size: 28px;
-    line-height: 1.4;
-  }
-
-  .hero-title em {
-    font-size: 0.85em;
-  }
-
-  @media (max-width: 600px) {
-    .hero-title {
-      font-size: 28px;
-    }
-  }
-</style>
+          <p>
+            Chào bạn đến với ChanChan Food — góc nhỏ có đồ ăn ấm bụng,
+            thức uống mát lành và bánh ngọt xinh xắn.
+            Chọn món yêu thích rồi để chúng mình chăm chút phần còn lại nhé!
+          </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#menu">Khám phá thực đơn ↗</a>
-            <a class="btn btn-secondary" href="#contact">Nhắn chúng mình ♡</a>
+            <a class="primary-button" href="#menu">Khám phá thực đơn ↗</a>
+            <a class="secondary-button" href="#about">Tìm hiểu ChanChan</a>
           </div>
         </div>
 
-        <div class="hero-art">
+        <div class="hero-image">
           <img
-            src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
-            alt="Món ăn được trình bày trên bàn"
-            onerror="this.style.display='none'"
+            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1000&q=85"
+            alt="Pizza nóng hổi với nhiều loại topping"
+            fetchpriority="high"
           >
-          <div class="floating-note note-one">🍋 Tươi mát mỗi ngày</div>
-          <div class="floating-note note-two">🌷 Made with love</div>
+          <div class="image-note">
+            Một chút ngon, thêm chút vui ♡
+            <span>Ghé chọn món bạn thích nhé!</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="menu">
+    <section class="features">
+      <div class="wrap feature-grid">
+        <div class="feature">
+          <span class="feature-icon">🍜</span>
+          <span>Nhiều món ngon để chọn</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🌷</span>
+          <span>Chăm chút từng đơn hàng</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🥤</span>
+          <span>Ăn ngon, vui mỗi ngày</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="menu">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2>Thực đơn nhà ChanChan</h2>
-            <p>Đủ món mặn, món ăn vặt, đồ uống và bánh ngọt cho chiếc bụng vui.</p>
+        <div class="section-heading">
+          <span class="eyebrow">Menu nhà ChanChan</span>
+          <h2>Hôm nay mình ăn gì nhỉ?</h2>
+          <p>Từ món ăn vặt giòn rụm đến những ly nước mát lành, chọn món bạn đang thèm nhé!</p>
+        </div>
+
+        <div class="menu-tools">
+          <div class="filters" id="filters">
+            <button class="filter-btn active" data-cat="all" type="button">Tất cả</button>
+            <button class="filter-btn" data-cat="mi" type="button">Mì & món nóng</button>
+            <button class="filter-btn" data-cat="snack" type="button">Ăn vặt</button>
+            <button class="filter-btn" data-cat="sweet" type="button">Bánh ngọt</button>
+            <button class="filter-btn" data-cat="drink" type="button">Đồ uống</button>
           </div>
 
           <input
-            class="search"
+            class="search-box"
             id="searchInput"
             type="search"
-            placeholder="🔎 Tìm món bạn thích..."
+            placeholder="Tìm món bạn thích..."
             aria-label="Tìm món ăn"
           >
         </div>
 
-        <div class="filters" aria-label="Lọc thực đơn">
-          <button class="filter-btn active" data-category="all">Tất cả</button>
-          <button class="filter-btn" data-category="meal">🍜 Món no</button>
-          <button class="filter-btn" data-category="snack">🍟 Ăn vặt</button>
-          <button class="filter-btn" data-category="drink">🍹 Đồ uống</button>
-          <button class="filter-btn" data-category="cake">🍰 Bánh ngọt</button>
-        </div>
-
         <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </section>
 
-        <div class="about-strip" id="about">
-          <div class="about-item">
-            <span class="emoji">🌱</span>
-            <div>
-              <strong>Nhẹ nhàng & gần gũi</strong>
-              <span>Không gian màu pastel dịu mắt, menu dễ chọn.</span>
-            </div>
-          </div>
+    <section class="content-section about-section" id="about">
+      <div class="wrap about-grid">
+        <img
+          src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+          alt="Bữa ăn được chuẩn bị với nhiều nguyên liệu tươi ngon"
+          loading="lazy"
+        >
 
-          <div class="about-item">
-            <span class="emoji">🥤</span>
-            <div>
-              <strong>Nhiều món để thương</strong>
-              <span>Từ trà chanh, trà tắc đến mì, khoai và bánh ngọt.</span>
-            </div>
-          </div>
+        <div class="about-copy">
+          <span class="eyebrow">Một góc nhỏ mang tên ChanChan</span>
+          <h2>Chút ngon lành,<br><span>chút yêu thương.</span></h2>
 
-          <div class="about-item">
-            <span class="emoji">💌</span>
-            <div>
-              <strong>Luôn lắng nghe bạn</strong>
-              <span>Cần tư vấn món? Chat hoặc gọi cho chúng mình nhé.</span>
-            </div>
+          <p>
+            ChanChan Food mong muốn mang đến cho bạn những lựa chọn ăn uống
+            gần gũi, vui vẻ và phù hợp với những ngày bận rộn.
+            Dù là một bữa ăn nhanh, một món ăn vặt lúc xế chiều hay một ly
+            nước yêu thích, chúng mình hy vọng bạn sẽ tìm thấy niềm vui
+            nho nhỏ ở đây.
+          </p>
+
+          <div class="about-list">
+            <span>♡ Thực đơn đa dạng, dễ lựa chọn</span>
+            <span>♡ Giao diện đặt món đơn giản</span>
+            <span>♡ Luôn chào đón góp ý của bạn</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <section class="content-section" id="contact">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2>Chúng mình ở đây</h2>
-            <p>Có câu hỏi hay muốn đặt món? ChanChan luôn sẵn lòng hỗ trợ.</p>
-          </div>
+        <div class="section-heading">
+          <span class="eyebrow">Chúng mình luôn ở đây</span>
+          <h2>Nhắn ChanChan nhé!</h2>
+          <p>Có điều gì muốn hỏi hoặc góp ý? Gửi lời nhắn cho chúng mình nha.</p>
         </div>
 
         <div class="contact-grid">
-          <div class="contact-card">
-            <h3>Gửi lời chào nhé ♡</h3>
+          <div class="contact-info">
+            <h3>Ghé thăm chúng mình ♡</h3>
+            <p>ChanChan Food rất vui khi được nghe từ bạn.</p>
 
             <div class="contact-line">
-              <span class="emoji">📍</span>
+              <span>📍</span>
               <div>
                 <strong>Địa chỉ</strong>
                 <small>Xuân Đỉnh, Hà Nội</small>
@@ -945,49 +1065,63 @@
             </div>
 
             <div class="contact-line">
-              <span class="emoji">☎️</span>
+              <span>☎️</span>
               <div>
-                <strong>Điện thoại</strong>
+                <strong>Số điện thoại</strong>
                 <small><a href="tel:091234567">091234567</a></small>
               </div>
             </div>
 
             <div class="contact-line">
-              <span class="emoji">🕊️</span>
+              <span>💌</span>
               <div>
-                <strong>Chăm sóc khách hàng</strong>
-                <small>Chat trên website hoặc gọi điện để được hỗ trợ.</small>
+                <strong>Lời nhắn</strong>
+                <small>Chúng mình luôn trân trọng góp ý của bạn.</small>
               </div>
-            </div>
-
-            <div class="contact-buttons">
-              <a class="btn btn-primary" href="tel:091234567">☎ Gọi ngay</a>
-              <button class="btn btn-secondary" type="button" id="contactChat">
-                💬 Chat với ChanChan
-              </button>
             </div>
           </div>
 
-          <form class="form-card" id="contactForm">
-            <h3>Góc nhỏ tâm tình</h3>
-            <p class="form-hint">
-              Điền thông tin bên dưới để soạn lời nhắn qua ứng dụng email.
-            </p>
+          <form class="contact-form" id="contactForm">
+            <h3>Gửi lời nhắn đến tụi mình</h3>
+            <p>Điền thông tin bên dưới để soạn lời nhắn nhé.</p>
 
-            <label for="customerName">Tên của bạn</label>
-            <input id="customerName" required placeholder="Mình tên là...">
+            <input type="text" id="contactName" placeholder="Tên của bạn" required>
+            <input type="email" id="contactEmail" placeholder="Email của bạn" required>
+            <textarea id="contactMessage" placeholder="Bạn muốn nhắn gửi điều gì?" required></textarea>
 
-            <label for="customerPhone">Số điện thoại (không bắt buộc)</label>
-            <input id="customerPhone" type="tel" placeholder="Số điện thoại của bạn">
-
-            <label for="customerMessage">Bạn cần ChanChan hỗ trợ gì?</label>
-            <textarea id="customerMessage" required placeholder="Mình muốn hỏi về..."></textarea>
-
-            <button class="btn btn-primary" type="submit">Soạn lời nhắn ✉</button>
-            <p class="form-hint">
-              Nếu không mở được email, bạn có thể gọi trực tiếp số 091234567.
-            </p>
+            <button class="primary-button" type="submit">Gửi lời nhắn ♡</button>
           </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="faq">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Bạn hỏi, ChanChan trả lời</span>
+          <h2>Một vài điều bạn có thể muốn biết</h2>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>Làm thế nào để chọn món?</summary>
+            <p>Chọn danh mục hoặc tìm tên món trong thực đơn, sau đó nhấn dấu cộng để thêm món vào giỏ hàng.</p>
+          </details>
+
+          <details>
+            <summary>Làm thế nào để gửi đơn đặt hàng?</summary>
+            <p>Mở giỏ hàng, kiểm tra các món đã chọn, điền thông tin liên hệ và nhấn nút đặt hàng để tạo nội dung đơn.</p>
+          </details>
+
+          <details>
+            <summary>Mình có thể góp ý cho ChanChan không?</summary>
+            <p>Có chứ! Em có thể dùng biểu mẫu liên hệ ở trên để soạn lời nhắn qua email.</p>
+          </details>
+
+          <details>
+            <summary>Giá trên website đã được xác nhận chưa?</summary>
+            <p>Đây là giá minh họa cho giao diện mẫu. Bạn nên cập nhật giá và thông tin món theo thực đơn thực tế trước khi nhận đơn.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -995,316 +1129,271 @@
 
   <footer>
     <div class="wrap">
-      ChanChan Food · Xuân Đỉnh, Hà Nội ·
-      <a href="tel:091234567">091234567</a>
-      <br>Made with ♡ and a little bit of pastel.
+      <div class="footer-main">
+        <div>
+          <div class="footer-brand">ChanChan<span>Food.</span></div>
+          <p>Một chút ngon, thêm chút vui. Cảm ơn bạn đã ghé thăm góc nhỏ của chúng mình!</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#home">Trang chủ</a>
+          <a href="#menu">Thực đơn</a>
+          <a href="#about">Về chúng mình</a>
+          <a href="#contact">Liên hệ</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © <span id="year"></span> ChanChan Food · Made with ♡
+      </div>
     </div>
   </footer>
 
-  <button class="chat-toggle" id="chatToggle" type="button" aria-expanded="false">
-    💬 Chăm sóc khách hàng
-  </button>
+  <!-- Giỏ hàng -->
+  <div class="cart-overlay" id="cartOverlay"></div>
 
-  <section class="chat-box" id="chatBox" aria-label="Chat chăm sóc khách hàng">
-    <div class="chat-head">
-      🌷 ChanChan hỗ trợ bạn
-      <button type="button" id="chatClose" aria-label="Đóng chat">×</button>
+  <aside class="cart-panel" id="cartPanel" aria-label="Giỏ hàng">
+    <div class="cart-header">
+      <h2>Giỏ hàng của bạn ♡</h2>
+      <button class="close-cart" id="closeCart" type="button" aria-label="Đóng giỏ hàng">×</button>
     </div>
 
-    <div class="chat-messages" id="chatMessages">
-      <div class="bubble bot">Xin chào bạn ♡ Mình có thể giúp gì cho bạn hôm nay?</div>
-      <div class="bubble bot">Bạn có thể hỏi về thực đơn, cách đặt món, địa chỉ hoặc số điện thoại nhé.</div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Giỏ hàng đang chờ những món ngon của bạn.</p>
     </div>
 
-    <form class="chat-form" id="chatForm">
-      <input id="chatInput" placeholder="Nhập tin nhắn..." autocomplete="off" aria-label="Tin nhắn">
-      <button type="submit">Gửi</button>
-    </form>
-  </section>
-
-  <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
-    <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-      <div class="cart-head">
-        <h2 id="cartTitle">Giỏ hàng của bạn</h2>
-        <button class="close-cart" id="closeCart" aria-label="Đóng giỏ hàng">×</button>
-      </div>
-
-      <div id="cartItems"></div>
-
+    <div class="cart-footer">
       <div class="cart-total">
         <span>Tạm tính</span>
         <span id="cartTotal">0đ</span>
       </div>
 
-      <p class="form-hint">
-        Giá và đơn hàng là thông tin minh họa. Vui lòng gọi để xác nhận đơn.
-      </p>
+      <button class="primary-button" id="checkoutToggle" type="button">Tiến hành đặt hàng</button>
 
-      <button class="checkout" id="checkoutBtn" type="button">
-        Đặt món qua điện thoại
-      </button>
-    </aside>
-  </div>
+      <form class="checkout-form" id="checkoutForm">
+        <input type="text" id="customerName" placeholder="Tên người nhận" required>
+        <input type="tel" id="customerPhone" placeholder="Số điện thoại" required>
+        <textarea id="customerAddress" placeholder="Địa chỉ nhận hàng" required></textarea>
+        <textarea id="customerNote" placeholder="Ghi chú cho đơn hàng (nếu có)"></textarea>
+        <button class="primary-button" type="submit">Tạo nội dung đơn hàng</button>
+      </form>
+
+      <p class="checkout-note">
+        Đây là website mẫu. Đơn hàng chưa được gửi đến hệ thống cửa hàng tự động.
+      </p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status"></div>
 
   <script>
-    // DANH SÁCH SẢN PHẨM
-    // Có thể sửa tên, mô tả, giá và đường dẫn ảnh ở đây.
     const products = [
       {
-        id: 1,
-        name: "Mì trộn bò",
-        desc: "Mì dai, thịt bò mềm và rau tươi.",
-        price: 35000,
-        cat: "meal",
-        emoji: "🍜",
+        id: 1, name: "Mì cay hải sản", price: 45000, cat: "mi",
+        tag: "Được yêu thích",
+        desc: "Mì cay nóng hổi cùng tôm, mực và rau xanh.",
         image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 2,
-        name: "Mì cay hải sản",
-        desc: "Mì cay nóng hổi cùng tôm và hải sản.",
-        price: 45000,
-        cat: "meal",
-        emoji: "🍲",
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=80"
+        id: 2, name: "Mì trộn bò", price: 40000, cat: "mi",
+        tag: "Đậm đà",
+        desc: "Mì trộn sốt đậm vị với thịt bò và rau ăn kèm.",
+        image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 3,
-        name: "Mì Ý sốt bò bằm",
-        desc: "Mì Ý sốt cà chua đậm vị.",
-        price: 42000,
-        cat: "meal",
-        emoji: "🍝",
-        image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=80"
+        id: 3, name: "Mì tương đen", price: 38000, cat: "mi",
+        tag: "Thơm ngon",
+        desc: "Mì sốt tương đen sánh mịn, hấp dẫn.",
+        image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 4,
-        name: "Cơm gà sốt",
-        desc: "Cơm nóng ăn cùng gà vàng thơm.",
-        price: 40000,
-        cat: "meal",
-        emoji: "🍗",
-        image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80"
+        id: 4, name: "Mì ramen", price: 45000, cat: "mi",
+        tag: "Nóng hổi",
+        desc: "Mì nước cùng topping phong phú và nước dùng thơm.",
+        image: "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 5,
-        name: "Khoai tây chiên",
-        desc: "Khoai tây vàng giòn, ăn vặt hấp dẫn.",
-        price: 25000,
-        cat: "snack",
-        emoji: "🍟",
+        id: 5, name: "Tokbokki", price: 35000, cat: "snack",
+        tag: "Cay nhẹ",
+        desc: "Bánh gạo dẻo mềm sốt cay ngọt kiểu Hàn.",
+        image: "https://images.unsplash.com/photo-1635363638580-c2809d049eee?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 6, name: "Khoai lang kén", price: 25000, cat: "snack",
+        tag: "Giòn rụm",
+        desc: "Những miếng khoai nhỏ vàng giòn, thơm bùi.",
+        image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 7, name: "Khoai tây chiên", price: 25000, cat: "snack",
+        tag: "Ăn vặt",
+        desc: "Khoai tây cắt que chiên vàng, dùng kèm sốt.",
         image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 6,
-        name: "Khoai lang kén",
-        desc: "Khoai lang bùi ngọt, thơm ngon.",
-        price: 28000,
-        cat: "snack",
-        emoji: "🍠",
-        image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=80"
+        id: 8, name: "Gà rán", price: 39000, cat: "snack",
+        tag: "Giòn ngon",
+        desc: "Gà rán lớp vỏ vàng giòn, thịt mềm mọng.",
+        image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 7,
-        name: "Gà viên chiên",
-        desc: "Gà chiên vàng giòn, hợp ăn cùng bạn bè.",
-        price: 30000,
-        cat: "snack",
-        emoji: "🍗",
-        image: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=700&q=80"
+        id: 9, name: "Xúc xích chiên", price: 20000, cat: "snack",
+        tag: "Dễ ăn",
+        desc: "Xúc xích chiên nóng, phù hợp ăn nhẹ.",
+        image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 8,
-        name: "Bánh tráng trộn",
-        desc: "Bánh tráng trộn chua cay đậm vị.",
-        price: 25000,
-        cat: "snack",
-        emoji: "🥗",
-        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80"
+        id: 10, name: "Phô mai que", price: 25000, cat: "snack",
+        tag: "Béo thơm",
+        desc: "Lớp vỏ giòn cùng phô mai kéo sợi hấp dẫn.",
+        image: "https://images.unsplash.com/photo-1531749668029-2db88e4276c7?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 9,
-        name: "Trà chanh",
-        desc: "Trà thanh mát, vị chanh dịu nhẹ.",
-        price: 18000,
-        cat: "drink",
-        emoji: "🍋",
-        image: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=700&q=80"
+        id: 11, name: "Cá viên chiên", price: 25000, cat: "snack",
+        tag: "Ăn vặt",
+        desc: "Cá viên chiên vàng ăn kèm tương chấm.",
+        image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 10,
-        name: "Trà tắc",
-        desc: "Trà tắc chua ngọt, giải khát.",
-        price: 18000,
-        cat: "drink",
-        emoji: "🍹",
-        image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80"
+        id: 12, name: "Bánh tráng trộn", price: 25000, cat: "snack",
+        tag: "Chua cay",
+        desc: "Bánh tráng trộn cùng rau răm, trứng và topping.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 11,
-        name: "Trà đào cam sả",
-        desc: "Trà đào thơm, kết hợp cam tươi.",
-        price: 28000,
-        cat: "drink",
-        emoji: "🍑",
+        id: 13, name: "Pizza phô mai", price: 59000, cat: "snack",
+        tag: "Thơm béo",
+        desc: "Đế bánh nướng thơm với phô mai tan chảy.",
+        image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 14, name: "Hamburger bò", price: 45000, cat: "snack",
+        tag: "No bụng",
+        desc: "Bánh mềm kẹp bò, rau tươi và sốt.",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 15, name: "Bánh pancake", price: 35000, cat: "sweet",
+        tag: "Ngọt ngào",
+        desc: "Bánh mềm xốp ăn cùng trái cây và siro.",
+        image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 16, name: "Bánh waffle", price: 35000, cat: "sweet",
+        tag: "Bánh ngọt",
+        desc: "Waffle vàng thơm với lớp topping hấp dẫn.",
+        image: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 17, name: "Bánh cupcake", price: 25000, cat: "sweet",
+        tag: "Xinh xắn",
+        desc: "Bánh nhỏ mềm mịn phủ kem ngọt dịu.",
+        image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 18, name: "Bánh donut", price: 22000, cat: "sweet",
+        tag: "Dễ thương",
+        desc: "Donut phủ lớp đường và trang trí bắt mắt.",
+        image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 19, name: "Trà đào cam sả", price: 30000, cat: "drink",
+        tag: "Thanh mát",
+        desc: "Trà trái cây thơm dịu, vị chua ngọt cân bằng.",
         image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 12,
-        name: "Trà vải",
-        desc: "Trà thơm, vị ngọt thanh.",
-        price: 28000,
-        cat: "drink",
-        emoji: "🧋",
+        id: 20, name: "Trà sữa trân châu", price: 30000, cat: "drink",
+        tag: "Bán chạy",
+        desc: "Trà sữa béo thơm cùng trân châu dai mềm.",
         image: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 13,
-        name: "Nước ép cam",
-        desc: "Nước cam tươi, chua ngọt tự nhiên.",
-        price: 30000,
-        cat: "drink",
-        emoji: "🍊",
-        image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=700&q=80"
+        id: 21, name: "Matcha latte", price: 35000, cat: "drink",
+        tag: "Vị trà xanh",
+        desc: "Matcha thơm dịu hòa quyện cùng sữa.",
+        image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=80"
       },
       {
-        id: 14,
-        name: "Nước ép dưa hấu",
-        desc: "Nước ép dưa hấu mát lành.",
-        price: 28000,
-        cat: "drink",
-        emoji: "🍉",
-        image: "https://images.unsplash.com/photo-1525385133512-2f3bdd039054?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 15,
-        name: "Nước ép dứa",
-        desc: "Nước ép dứa thơm, chua ngọt.",
-        price: 28000,
-        cat: "drink",
-        emoji: "🍍",
-        image: "https://images.unsplash.com/photo-1571575173700-afb9492e6a50?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 16,
-        name: "Nước ép cà rốt",
-        desc: "Nước ép tươi, vị ngọt dịu.",
-        price: 30000,
-        cat: "drink",
-        emoji: "🥕",
-        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 17,
-        name: "Trà sữa trân châu",
-        desc: "Trà sữa béo thơm cùng trân châu.",
-        price: 30000,
-        cat: "drink",
-        emoji: "🧋",
-        image: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 18,
-        name: "Tiramisu",
-        desc: "Bánh mềm mịn, thơm vị cà phê.",
-        price: 35000,
-        cat: "cake",
-        emoji: "🍰",
-        image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 19,
-        name: "Croissant bơ",
-        desc: "Bánh sừng bò nhiều lớp, thơm bơ.",
-        price: 25000,
-        cat: "cake",
-        emoji: "🥐",
-        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 20,
-        name: "Bánh mousse dâu",
-        desc: "Bánh kem mềm mịn, vị dâu ngọt dịu.",
-        price: 38000,
-        cat: "cake",
-        emoji: "🍓",
-        image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 21,
-        name: "Brownie chocolate",
-        desc: "Bánh chocolate đậm vị, mềm ẩm.",
-        price: 30000,
-        cat: "cake",
-        emoji: "🍫",
-        image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 22,
-        name: "Bánh su kem",
-        desc: "Bánh nhỏ xinh với nhân kem béo mịn.",
-        price: 12000,
-        cat: "cake",
-        emoji: "🧁",
-        image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80"
+        id: 22, name: "Cà phê sữa đá", price: 25000, cat: "drink",
+        tag: "Đậm vị",
+        desc: "Cà phê thơm đậm, kết hợp sữa và đá mát lạnh.",
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80"
       }
     ];
 
-    const money = number =>
-      new Intl.NumberFormat("vi-VN").format(number) + "đ";
+    const money = amount =>
+      amount.toLocaleString("vi-VN") + "đ";
+
+    const menuGrid = document.getElementById("menuGrid");
+    const searchInput = document.getElementById("searchInput");
+    const filterButtons = [...document.querySelectorAll(".filter-btn")];
+    const cartPanel = document.getElementById("cartPanel");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutForm = document.getElementById("checkoutForm");
 
     let activeCategory = "all";
     let cart = {};
+    let toastTimer;
 
-    const menuGrid = document.getElementById("menuGrid");
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
 
-    // HIỂN THỊ THỰC ĐƠN
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
     function renderMenu() {
-      const query = document
-        .getElementById("searchInput")
-        .value.trim()
-        .toLocaleLowerCase("vi");
+      const query = searchInput.value.trim().toLocaleLowerCase("vi");
 
-      const visibleProducts = products.filter(product => {
-        const matchesCategory =
+      const filtered = products.filter(product => {
+        const matchCategory =
           activeCategory === "all" || product.cat === activeCategory;
 
-        const matchesSearch =
+        const matchSearch =
           (product.name + " " + product.desc)
             .toLocaleLowerCase("vi")
             .includes(query);
 
-        return matchesCategory && matchesSearch;
+        return matchCategory && matchSearch;
       });
 
-      if (visibleProducts.length === 0) {
+      if (!filtered.length) {
         menuGrid.innerHTML =
-          '<p class="empty">Chưa tìm thấy món phù hợp. Bạn thử từ khóa khác nhé ♡</p>';
+          '<p class="empty-message">Chưa tìm thấy món phù hợp. Bạn thử tìm tên khác nhé ♡</p>';
         return;
       }
 
-      menuGrid.innerHTML = visibleProducts.map(product => `
-        <article class="food-card">
-          <div class="food-photo">
+      menuGrid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+          <div class="product-image">
             <img
               src="${product.image}"
               alt="${product.name}"
               loading="lazy"
-              onerror="this.onerror=null;this.src='https://placehold.co/600x400/f5f1eb/52634a?text=ChanChan+Food';"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400/fff3f4/718875?text=ChanChan+Food';"
             >
+            <span class="product-tag">${product.tag}</span>
           </div>
 
-          <div class="food-info">
+          <div class="product-info">
             <h3>${product.name}</h3>
-            <p>${product.desc}</p>
+            <p class="product-desc">${product.desc}</p>
 
-            <div class="food-bottom">
+            <div class="product-bottom">
               <span class="price">${money(product.price)}</span>
               <button
-                class="add-btn"
+                class="add-button"
                 type="button"
                 data-add="${product.id}"
-                aria-label="Thêm ${product.name} vào giỏ"
+                aria-label="Thêm ${product.name} vào giỏ hàng"
               >+</button>
             </div>
           </div>
@@ -1312,279 +1401,195 @@
       `).join("");
     }
 
-    // LỌC MÓN ĂN
-    document.querySelectorAll(".filter-btn").forEach(button => {
+    filterButtons.forEach(button => {
       button.addEventListener("click", () => {
-        document.querySelectorAll(".filter-btn").forEach(item => {
-          item.classList.remove("active");
+        activeCategory = button.dataset.cat;
+
+        filterButtons.forEach(item => {
+          item.classList.toggle("active", item === button);
         });
 
-        button.classList.add("active");
-        activeCategory = button.dataset.category;
         renderMenu();
       });
     });
 
-    // TÌM KIẾM MÓN ĂN
-    document.getElementById("searchInput").addEventListener("input", renderMenu);
+    searchInput.addEventListener("input", renderMenu);
 
-    // THÊM MÓN VÀO GIỎ
     menuGrid.addEventListener("click", event => {
       const button = event.target.closest("[data-add]");
-
       if (!button) return;
 
       const id = Number(button.dataset.add);
       cart[id] = (cart[id] || 0) + 1;
 
-      updateCart();
-
-      const oldText = button.textContent;
-      button.textContent = "✓";
-
-      setTimeout(() => {
-        button.textContent = oldText;
-      }, 700);
+      renderCart();
+      showToast("Đã thêm món vào giỏ hàng ♡");
     });
 
-    // CẬP NHẬT GIỎ HÀNG
-    function updateCart() {
-      const count = Object.values(cart).reduce(
-        (total, quantity) => total + quantity,
-        0
+    function renderCart() {
+      const entries = Object.entries(cart)
+        .filter(([, quantity]) => quantity > 0);
+
+      const totalQuantity = entries.reduce(
+        (sum, [, quantity]) => sum + quantity, 0
       );
 
-      document.getElementById("cartCount").textContent = count;
+      const totalPrice = entries.reduce((sum, [id, quantity]) => {
+        const product = products.find(item => item.id === Number(id));
+        return sum + product.price * quantity;
+      }, 0);
 
-      const entries = products.filter(product => cart[product.id]);
+      cartCount.textContent = totalQuantity;
+      cartTotal.textContent = money(totalPrice);
 
-      document.getElementById("cartItems").innerHTML = entries.length
-        ? entries.map(product => `
-            <div class="cart-item">
-              <div>
-                <strong>${product.emoji} ${product.name}</strong>
-                <small>${money(product.price)} / món</small>
-              </div>
-
-              <div class="qty">
-                <button
-                  type="button"
-                  data-change="${product.id}"
-                  data-delta="-1"
-                  aria-label="Giảm ${product.name}"
-                >−</button>
-
-                <span>${cart[product.id]}</span>
-
-                <button
-                  type="button"
-                  data-change="${product.id}"
-                  data-delta="1"
-                  aria-label="Tăng ${product.name}"
-                >+</button>
-              </div>
-            </div>
-          `).join("")
-        : "<p>Giỏ hàng còn trống. Chọn vài món ngon nhé 🌷</p>";
-
-      const total = entries.reduce(
-        (sum, product) => sum + product.price * cart[product.id],
-        0
-      );
-
-      document.getElementById("cartTotal").textContent = money(total);
-    }
-
-    // TĂNG HOẶC GIẢM SỐ LƯỢNG
-    document.getElementById("cartItems").addEventListener("click", event => {
-      const button = event.target.closest("[data-change]");
-
-      if (!button) return;
-
-      const id = Number(button.dataset.change);
-      cart[id] += Number(button.dataset.delta);
-
-      if (cart[id] <= 0) {
-        delete cart[id];
-      }
-
-      updateCart();
-    });
-
-    // MỞ VÀ ĐÓNG GIỎ HÀNG
-    const cartOverlay = document.getElementById("cartOverlay");
-
-    function showCart(open) {
-      cartOverlay.classList.toggle("open", open);
-      cartOverlay.setAttribute("aria-hidden", String(!open));
-    }
-
-    document.getElementById("openCart").addEventListener("click", () => {
-      showCart(true);
-    });
-
-    document.getElementById("closeCart").addEventListener("click", () => {
-      showCart(false);
-    });
-
-    cartOverlay.addEventListener("click", event => {
-      if (event.target === cartOverlay) {
-        showCart(false);
-      }
-    });
-
-    // ĐẶT MÓN QUA ĐIỆN THOẠI
-    document.getElementById("checkoutBtn").addEventListener("click", () => {
-      if (!Object.keys(cart).length) {
-        alert("Giỏ hàng đang trống bạn nhé!");
+      if (!entries.length) {
+        cartItems.innerHTML =
+          '<p class="cart-empty">Giỏ hàng đang chờ những món ngon của bạn.</p>';
+        checkoutForm.classList.remove("show");
         return;
       }
 
-      const lines = products
-        .filter(product => cart[product.id])
-        .map(product =>
-          `${product.name} x${cart[product.id]} - ${money(product.price * cart[product.id])}`
-        );
+      cartItems.innerHTML = entries.map(([id, quantity]) => {
+        const product = products.find(item => item.id === Number(id));
 
-      const total = products.reduce(
-        (sum, product) => sum + product.price * (cart[product.id] || 0),
-        0
-      );
+        return `
+          <div class="cart-item">
+            <div>
+              <h4>${product.name}</h4>
+              <small>${money(product.price * quantity)}</small>
 
-      alert(
-        "Danh sách món của bạn:\n" +
-        lines.join("\n") +
-        "\nTổng: " + money(total) +
-        "\nHãy đọc lại đơn khi gọi 091234567 nhé!"
-      );
+              <div class="quantity">
+                <button type="button" data-change="${id}" data-delta="-1" aria-label="Giảm số lượng">−</button>
+                <span>${quantity}</span>
+                <button type="button" data-change="${id}" data-delta="1" aria-label="Tăng số lượng">+</button>
+              </div>
+            </div>
 
-      window.location.href = "tel:091234567";
-    });
-
-    // CHAT CHĂM SÓC KHÁCH HÀNG
-    const chatBox = document.getElementById("chatBox");
-
-    function toggleChat(open) {
-      chatBox.classList.toggle("open", open);
-
-      document
-        .getElementById("chatToggle")
-        .setAttribute("aria-expanded", String(open));
-
-      if (open) {
-        document.getElementById("chatInput").focus();
-      }
+            <button class="remove-item" type="button" data-remove="${id}">Xóa</button>
+          </div>
+        `;
+      }).join("");
     }
 
-    document.getElementById("chatToggle").addEventListener("click", () => {
-      toggleChat(!chatBox.classList.contains("open"));
+    cartItems.addEventListener("click", event => {
+      const changeButton = event.target.closest("[data-change]");
+      const removeButton = event.target.closest("[data-remove]");
+
+      if (changeButton) {
+        const id = Number(changeButton.dataset.change);
+        const delta = Number(changeButton.dataset.delta);
+
+        cart[id] = (cart[id] || 0) + delta;
+
+        if (cart[id] <= 0) delete cart[id];
+
+        renderCart();
+      }
+
+      if (removeButton) {
+        delete cart[Number(removeButton.dataset.remove)];
+        renderCart();
+        showToast("Đã xóa món khỏi giỏ hàng.");
+      }
     });
 
-    document.getElementById("chatClose").addEventListener("click", () => {
-      toggleChat(false);
-    });
-
-    document.getElementById("contactChat").addEventListener("click", () => {
-      toggleChat(true);
-
-      document.getElementById("chatBox").scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
-    });
-
-    function addBubble(message, type) {
-      const element = document.createElement("div");
-      element.className = "bubble " + type;
-      element.textContent = message;
-
-      const messages = document.getElementById("chatMessages");
-      messages.appendChild(element);
-      messages.scrollTop = messages.scrollHeight;
+    function openCart() {
+      cartPanel.classList.add("open");
+      cartOverlay.classList.add("open");
+      document.body.style.overflow = "hidden";
     }
 
-    function getReply(message) {
-      const text = message.toLocaleLowerCase("vi");
-
-      if (/xin chào|chào|hello|hi/.test(text)) {
-        return "ChanChan chào bạn nè 🌷 Bạn đang muốn tìm món gì vậy?";
-      }
-
-      if (/menu|thực đơn|món|ăn gì|đồ ăn|đồ uống/.test(text)) {
-        return "Menu có mì, khoai chiên, gà viên, trà chanh, trà tắc, nước ép và bánh ngọt. Bạn kéo lên mục Thực đơn để xem giá nhé!";
-      }
-
-      if (/giá|bao nhiêu|đắt/.test(text)) {
-        return "Giá minh họa từ 12.000đ đến 45.000đ. Bạn xem giá từng món trong Thực đơn nha ♡";
-      }
-
-      if (/địa chỉ|ở đâu|đường/.test(text)) {
-        return "ChanChan Food ở Xuân Đỉnh, Hà Nội 📍";
-      }
-
-      if (/đặt|ship|giao hàng|mua/.test(text)) {
-        return "Bạn thêm món vào giỏ rồi gọi 091234567 để xác nhận đơn và thông tin giao hàng nhé.";
-      }
-
-      if (/số|điện thoại|liên hệ|gọi/.test(text)) {
-        return "Bạn gọi ChanChan qua số 091234567 nhé ☎️";
-      }
-
-      if (/cảm ơn|thanks/.test(text)) {
-        return "Không có gì nè, chúc bạn một ngày thật dịu dàng 🌿";
-      }
-
-      return "Mình chưa hiểu rõ ý bạn lắm ♡ Bạn có thể hỏi về thực đơn, giá, đặt món, địa chỉ hoặc gọi 091234567 để được hỗ trợ nhé.";
+    function closeCart() {
+      cartPanel.classList.remove("open");
+      cartOverlay.classList.remove("open");
+      document.body.style.overflow = "";
     }
 
-    document.getElementById("chatForm").addEventListener("submit", event => {
+    document.getElementById("openCart").addEventListener("click", openCart);
+    document.getElementById("closeCart").addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeCart();
+    });
+
+    document.getElementById("checkoutToggle").addEventListener("click", () => {
+      if (!Object.keys(cart).length) {
+        showToast("Em hãy chọn ít nhất một món trước nhé!");
+        return;
+      }
+
+      checkoutForm.classList.toggle("show");
+      checkoutForm.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    checkoutForm.addEventListener("submit", event => {
       event.preventDefault();
 
-      const input = document.getElementById("chatInput");
-      const message = input.value.trim();
+      if (!Object.keys(cart).length) {
+        showToast("Giỏ hàng đang trống.");
+        return;
+      }
 
-      if (!message) return;
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const address = document.getElementById("customerAddress").value.trim();
+      const note = document.getElementById("customerNote").value.trim();
 
-      addBubble(message, "user");
-      input.value = "";
+      const lines = Object.entries(cart).map(([id, quantity]) => {
+        const product = products.find(item => item.id === Number(id));
+        return `- ${product.name} x ${quantity}: ${money(product.price * quantity)}`;
+      });
 
-      setTimeout(() => {
-        addBubble(getReply(message), "bot");
-      }, 250);
+      const total = Object.entries(cart).reduce((sum, [id, quantity]) => {
+        const product = products.find(item => item.id === Number(id));
+        return sum + product.price * quantity;
+      }, 0);
+
+      const orderText = [
+        "ĐƠN ĐẶT HÀNG CHANCHAN FOOD",
+        "",
+        ...lines,
+        "",
+        `Tổng tiền hàng: ${money(total)}`,
+        `Người nhận: ${name}`,
+        `Số điện thoại: ${phone}`,
+        `Địa chỉ: ${address}`,
+        `Ghi chú: ${note || "Không có"}`
+      ].join("\n");
+
+      const emailSubject = encodeURIComponent("Đơn đặt hàng ChanChan Food");
+      const emailBody = encodeURIComponent(orderText);
+
+      showToast("Đang mở ứng dụng email để gửi đơn hàng.");
+
+      window.location.href =
+        `mailto:?subject=${emailSubject}&body=${emailBody}`;
     });
 
-    // FORM LIÊN HỆ
     document.getElementById("contactForm").addEventListener("submit", event => {
       event.preventDefault();
 
-      const name = document.getElementById("customerName").value.trim();
+      const name = document.getElementById("contactName").value.trim();
+      const email = document.getElementById("contactEmail").value.trim();
+      const message = document.getElementById("contactMessage").value.trim();
 
-      const phone =
-        document.getElementById("customerPhone").value.trim() ||
-        "Chưa cung cấp";
-
-      const message =
-        document.getElementById("customerMessage").value.trim();
-
-      const subject = encodeURIComponent(
-        "Lời nhắn từ khách hàng - ChanChan Food"
-      );
-
+      const subject = encodeURIComponent("Lời nhắn gửi ChanChan Food");
       const body = encodeURIComponent(
-        `Tên: ${name}\nSố điện thoại: ${phone}\nNội dung: ${message}`
+        `Tên: ${name}\nEmail: ${email}\n\nLời nhắn:\n${message}`
       );
 
-      alert(
-        "Website sẽ mở ứng dụng email nếu thiết bị của bạn đã cài đặt. Nếu không, hãy gọi 091234567 nhé."
-      );
+      showToast("Đang mở ứng dụng email để gửi lời nhắn.");
 
       window.location.href =
         `mailto:?subject=${subject}&body=${body}`;
     });
 
-    // KHỞI TẠO WEBSITE
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
     renderMenu();
-    updateCart();
+    renderCart();
   </script>
 </body>
 </html>

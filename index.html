@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chan Chan Food - Đồ ăn ngon mỗi ngày</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fffaf3;
+      color: #34271f;
+    }
+    header {
+      background: #f47735;
+      color: white;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 { margin: 0; font-size: 26px; }
+    header a { color: white; text-decoration: none; font-weight: bold; }
+    .hero {
+      text-align: center;
+      padding: 55px 20px;
+      background: #ffe8d4;
+    }
+    .hero h2 { font-size: 36px; margin: 0 0 12px; color: #b94719; }
+    .hero p { font-size: 17px; line-height: 1.6; }
+    .hero a, .order-btn {
+      display: inline-block;
+      background: #e85d24;
+      color: white;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 24px;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    main { max-width: 1100px; margin: auto; padding: 35px 20px; }
+    .section-title { text-align: center; color: #b94719; font-size: 28px; }
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      margin-top: 25px;
+    }
+    .item {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px #00000010;
+      padding-bottom: 20px;
+      text-align: center;
+    }
+    .item img { width: 100%; height: 180px; object-fit: cover; }
+    .item h3 { margin: 14px 8px 8px; }
+    .item p { color: #777; padding: 0 12px; min-height: 36px; }
+    .price { color: #e85d24; font-size: 20px; font-weight: bold; }
+    .item button { margin-top: 8px; }
+    #cart {
+      margin-top: 35px;
+      padding: 25px;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid #f4d8c5;
+    }
+    #cart ul { padding-left: 22px; line-height: 2; }
+    .contact {
+      background: #fff0e2;
+      padding: 30px 20px;
+      text-align: center;
+      line-height: 1.9;
+    }
+    footer {
+      background: #39291f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 28px; }
+      header { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍊 CHAN CHAN FOOD</h1>
+    <a href="#cart">🛒 Giỏ hàng (<span id="count">0</span>)</a>
+  </header>
+
+  <section class="hero">
+    <h2>Ngon mỗi ngày, vui mỗi bữa!</h2>
+    <p>Món ngon được chọn lựa kỹ càng, phục vụ tận tâm.<br>
+       Đặt món yêu thích của bạn ngay hôm nay.</p>
+    <a href="#menu">Khám phá thực đơn</a>
+  </section>
+
+  <main>
+    <h2 class="section-title" id="menu">🍜 THỰC ĐƠN HÔM NAY</h2>
+    <p style="text-align:center">Món ngon – Giá hợp lý – Phục vụ chu đáo</p>
+    <div class="menu" id="products"></div>
+
+    <section id="cart">
+      <h2>🛒 Giỏ hàng của bạn</h2>
+      <ul id="cart-list"><li>Chưa có món nào.</li></ul>
+      <h3>Tổng tiền: <span id="total">0</span>đ</h3>
+      <button class="order-btn" onclick="orderFood()">Đặt món ngay</button>
+      <p id="notice" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <section class="contact" id="contact">
+    <h2>📍 Liên hệ với Chan Chan Food</h2>
+    <p>Giờ mở cửa: 8:00 – 22:00 hằng ngày</p>
+    <p>Địa chỉ: Hà Nội, Việt Nam</p>
+    <p>Hotline: 09xx xxx xxx (thay bằng số của bạn)</p>
+  </section>
+
+  <footer>
+    © 2026 Chan Chan Food | Website bán đồ ăn trực tuyến
+  </footer>
+
+  <script>
+    const foods = [
+      {
+        name: "Cơm gà sốt", price: 35000,
+        desc: "Cơm nóng thơm ngon, đậm đà.",
+        img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Hamburger bò", price: 45000,
+        desc: "Bánh mềm, thịt bò và rau tươi.",
+        img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Pizza phô mai", price: 69000,
+        desc: "Phô mai béo ngậy, đế bánh thơm.",
+        img:  "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Trà đào", price: 25000,
+        desc: "Trà thơm mát, vị đào ngọt dịu.",
+        img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80"
+      }
+    ];
+
+    const cart = {};
+
+    document.getElementById("products").innerHTML = foods.map((f, i) => `
+      <article class="item">
+        <img src="${f.img}" alt="${f.name}" onerror="this.style.display='none'">
+        <h3>${f.name}</h3>
+        <p>${f.desc}</p>
+        <div class="price">${f.price.toLocaleString("vi-VN")}đ</div>
+        <button class="order-btn" onclick="addFood(${i})">+ Thêm vào giỏ</button>
+      </article>
+    `).join("");
+
+    function addFood(i) {
+      cart[i] = (cart[i] || 0) + 1;
+      renderCart();
+    }
+
+    function renderCart() {
+      const ids = Object.keys(cart).filter(i => cart[i] > 0);
+      document.getElementById("count").textContent =
+        ids.reduce((s, i) => s + cart[i], 0);
+
+      document.getElementById("cart-list").innerHTML = ids.length
+        ? ids.map(i => `<li>${foods[i].name} × ${cart[i]}
+            <button onclick="changeQty(${i},-1)">−</button>
+            <button onclick="changeQty(${i},1)">+</button>
+          </li>`).join("")
+        : "<li>Chưa có món nào.</li>";
+
+      const total = ids.reduce((s, i) => s + foods[i].price * cart[i], 0);
+      document.getElementById("total").textContent = total.toLocaleString("vi-VN");
+    }
+
+    function changeQty(i, amount) {
+      cart[i] = Math.max(0, (cart[i] || 0) + amount);
+      renderCart();
+    }
+
+    function orderFood() {
+      const ids = Object.keys(cart).filter(i => cart[i] > 0);
+      if (!ids.length) {
+        document.getElementById("notice").textContent =
+          "Bạn hãy thêm món vào giỏ trước nhé!";
+        return;
+      }
+      const order = ids.map(i => `${foods[i].name} x ${cart[i]}`).join(", ");
+      const total = ids.reduce((s, i) => s + foods[i].price * cart[i], 0);
+      const message = `ĐƠN ĐẶT MÓN CHAN CHAN FOOD\n${order}\nTổng tiền: ${total.toLocaleString("vi-VN")}đ`;
+      document.getElementById("notice").textContent =
+        "Đơn hàng mẫu đã tạo. Hãy sao chép nội dung bên dưới để gửi cho cửa hàng:\n" + message;
+    }
+  </script>
+</body>
+</html>

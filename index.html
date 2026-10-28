@@ -2,631 +2,2431 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ec4899">
-<meta name="description" content="3CE FOODS - Thiên đường mì trộn, cơm ngon và đồ ăn vặt.">
-<title>3CE FOODS | Thiên đường ẩm thực</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff1f5">
+  <meta name="description" content="3CE FOODS - Thưởng thức hương vị, tận hưởng niềm vui.">
+  <title>3CE FOODS | Thưởng thức hương vị</title>
 
-<style>
-:root {
-  --pink: #ec4899;
-  --pink-dark: #db2777;
-  --pink-light: #fdf2f8;
-  --green: #34d399;
-  --green-dark: #059669;
-  --text: #292633;
-  --muted: #777481;
-  --white: #fff;
-  --border: #f5dce9;
-  --shadow: 0 10px 30px rgba(219,39,119,.08);
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #fffafd;
-  color: var(--text);
-  line-height: 1.6;
-}
-button, input, textarea { font: inherit; }
-button { cursor: pointer; }
-a { color: inherit; text-decoration: none; }
-button:focus-visible, a:focus-visible, input:focus-visible,
-textarea:focus-visible { outline: 3px solid #f9a8d4; outline-offset: 3px; }
+  <!-- Font tròn, dễ thương và hỗ trợ tiếng Việt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-.container { width: min(1180px, 92%); margin: auto; }
-header {
-  position: sticky; top: 0; z-index: 20;
-  background: rgba(255,255,255,.94);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-.nav {
-  min-height: 76px; display: flex; align-items: center;
-  justify-content: space-between; gap: 18px;
-}
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand-icon {
-  width: 45px; height: 45px; border-radius: 15px;
-  display: grid; place-items: center; color: white;
-  background: linear-gradient(135deg,#f472b6,#ec4899);
-  font-size: 25px; box-shadow: 0 5px 15px #fbcfe8;
-}
-.brand-name { color: var(--pink); font-size: 24px; font-weight: 900; }
-.tagline { display: block; color: var(--green-dark); font-size: 11px; font-weight: 700; }
-.cart-button, .primary-button {
-  border: 0; border-radius: 14px; padding: 12px 18px;
-  font-weight: 800; transition: .2s;
-}
-.cart-button { background: var(--pink-light); color: var(--pink-dark); }
-.cart-button:hover { background: #fce7f3; }
-.cart-count {
-  display: inline-grid; place-items: center; min-width: 23px;
-  height: 23px; margin-left: 5px; padding: 0 5px;
-  border-radius: 20px; background: var(--green); color: white;
-}
-.hero {
-  position: relative; overflow: hidden; text-align: center;
-  padding: 85px 20px 90px;
-  background: linear-gradient(135deg,#fce7f3,#fff1f7 48%,#d1fae5);
-}
-.hero::before, .hero::after {
-  content: ""; position: absolute; border-radius: 50%;
-  pointer-events: none; opacity: .45;
-}
-.hero::before { width: 250px; height: 250px; background: #f9a8d4; top: -130px; left: -70px; }
-.hero::after { width: 300px; height: 300px; background: #6ee7b7; right: -130px; bottom: -180px; }
-.hero-content { position: relative; z-index: 1; max-width: 820px; margin: auto; }
-.eyebrow {
-  display: inline-block; background: white; color: var(--pink-dark);
-  padding: 8px 18px; border: 1px solid var(--border);
-  border-radius: 30px; font-weight: 800; font-size: 13px;
-}
-.hero h1 { font-size: clamp(36px,6vw,66px); line-height: 1.12; margin: 23px 0; font-weight: 900; }
-.gradient-text {
-  background: linear-gradient(90deg,var(--pink),var(--green-dark));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.hero p { max-width: 660px; margin: 0 auto 30px; color: #66616f; font-size: 17px; }
-.primary-button { background: var(--pink); color: white; box-shadow: 0 8px 20px #fbcfe8; }
-.primary-button:hover { background: var(--pink-dark); transform: translateY(-2px); }
+  <style>
+    :root {
+      --pink: #f8cbd8;
+      --pink-light: #fff1f5;
+      --pink-dark: #df809e;
+      --green: #cfe5c7;
+      --green-light: #f0f7ec;
+      --green-dark: #63885d;
+      --cream: #fffdf9;
+      --text: #423d3d;
+      --muted: #888080;
+      --white: #ffffff;
+      --shadow: 0 8px 28px rgba(139, 99, 111, 0.09);
+      --radius: 22px;
+    }
 
-.section { padding: 65px 0; }
-.section-heading { text-align: center; margin-bottom: 35px; }
-.section-heading h2 { font-size: clamp(27px,4vw,38px); margin: 0 0 8px; }
-.section-heading p { margin: 0; color: var(--muted); }
-.menu-tools { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
-.search {
-  flex: 1; min-width: 200px; padding: 13px 16px; border-radius: 14px;
-  border: 1px solid var(--border); background: white; color: var(--text);
-}
-.tabs { display: flex; gap: 9px; overflow-x: auto; padding: 3px 2px 12px; margin-bottom: 22px; }
-.tab {
-  white-space: nowrap; padding: 11px 17px; border-radius: 13px;
-  border: 1px solid var(--border); background: white; color: #6b6571;
-  font-weight: 800;
-}
-.tab.active { background: var(--pink); color: white; border-color: var(--pink); }
-.menu-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 22px; }
-.product {
-  display: flex; flex-direction: column; min-width: 0;
-  background: white; border: 1px solid #f6e7ef; border-radius: 22px;
-  overflow: hidden; box-shadow: 0 4px 15px rgba(60,20,45,.035);
-  transition: transform .2s, box-shadow .2s;
-}
-.product:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.product img { width: 100%; height: 190px; object-fit: cover; background: var(--pink-light); }
-.product-info { padding: 17px; display: flex; flex-direction: column; flex: 1; }
-.product-category { color: var(--green-dark); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .7px; }
-.product h3 { font-size: 16px; line-height: 1.4; margin: 7px 0; }
-.product p { font-size: 13px; color: var(--muted); margin: 0 0 15px; flex: 1; }
-.product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid #f8edf3; padding-top: 13px; }
-.price { color: var(--green-dark); font-weight: 900; font-size: 18px; }
-.add-button {
-  border: 0; border-radius: 11px; padding: 9px 12px;
-  background: var(--pink-light); color: var(--pink-dark); font-weight: 900;
-}
-.add-button:hover { background: var(--pink); color: white; }
-.empty-state { text-align: center; padding: 45px 10px; color: var(--muted); grid-column: 1/-1; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.contact-section { background: white; border-top: 1px solid var(--border); }
-.contact-form {
-  max-width: 750px; margin: auto; padding: 28px;
-  background: #fff8fc; border: 1px solid var(--border); border-radius: 25px;
-}
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
-.field label { font-weight: 800; font-size: 14px; }
-.field input, .field textarea {
-  width: 100%; border: 1px solid var(--border); border-radius: 12px;
-  padding: 12px 14px; background: white;
-}
-.field textarea { resize: vertical; }
-.contact-form .primary-button { width: 100%; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
 
-footer { background: #fce7f3; padding: 48px 0 22px; color: #7f1d50; }
-.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 35px; }
-footer h3 { color: var(--pink-dark); margin-top: 0; }
-footer p, footer li { font-size: 14px; }
-footer ul { padding-left: 18px; }
-.footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #f3c8dd; font-size: 13px; }
+    body {
+      font-family: "Nunito", "Arial Rounded MT Bold", Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-.overlay {
-  position: fixed; inset: 0; z-index: 29;
-  background: rgba(30,20,30,.4); opacity: 0; visibility: hidden; transition: .25s;
-}
-.overlay.open { opacity: 1; visibility: visible; }
-.cart-panel {
-  position: fixed; top: 0; right: 0; z-index: 30; height: 100dvh;
-  width: min(460px,100%); background: white; display: flex; flex-direction: column;
-  transform: translateX(105%); transition: transform .3s ease;
-  box-shadow: -10px 0 35px rgba(0,0,0,.1);
-}
-.cart-panel.open { transform: translateX(0); }
-.cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: var(--pink-light); }
-.cart-header h2 { margin: 0; font-size: 22px; }
-.icon-button { border: 0; background: transparent; font-size: 27px; color: var(--pink-dark); }
-.cart-items { flex: 1; overflow-y: auto; padding: 16px; }
-.cart-row { display: grid; grid-template-columns: 76px 1fr; gap: 13px; padding: 13px 0; border-bottom: 1px solid #f7e9f1; }
-.cart-row img { width: 76px; height: 76px; object-fit: cover; border-radius: 12px; }
-.cart-row h3 { margin: 0 0 4px; font-size: 14px; }
-.cart-row .price { font-size: 14px; }
-.cart-row-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 9px; }
-.quantity { display: flex; align-items: center; gap: 12px; }
-.quantity button { width: 29px; height: 29px; border: 0; border-radius: 9px; background: var(--pink-light); color: var(--pink-dark); font-weight: 900; }
-.remove-button { border: 0; background: transparent; color: #e11d48; font-size: 13px; }
-.cart-footer { padding: 20px; border-top: 1px solid var(--border); }
-.total-line { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 17px; }
-.total-line strong { color: var(--pink-dark); font-size: 24px; }
-.cart-footer .primary-button { width: 100%; }
-.cart-empty { text-align: center; padding: 50px 10px; color: var(--muted); }
+    button, input, textarea, select {
+      font: inherit;
+    }
 
-.toast {
-  position: fixed; left: 50%; bottom: 25px; z-index: 60;
-  transform: translate(-50%,20px); opacity: 0; pointer-events: none;
-  background: #292633; color: white; padding: 13px 20px; border-radius: 14px;
-  box-shadow: var(--shadow); transition: .25s; width: max-content; max-width: 90%;
-}
-.toast.show { opacity: 1; transform: translate(-50%,0); }
+    button {
+      cursor: pointer;
+    }
 
-.chat-toggle {
-  position: fixed; bottom: 22px; right: 22px; z-index: 25;
-  width: 58px; height: 58px; border: 0; border-radius: 50%;
-  background: var(--green); color: white; font-size: 25px;
-  box-shadow: 0 8px 22px #a7f3d0;
-}
-.chat-box {
-  position: fixed; bottom: 92px; right: 22px; z-index: 25;
-  width: min(350px,calc(100% - 30px)); background: white;
-  border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,.13); display: none;
-}
-.chat-box.open { display: block; }
-.chat-header { padding: 15px; background: var(--pink); color: white; font-weight: 900; display: flex; justify-content: space-between; align-items: center; }
-.chat-messages { height: 245px; overflow-y: auto; padding: 13px; background: #fffafd; display: flex; flex-direction: column; gap: 10px; }
-.chat-message { max-width: 85%; border-radius: 13px; padding: 10px 12px; font-size: 13px; overflow-wrap: anywhere; }
-.chat-message.bot { align-self: flex-start; background: white; border: 1px solid var(--border); }
-.chat-message.user { align-self: flex-end; background: var(--green); color: white; }
-.chat-form { display: flex; gap: 7px; padding: 10px; border-top: 1px solid var(--border); }
-.chat-form input { min-width: 0; flex: 1; border: 1px solid var(--border); border-radius: 20px; padding: 9px 12px; }
-.chat-form button { border: 0; border-radius: 50%; width: 40px; background: var(--pink); color: white; }
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #df9cb1;
+      outline-offset: 3px;
+    }
 
-@media(max-width:1000px) {
-  .menu-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
-}
-@media(max-width:700px) {
-  .menu-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
-  .product img { height: 155px; }
-  .product-info { padding: 12px; }
-  .product h3 { font-size: 14px; }
-  .product p { font-size: 12px; }
-  .price { font-size: 16px; }
-  .add-button { padding: 8px 10px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
-  .hero { padding: 65px 16px; }
-  .hero p { font-size: 15px; }
-  .form-grid { grid-template-columns: 1fr; gap: 0; }
-  .contact-form { padding: 20px; }
-  .tagline { max-width: 180px; }
-}
-@media(max-width:380px) {
-  .brand-name { font-size: 20px; }
-  .brand-icon { width: 39px; height: 39px; }
-  .cart-button { padding: 10px; font-size: 13px; }
-  .product img { height: 130px; }
-}
-</style>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: 0 auto;
+    }
+
+    .announcement {
+      background: var(--green-light);
+      color: var(--green-dark);
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 253, 249, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #f5e8eb;
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--pink-light);
+      border-radius: 17px;
+      font-size: 27px;
+      transform: rotate(-5deg);
+    }
+
+    .logo-name {
+      font-size: 25px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--pink-dark);
+    }
+
+    .logo-sub {
+      color: var(--green-dark);
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink-dark);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-button {
+      border: none;
+      background: var(--pink-light);
+      color: #b95f7c;
+      padding: 11px 15px;
+      border-radius: 15px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .cart-button:hover {
+      background: var(--pink);
+    }
+
+    .cart-count {
+      display: inline-grid;
+      place-items: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 5px;
+      margin-left: 4px;
+      background: var(--white);
+      border-radius: 50px;
+      font-size: 12px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 48px 0 55px;
+      background:
+        radial-gradient(ellipse at 12% 10%, #ffe5ed 0, transparent 35%),
+        radial-gradient(ellipse at 90% 80%, #e4f0dc 0, transparent 36%),
+        #fffaf9;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 50px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 19px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 63px);
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .pink {
+      color: var(--pink-dark);
+    }
+
+    .hero h1 .green {
+      color: var(--green-dark);
+    }
+
+    .hero-description {
+      color: #777070;
+      font-size: 16px;
+      max-width: 470px;
+      margin-bottom: 27px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 15px;
+      padding: 13px 23px;
+      font-weight: 900;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-pink {
+      background: var(--pink-dark);
+      color: white;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #42663e;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+      color: #7d7777;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-stack span {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border: 2px solid white;
+      background: #f7dce4;
+      border-radius: 50%;
+      margin-right: -7px;
+      font-size: 15px;
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 12px;
+    }
+
+    .hero-image-wrap {
+      height: 440px;
+      overflow: hidden;
+      border-radius: 48% 48% 28px 28px;
+      background: var(--pink-light);
+      box-shadow: 0 18px 50px rgba(179, 117, 137, 0.15);
+      transform: rotate(1.5deg);
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .floating-note {
+      position: absolute;
+      padding: 14px 18px;
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .floating-note strong {
+      display: block;
+      color: var(--pink-dark);
+      font-size: 17px;
+    }
+
+    .note-top {
+      top: 38px;
+      left: -15px;
+      transform: rotate(-5deg);
+    }
+
+    .note-bottom {
+      bottom: 35px;
+      right: -12px;
+      transform: rotate(4deg);
+      background: var(--green-light);
+    }
+
+    /* BENEFITS */
+    .benefits {
+      padding: 28px 0;
+      background: white;
+      border-top: 1px solid #f6eaed;
+      border-bottom: 1px solid #f6eaed;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .benefit-icon {
+      width: 47px;
+      height: 47px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: var(--green-light);
+      border-radius: 16px;
+      font-size: 23px;
+    }
+
+    .benefit:nth-child(even) .benefit-icon {
+      background: var(--pink-light);
+    }
+
+    .benefit strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .benefit small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* GENERAL SECTION */
+    section {
+      padding: 75px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-label {
+      color: var(--green-dark);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(27px, 4vw, 39px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+
+    .section-heading h2 span {
+      color: var(--pink-dark);
+    }
+
+    .section-heading p {
+      max-width: 550px;
+      margin: 12px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .category-card {
+      border: 2px solid transparent;
+      background: var(--pink-light);
+      padding: 22px 12px;
+      border-radius: 22px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .category-card:nth-child(even) {
+      background: var(--green-light);
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pink);
+    }
+
+    .category-emoji {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .category-card strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .category-card small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* PRODUCTS */
+    .menu-section {
+      background: #fff8fa;
+    }
+
+    .menu-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 230px;
+      max-width: 360px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: white;
+      border: 1px solid #f0e3e6;
+      padding: 11px 15px;
+      border-radius: 15px;
+    }
+
+    .search-box input {
+      width: 100%;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .filter-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      border: 1px solid #eee1e5;
+      background: white;
+      color: #706767;
+      border-radius: 50px;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: 900;
+      transition: 0.2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--green);
+      border-color: var(--green);
+      color: #42663e;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      overflow: hidden;
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid #f3e7e9;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image {
+      position: relative;
+      height: 205px;
+      overflow: hidden;
+      background: var(--green-light);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--pink-light);
+      color: #b75f7a;
+      border-radius: 50px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-category {
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      line-height: 1.4;
+      margin: 5px 0;
+      font-weight: 900;
+      min-height: 44px;
+    }
+
+    .product-description {
+      font-size: 12px;
+      color: var(--muted);
+      min-height: 39px;
+      margin-bottom: 12px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-top: 1px dashed #f0e3e6;
+      padding-top: 12px;
+    }
+
+    .product-price {
+      color: #cb708d;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .add-btn {
+      width: 39px;
+      height: 39px;
+      border: none;
+      border-radius: 14px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 23px;
+      font-weight: 900;
+      transition: 0.2s;
+    }
+
+    .add-btn:hover {
+      background: var(--green);
+      transform: rotate(8deg);
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 40px 10px;
+      color: var(--muted);
+    }
+
+    /* PROMOTION */
+    .promo {
+      padding: 0 0 75px;
+      background: #fff8fa;
+    }
+
+    .promo-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      overflow: hidden;
+      border-radius: 30px;
+      background: var(--green-light);
+    }
+
+    .promo-content {
+      padding: 42px;
+      align-self: center;
+    }
+
+    .promo-content .section-label {
+      color: var(--pink-dark);
+    }
+
+    .promo-content h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .promo-content p {
+      color: #6f796b;
+      margin-bottom: 23px;
+      font-size: 14px;
+    }
+
+    .promo-image {
+      min-height: 300px;
+    }
+
+    .promo-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-image {
+      height: 390px;
+      overflow: hidden;
+      border-radius: 30px;
+      background: var(--pink-light);
+      box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-content .section-label {
+      margin-bottom: 10px;
+    }
+
+    .about-content h2 {
+      font-size: clamp(29px, 4vw, 41px);
+      line-height: 1.2;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .about-content h2 span {
+      color: var(--pink-dark);
+    }
+
+    .about-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .about-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .about-point {
+      background: var(--green-light);
+      padding: 13px;
+      border-radius: 15px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .about-point:nth-child(even) {
+      background: var(--pink-light);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: #fff8fa;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact-info {
+      padding: 30px;
+      border-radius: 25px;
+      background: var(--green-light);
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+      font-size: 23px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .contact-info > p {
+      color: #74806f;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 13px;
+      margin: 18px 0;
+      align-items: flex-start;
+    }
+
+    .contact-item > span {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      background: white;
+      border-radius: 13px;
+      flex-shrink: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .contact-item small {
+      display: block;
+      color: #74806f;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      border: 1px solid #f0e5e7;
+    }
+
+    .contact-form > p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #eadfe2;
+      border-radius: 13px;
+      padding: 12px 14px;
+      background: #fffdfd;
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--pink-dark);
+    }
+
+    .form-group textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #f9e6ec;
+      padding: 45px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      gap: 35px;
+      padding-bottom: 30px;
+    }
+
+    .footer-description {
+      margin-top: 14px;
+      color: #796c70;
+      font-size: 13px;
+      max-width: 330px;
+    }
+
+    .footer-column h4 {
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .footer-column a,
+    .footer-column p {
+      display: block;
+      color: #796c70;
+      font-size: 13px;
+      margin-bottom: 9px;
+    }
+
+    .footer-column a:hover {
+      color: #b95f7c;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #edcfd9;
+      padding-top: 18px;
+      text-align: center;
+      color: #8b7b81;
+      font-size: 12px;
+    }
+
+    /* CART DRAWER */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(45, 35, 39, 0.38);
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 201;
+      width: min(440px, 100%);
+      height: 100dvh;
+      background: var(--cream);
+      transform: translateX(105%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 40px rgba(60, 40, 45, 0.12);
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0e3e6;
+    }
+
+    .cart-header h2 {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .close-btn {
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 13px;
+      background: var(--pink-light);
+      color: #b95f7c;
+      font-size: 22px;
+    }
+
+    .cart-items {
+      padding: 15px 22px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 55px 10px;
+      color: var(--muted);
+    }
+
+    .cart-empty span {
+      display: block;
+      font-size: 54px;
+      margin-bottom: 12px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 68px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px dashed #eadde1;
+    }
+
+    .cart-item img {
+      width: 68px;
+      height: 68px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .cart-item h4 {
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: #c56d89;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .quantity-control button {
+      width: 25px;
+      height: 25px;
+      border: none;
+      border-radius: 8px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
+    .remove-btn {
+      border: none;
+      background: transparent;
+      color: #b9a4aa;
+      font-size: 17px;
+    }
+
+    .cart-footer {
+      padding: 20px 23px;
+      border-top: 1px solid #f0e3e6;
+      background: white;
+    }
+
+    .cart-total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .cart-total-row strong {
+      font-size: 23px;
+      color: #c56d89;
+    }
+
+    .cart-footer .btn {
+      width: 100%;
+    }
+
+    /* CHECKOUT MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(45, 35, 39, 0.45);
+      padding: 18px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(510px, 100%);
+      max-height: 90dvh;
+      overflow-y: auto;
+      padding: 28px;
+      border-radius: 25px;
+      background: var(--cream);
+      box-shadow: var(--shadow);
+    }
+
+    .modal-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .modal-heading h2 {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .modal-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .checkout-total {
+      background: var(--green-light);
+      border-radius: 15px;
+      padding: 13px;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 900;
+    }
+
+    .checkout-total strong {
+      color: var(--green-dark);
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      z-index: 500;
+      transform: translate(-50%, 30px);
+      opacity: 0;
+      pointer-events: none;
+      background: #4d6749;
+      color: white;
+      border-radius: 15px;
+      padding: 12px 20px;
+      box-shadow: var(--shadow);
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      width: max-content;
+      max-width: 90%;
+      transition: 0.25s;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 950px) {
+      .nav-links {
+        gap: 13px;
+        font-size: 12px;
+      }
+
+      .hero-grid {
+        gap: 25px;
+      }
+
+      .hero-image-wrap {
+        height: 370px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefit {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        min-height: 70px;
+        gap: 8px;
+      }
+
+      .logo-icon {
+        width: 39px;
+        height: 39px;
+        font-size: 22px;
+      }
+
+      .logo-name {
+        font-size: 21px;
+      }
+
+      .logo-sub {
+        font-size: 8px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cart-button {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 35px 0 42px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-visual {
+        max-width: 460px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .hero-image-wrap {
+        height: 350px;
+      }
+
+      .note-top {
+        left: 0;
+      }
+
+      .note-bottom {
+        right: 0;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product-image {
+        height: 155px;
+      }
+
+      .product-info {
+        padding: 12px;
+      }
+
+      .product-info h3 {
+        font-size: 14px;
+      }
+
+      .product-price {
+        font-size: 15px;
+      }
+
+      .product-description {
+        font-size: 11px;
+      }
+
+      .menu-toolbar {
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: none;
+      }
+
+      .filter-list {
+        gap: 6px;
+      }
+
+      .filter-btn {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+
+      .promo-card {
+        grid-template-columns: 1fr;
+      }
+
+      .promo-content {
+        padding: 28px;
+      }
+
+      .promo-image {
+        height: 230px;
+        min-height: auto;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .about-image {
+        height: 300px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .footer-grid > div:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .benefit {
+        gap: 9px;
+      }
+
+      .benefit-icon {
+        width: 39px;
+        height: 39px;
+        font-size: 19px;
+      }
+
+      .benefit strong {
+        font-size: 12px;
+      }
+
+      .benefit small {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 220px;
+      }
+
+      .hero h1 {
+        font-size: 37px;
+      }
+
+      .about-points {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid > div:first-child {
+        grid-column: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="#home" aria-label="3CE FOODS - Trang chủ">
-      <span class="brand-icon">♥</span>
-      <span>
-        <span class="brand-name">3CE FOODS</span>
-        <span class="tagline">Ăn vặt không no - Không lo bị péoooo ✨</span>
-      </span>
-    </a>
-    <button class="cart-button" id="openCart" type="button">
-      🛒 Giỏ hàng <span class="cart-count" id="cartCount">0</span>
-    </button>
+  <div class="announcement">
+    🌷 Chào mừng bạn đến với 3CE FOODS — Một chút ngon, một chút vui mỗi ngày! 🌿
   </div>
-</header>
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <span class="eyebrow">🎉 Chào mừng đến với thiên đường ẩm thực</span>
-    <h1>Thưởng Thức Hương Vị<br><span class="gradient-text">Tuyệt Hảo Mỗi Ngày</span></h1>
-    <p>Từ những tô mì trộn đậm đà đến những phần ăn vặt hấp dẫn. 3CE FOODS mong muốn mang đến cho bạn bữa ăn ngon miệng và niềm vui trọn vẹn!</p>
-    <button class="primary-button" id="goMenu" type="button">Đặt Món Ngay 🤤</button>
-  </div>
-</section>
-
-<main>
-<section class="section container" id="menu-section">
-  <div class="section-heading">
-    <h2>🍜 Thực Đơn Nhà 3CE</h2>
-    <p>Chọn món yêu thích và thêm ngay vào giỏ hàng nhé!</p>
-  </div>
-  <div class="menu-tools">
-    <input class="search" type="search" id="searchInput" placeholder="🔎 Tìm tên món ăn..." aria-label="Tìm món ăn">
-  </div>
-  <div class="tabs" id="tabs"></div>
-  <div class="menu-grid" id="menuGrid"></div>
-</section>
-
-<section class="section contact-section" id="contact">
-  <div class="container">
-    <div class="section-heading">
-      <h2>💌 Góc Nhỏ Tâm Tình</h2>
-      <p>Bạn có góp ý hay muốn nhắn gửi điều gì cho 3CE FOODS không?</p>
-    </div>
-    <form class="contact-form" id="contactForm">
-      <div class="form-grid">
-        <div class="field">
-          <label for="phone">Số điện thoại *</label>
-          <input id="phone" name="phone" type="tel" required placeholder="Nhập số điện thoại">
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#home" aria-label="3CE FOODS - Trang chủ">
+        <div class="logo-icon">🍓</div>
+        <div>
+          <div class="logo-name">3CE FOODS</div>
+          <div class="logo-sub">TASTY · HAPPY · LOVELY</div>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="Email (không bắt buộc)">
-        </div>
-      </div>
-      <div class="field">
-        <label for="message">Bạn muốn nhắn gửi điều gì? *</label>
-        <textarea id="message" name="message" rows="4" required placeholder="Viết lời nhắn của bạn ở đây nhé..."></textarea>
-      </div>
-      <button class="primary-button" type="submit">Gửi Tâm Tình ➤</button>
-      <p style="font-size:12px;color:#777;margin-bottom:0">Biểu mẫu hiện chỉ hiển thị thông báo trên website, chưa gửi dữ liệu đến cửa hàng.</p>
-    </form>
-  </div>
-</section>
-</main>
+      </a>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h3>3CE FOODS ♥</h3>
-        <p><strong>“Ăn vặt không no - Không lo bị péoooo”</strong></p>
-        <p>📍 Cung đường ẩm thực số 1, Quận Ăn Uống, TP. Hạnh Phúc</p>
-        <p>☎ Hotline: 1900 xxxx</p>
-        <p><small>Địa chỉ và hotline mẫu — hãy thay bằng thông tin thật của shop.</small></p>
-      </div>
-      <div>
-        <h3>Chính Sách</h3>
-        <ul>
-          <li><a href="#contact">Chăm sóc khách hàng</a></li>
-          <li><a href="#contact">Chính sách hoạt động</a></li>
-          <li><a href="#contact">Chính sách và quy định</a></li>
-          <li><a href="#contact">Bảo mật thông tin</a></li>
+      <nav aria-label="Điều hướng chính">
+        <ul class="nav-links">
+          <li><a href="#home">Trang chủ</a></li>
+          <li><a href="#categories">Danh mục</a></li>
+          <li><a href="#menu">Thực đơn</a></li>
+          <li><a href="#about">Về chúng mình</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
         </ul>
-      </div>
-      <div>
-        <h3>Kết Nối Với Chúng Mình</h3>
-        <p>Theo dõi để không bỏ lỡ những ưu đãi ngọt ngào nhất!</p>
-        <a href="#contact">💗 Liên hệ 3CE FOODS</a>
-        <p><small>Thêm link Facebook thật của shop khi có.</small></p>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-button" id="openCart" type="button">
+          🛒 Giỏ hàng <span class="cart-count" id="cartCount">0</span>
+        </button>
       </div>
     </div>
-    <div class="footer-bottom">© <span id="year"></span> 3CE FOODS. All rights reserved. Designed with ❤️</div>
-  </div>
-</footer>
+  </header>
 
-<div class="overlay" id="overlay"></div>
-<aside class="cart-panel" id="cartPanel" aria-label="Giỏ hàng" aria-hidden="true">
-  <div class="cart-header">
-    <h2>🛒 Giỏ Hàng <span id="cartSummary">0 món</span></h2>
-    <button class="icon-button" id="closeCart" type="button" aria-label="Đóng giỏ hàng">×</button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-footer" id="cartFooter"></div>
-</aside>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow">🌼 GÓC NHỎ DÀNH CHO TÍN ĐỒ ĂN NGON</div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+          <h1>
+            Thưởng thức<br>
+            <span class="pink">hương vị,</span><br>
+            tận hưởng <span class="green">niềm vui!</span>
+          </h1>
 
-<div class="chat-box" id="chatBox">
-  <div class="chat-header">
-    <span>💬 3CE FOODS Hỗ trợ</span>
-    <button class="icon-button" id="closeChat" type="button" aria-label="Đóng chat" style="color:white">×</button>
-  </div>
-  <div class="chat-messages" id="chatMessages" aria-live="polite">
-    <div class="chat-message bot">Chào bạn! 3CE FOODS có thể giúp gì cho bạn hôm nay ạ? 🌸</div>
-  </div>
-  <form class="chat-form" id="chatForm">
-    <input id="chatInput" type="text" placeholder="Nhập tin nhắn..." required aria-label="Tin nhắn">
-    <button type="submit" aria-label="Gửi tin nhắn">➤</button>
-  </form>
-</div>
-<button class="chat-toggle" id="chatToggle" type="button" aria-label="Mở chat">☏</button>
+          <p class="hero-description">
+            Chào cậu đến với 3CE FOODS! Từ những món ăn thơm ngon
+            đến đồ uống mát lành, chúng mình mong mỗi lựa chọn đều
+            mang đến cho cậu một ngày thật vui. 💗
+          </p>
 
-<script>
-"use strict";
+          <div class="hero-buttons">
+            <a href="#menu" class="btn btn-pink">Khám phá thực đơn 🍜</a>
+            <a href="#about" class="btn btn-green">Tìm hiểu chúng mình</a>
+          </div>
 
-const MENU_DATA = [
-  {
-    id: "mi", name: "Mì", items: [
-      {id:"m1",name:"Mì trộn Indomie Long Môn Ngự Yến",desc:"Sợi mì Indomie dai mềm cùng sốt trộn, rau củ, xúc xích, cá viên, tôm surimi, viên mực và hải sản phô mai.",price:40000,img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80"},
-      {id:"m2",name:"Mì trộn Indomie Tứ Hải Hội Tụ",desc:"Mì Indomie quyện sốt đậm đà, rau củ, xúc xích, cá viên và tôm surimi.",price:35000,img:"https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=600&q=80"},
-      {id:"m3",name:"Mì trộn Indomie Thanh Vân Ngọc Thực",desc:"Mì dai mềm óng ánh sốt trộn đậm vị, kết hợp rau củ tươi xanh.",price:20000,img:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"},
-      {id:"m4",name:"Mì cay Đế Vương Bò Wagyu",desc:"Mì cay nóng hổi với bắp cải, ngô non, xúc xích và thịt bò.",price:65000,img:"https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&w=600&q=80"},
-      {id:"m5",name:"Mì thập cẩm Hải Sơn Thiên Địa",desc:"Mì nước súp đậm vị với tôm, mực, bò ba chỉ và xúc xích.",price:80000,img:"https://images.unsplash.com/photo-1626804475297-41609ea004eb?auto=format&fit=crop&w=600&q=80"},
-      {id:"m6",name:"Mì cay Busan Xúc Xích",desc:"Mì dai ngon, xúc xích thơm lừng và rau củ tươi xanh.",price:45000,img:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=600&q=80"},
-      {id:"m7",name:"Mì cay bò Vương Giả Tứ Xuyên",desc:"Mì cay với thịt bò mềm và nước lèo đậm đà.",price:60000,img:"https://images.unsplash.com/photo-1598515061611-37d45e7f1604?auto=format&fit=crop&w=600&q=80"},
-      {id:"m8",name:"Mì Hắc Long Bá Vương",desc:"Mì dai ngon, sốt tương đen mặn ngọt, rau củ tươi giòn.",price:50000,img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80"},
-      {id:"m9",name:"Mì Ý Bò Bằm Hoàng Kim",desc:"Mì Ý cùng sốt cà chua bò bằm đậm đà, thơm ngon.",price:55000,img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=600&q=80"}
-    ]
-  },
-  {
-    id: "com", name: "Cơm", items: [
-      {id:"c1",name:"Cơm Rang Kim Ngưu Khai Vị",desc:"Cơm rang tơi thơm, dưa cải chua thanh và thịt bò mềm.",price:45000,img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80"},
-      {id:"c2",name:"Cơm Gà Kim Kê Ngự Yến",desc:"Cơm nóng dẻo thơm cùng thịt gà chiên vàng giòn.",price:55000,img:"https://images.unsplash.com/photo-1600688640154-150689b9ccbb?auto=format&fit=crop&w=600&q=80"},
-      {id:"c3",name:"Bibimbap Kim Ngọc Hoàng Triều",desc:"Cơm Hàn Quốc với bò xào, trứng, rau củ, kim chi và sốt Bibimbap.",price:60000,img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?auto=format&fit=crop&w=600&q=80"}
-    ]
-  },
-  {
-    id: "do-uong", name: "Đồ uống", items: [
-      {id:"du1",name:"Hồng Nhan Tuyết Lệ (Trà đào)",desc:"Trà thơm dịu nhẹ, đào ngâm ngọt thanh và đá mát lạnh.",price:25000,img:"https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80"},
-      {id:"du2",name:"Thanh Long Xuất Hải (Trà chanh)",desc:"Trà thanh mát, nước cốt chanh tươi chua ngọt hài hòa.",price:20000,img:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80"},
-      {id:"du3",name:"Bích Ngọc Tiên Trà (Trà tắc)",desc:"Trà thơm dịu, tắc tươi chua nhẹ, vị ngọt thanh dễ uống.",price:20000,img:"https://images.unsplash.com/photo-1509315703195-529879416a70?auto=format&fit=crop&w=600&q=80"},
-      {id:"du4",name:"Hỏa Diệm Sơn (Trà dâu)",desc:"Trà mát cùng dâu tây, vị chua ngọt hài hòa.",price:25000,img:"https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80"},
-      {id:"du5",name:"Tuyết Sơn Ngọc Ẩn (Trà sữa)",desc:"Trà thơm đậm vị, sữa béo ngậy và đá mát lạnh.",price:30000,img:"https://images.unsplash.com/photo-1588697669352-d04b39b039cb?auto=format&fit=crop&w=600&q=80"}
-    ]
-  },
-  {
-    id: "an-vat", name: "Ăn vặt", items: [
-      {id:"av1",name:"Khoai tây chiên Kim Giáp Hoàng Kim",desc:"Khoai tây vàng giòn, ngoài giòn trong mềm, thơm bùi.",price:25000,img:"https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=600&q=80"},
-      {id:"av2",name:"Khoai lắc phô mai Kim Ngọc Mãn Đường",desc:"Khoai tây chiên giòn lắc phô mai béo ngậy.",price:30000,img:"https://images.unsplash.com/photo-1630431341973-02e1b662ce3b?auto=format&fit=crop&w=600&q=80"},
-      {id:"av3",name:"Nem chua Trần Công Châu Hồng Môn",desc:"Nem chua dai giòn, chua nhẹ, đậm vị truyền thống.",price:6000,img:"https://images.unsplash.com/photo-1627042633145-b780684d09f6?auto=format&fit=crop&w=600&q=80"},
-      {id:"av4",name:"Phô mai que Bạch Ngọc Kim Tâm",desc:"Phô mai béo ngậy bọc trong lớp vỏ vàng giòn.",price:8000,img:"https://images.unsplash.com/photo-1536585149363-2287f3b5ebcd?auto=format&fit=crop&w=600&q=80"},
-      {id:"av5",name:"Khoai môn Lệ Phố Tử Ngọc",desc:"Khoai môn bùi thơm, vỏ giòn, nhân mềm ngọt.",price:30000,img:"https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80"},
-      {id:"av6",name:"Ngô chiên Kim Châu Ngự Tiệc",desc:"Ngô vàng giòn, thơm ngọt và đậm đà gia vị.",price:30000,img:"https://images.unsplash.com/photo-1508061461523-62580dfbf3d2?auto=format&fit=crop&w=600&q=80"},
-      {id:"av7",name:"Cút lộn xào me Hỏa Long Châu",desc:"Trứng cút lộn béo bùi, sốt me chua ngọt, rau răm và lạc rang.",price:50000,img:"https://images.unsplash.com/photo-1512152272829-4591a27e7fa1?auto=format&fit=crop&w=600&q=80"},
-      {id:"av8",name:"Bánh tráng nướng Hỏa Phụng Hoàng Cung",desc:"Bánh tráng giòn cùng trứng, xúc xích và topping.",price:25000,img:"https://images.unsplash.com/photo-1605634586526-9d665768e4a9?auto=format&fit=crop&w=600&q=80"},
-      {id:"av9",name:"Viên chiên Ngự Lâm Thập Bát Vị",desc:"Các loại viên chiên nóng giòn, dai ngon, ăn kèm sốt chấm.",price:10000,img:"https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80"}
-    ]
-  }
-];
-
-const allItems = MENU_DATA.flatMap(category => category.items);
-const cart = new Map();
-let activeCategory = "tat-ca";
-let toastTimer;
-
-const money = value => new Intl.NumberFormat("vi-VN").format(value) + "đ";
-const getItem = id => allItems.find(item => item.id === id);
-const totalQuantity = () => [...cart.values()].reduce((sum, row) => sum + row.quantity, 0);
-const totalPrice = () => [...cart.values()].reduce((sum, row) => sum + row.item.price * row.quantity, 0);
-
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
-}
-
-function renderTabs() {
-  const tabs = [{id:"tat-ca",name:"Tất cả món"}, ...MENU_DATA.map(c => ({id:c.id,name:c.name}))];
-  document.getElementById("tabs").innerHTML = tabs.map(tab =>
-    `<button type="button" class="tab ${activeCategory === tab.id ? "active" : ""}" data-category="${tab.id}">${tab.name}</button>`
-  ).join("");
-}
-
-function renderMenu() {
-  const search = document.getElementById("searchInput").value.trim().toLocaleLowerCase("vi");
-  const category = MENU_DATA.find(c => c.id === activeCategory);
-  const items = (activeCategory === "tat-ca" ? allItems : category.items)
-    .filter(item => (item.name + " " + item.desc).toLocaleLowerCase("vi").includes(search));
-
-  const grid = document.getElementById("menuGrid");
-  if (!items.length) {
-    grid.innerHTML = '<div class="empty-state">Không tìm thấy món phù hợp. Em thử từ khóa khác nhé! 💗</div>';
-    return;
-  }
-
-  grid.innerHTML = items.map(item => {
-    const catName = MENU_DATA.find(c => c.items.some(i => i.id === item.id)).name;
-    return `
-      <article class="product">
-        <img src="${item.img}" alt="${item.name}" loading="lazy"
-          onerror="this.onerror=null;this.src='https://placehold.co/600x400/fce7f3/db2777?text=3CE+FOODS'">
-        <div class="product-info">
-          <span class="product-category">${catName}</span>
-          <h3>${item.name}</h3>
-          <p>${item.desc}</p>
-          <div class="product-bottom">
-            <span class="price">${money(item.price)}</span>
-            <button type="button" class="add-button" data-add="${item.id}">＋ Thêm</button>
+          <div class="hero-note">
+            <div class="avatar-stack">
+              <span>🍓</span>
+              <span>🥑</span>
+              <span>🍜</span>
+            </div>
+            <span>Ăn ngon một chút, yêu đời thêm nhiều!</span>
           </div>
         </div>
-      </article>`;
-  }).join("");
-}
 
-function addToCart(id) {
-  const item = getItem(id);
-  if (!item) return;
-  const existing = cart.get(id);
-  if (existing) existing.quantity++;
-  else cart.set(id, {item, quantity:1});
-  renderCart();
-  showToast("Đã thêm " + item.name + " vào giỏ! 😋");
-}
-
-function changeQuantity(id, amount) {
-  const row = cart.get(id);
-  if (!row) return;
-  row.quantity += amount;
-  if (row.quantity <= 0) cart.delete(id);
-  renderCart();
-}
-
-function renderCart() {
-  const quantity = totalQuantity();
-  document.getElementById("cartCount").textContent = quantity;
-  document.getElementById("cartSummary").textContent = quantity + " món";
-
-  const list = document.getElementById("cartItems");
-  const footer = document.getElementById("cartFooter");
-
-  if (!cart.size) {
-    list.innerHTML = '<div class="cart-empty"><div style="font-size:50px">🛒</div><h3>Giỏ hàng đang trống</h3><p>Cùng chọn món ngon nào! 💗</p></div>';
-    footer.innerHTML = "";
-    return;
-  }
-
-  list.innerHTML = [...cart.entries()].map(([id,row]) => `
-    <div class="cart-row">
-      <img src="${row.item.img}" alt="${row.item.name}"
-        onerror="this.onerror=null;this.src='https://placehold.co/100x100/fce7f3/db2777?text=3CE'">
-      <div>
-        <h3>${row.item.name}</h3>
-        <span class="price">${money(row.item.price)}</span>
-        <div class="cart-row-controls">
-          <div class="quantity">
-            <button type="button" data-minus="${id}" aria-label="Giảm số lượng">−</button>
-            <strong>${row.quantity}</strong>
-            <button type="button" data-plus="${id}" aria-label="Tăng số lượng">＋</button>
+        <div class="hero-visual">
+          <div class="hero-image-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+              alt="Bữa ăn đầy màu sắc với rau củ tươi ngon"
+              fetchpriority="high"
+            >
           </div>
-          <button type="button" class="remove-button" data-remove="${id}">Xóa</button>
+          <div class="floating-note note-top">
+            🌸 Ngon lành mỗi ngày
+            <strong>Made with love!</strong>
+          </div>
+          <div class="floating-note note-bottom">
+            🍃 Tươi vui
+            <strong>Ăn ngon, sống khỏe</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <div class="benefits">
+      <div class="container benefits-grid">
+        <div class="benefit">
+          <div class="benefit-icon">🍜</div>
+          <div>
+            <strong>Món ngon đa dạng</strong>
+            <small>Nhiều lựa chọn hấp dẫn</small>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">🌿</div>
+          <div>
+            <strong>Hương vị tuyệt vời</strong>
+            <small>Ăn ngon theo cách của bạn</small>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">💗</div>
+          <div>
+            <strong>Không gian dễ thương</strong>
+            <small>Màu sắc nhẹ nhàng</small>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">🛍️</div>
+          <div>
+            <strong>Đặt món tiện lợi</strong>
+            <small>Chọn món ngay trên web</small>
+          </div>
         </div>
       </div>
     </div>
-  `).join("");
 
-  footer.innerHTML = `
-    <div class="total-line"><span>Tổng thanh toán:</span><strong>${money(totalPrice())}</strong></div>
-    <button type="button" class="primary-button" id="checkoutButton">Đặt hàng ngay ➜</button>
-    <p style="font-size:12px;color:#777;text-align:center;margin-bottom:0">Đây là bản demo; đơn hàng chưa được gửi đến cửa hàng.</p>
-  `;
-}
+    <!-- CATEGORIES -->
+    <section id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">A LITTLE SOMETHING FOR YOU</div>
+          <h2>Hôm nay mình ăn <span>gì nhỉ?</span> 🧸</h2>
+          <p>
+            Một thế giới đồ ăn xinh xắn đang chờ cậu khám phá.
+            Chọn ngay món yêu thích nào!
+          </p>
+        </div>
 
-function openCart() {
-  document.getElementById("overlay").classList.add("open");
-  document.getElementById("cartPanel").classList.add("open");
-  document.getElementById("cartPanel").setAttribute("aria-hidden","false");
-  document.body.style.overflow = "hidden";
-}
-function closeCart() {
-  document.getElementById("overlay").classList.remove("open");
-  document.getElementById("cartPanel").classList.remove("open");
-  document.getElementById("cartPanel").setAttribute("aria-hidden","true");
-  document.body.style.overflow = "";
-}
+        <div class="categories">
+          <a class="category-card" href="#menu" data-category-link="mi">
+            <span class="category-emoji">🍜</span>
+            <strong>Mì & Bún</strong>
+            <small>Ấm bụng, đậm vị</small>
+          </a>
 
-document.getElementById("tabs").addEventListener("click", event => {
-  const button = event.target.closest("[data-category]");
-  if (!button) return;
-  activeCategory = button.dataset.category;
-  renderTabs();
-  renderMenu();
-});
+          <a class="category-card" href="#menu" data-category-link="com">
+            <span class="category-emoji">🍚</span>
+            <strong>Cơm ngon</strong>
+            <small>Đủ đầy năng lượng</small>
+          </a>
 
-document.getElementById("menuGrid").addEventListener("click", event => {
-  const button = event.target.closest("[data-add]");
-  if (button) addToCart(button.dataset.add);
-});
+          <a class="category-card" href="#menu" data-category-link="douong">
+            <span class="category-emoji">🧋</span>
+            <strong>Đồ uống</strong>
+            <small>Mát lành, ngọt ngào</small>
+          </a>
 
-document.getElementById("searchInput").addEventListener("input", renderMenu);
+          <a class="category-card" href="#menu" data-category-link="anvat">
+            <span class="category-emoji">🍟</span>
+            <strong>Ăn vặt</strong>
+            <small>Nhâm nhi thật vui</small>
+          </a>
+        </div>
+      </div>
+    </section>
 
-document.getElementById("cartItems").addEventListener("click", event => {
-  const button = event.target.closest("button");
-  if (!button) return;
-  if (button.dataset.minus) changeQuantity(button.dataset.minus, -1);
-  if (button.dataset.plus) changeQuantity(button.dataset.plus, 1);
-  if (button.dataset.remove) {
-    cart.delete(button.dataset.remove);
+    <!-- MENU -->
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">OUR LITTLE MENU</div>
+          <h2>Menu nhà <span>3CE FOODS</span> 🍓</h2>
+          <p>
+            Lướt một vòng, chọn món thật ưng rồi thêm vào giỏ hàng nhé!
+          </p>
+        </div>
+
+        <div class="menu-toolbar">
+          <label class="search-box">
+            <span>🔎</span>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Cậu đang thèm món gì?"
+              aria-label="Tìm kiếm món ăn"
+            >
+          </label>
+
+          <div class="filter-list" aria-label="Lọc danh mục">
+            <button class="filter-btn active" type="button" data-filter="all">Tất cả</button>
+            <button class="filter-btn" type="button" data-filter="mi">🍜 Mì & Bún</button>
+            <button class="filter-btn" type="button" data-filter="com">🍚 Cơm</button>
+            <button class="filter-btn" type="button" data-filter="douong">🧋 Đồ uống</button>
+            <button class="filter-btn" type="button" data-filter="anvat">🍟 Ăn vặt</button>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="empty-state" id="emptyState">
+          <div style="font-size: 45px;">🥺</div>
+          <h3>Chưa tìm thấy món này rồi!</h3>
+          <p>Cậu thử tìm bằng một từ khóa khác nhé.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMOTION -->
+    <section class="promo">
+      <div class="container">
+        <div class="promo-card">
+          <div class="promo-content">
+            <div class="section-label">YOUR HAPPY FOOD CORNER</div>
+            <h2>Một chiếc bụng no,<br>một ngày thật vui! 🌷</h2>
+            <p>
+              Học tập chăm chỉ hay làm việc bận rộn cũng đừng quên
+              tự thưởng cho mình một món ngon. Những điều nhỏ bé
+              đôi khi lại khiến ngày của cậu dễ thương hơn nhiều.
+            </p>
+            <a href="#menu" class="btn btn-pink">Chọn món yêu thích 💗</a>
+          </div>
+          <div class="promo-image">
+            <img
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85"
+              alt="Đĩa thức ăn tươi ngon và đầy màu sắc"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1000&q=85"
+            alt="Những món ăn được bày biện đẹp mắt"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="about-content">
+          <div class="section-label">A LITTLE STORY ABOUT US</div>
+          <h2>Xin chào, chúng mình là <span>3CE FOODS!</span> 🌸</h2>
+
+          <p>
+            3CE FOODS là góc nhỏ dành cho những người yêu thích đồ ăn
+            và những trải nghiệm thật vui quanh bàn ăn.
+          </p>
+
+          <p>
+            Chúng mình muốn tạo nên một không gian mua sắm trực tuyến
+            thân thiện, nơi cậu dễ dàng tìm kiếm món yêu thích và khám
+            phá thêm những hương vị mới.
+          </p>
+
+          <p>
+            Hồng pastel ngọt ngào kết hợp xanh lá dịu mát — bởi đồ ăn
+            không chỉ ngon mà trải nghiệm lựa chọn cũng nên thật dễ chịu.
+          </p>
+
+          <div class="about-points">
+            <div class="about-point">🍓 Giao diện dễ thương</div>
+            <div class="about-point">🌿 Dễ tìm món yêu thích</div>
+            <div class="about-point">🍜 Thực đơn đa dạng</div>
+            <div class="about-point">💗 Trải nghiệm thân thiện</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">LET'S KEEP IN TOUCH</div>
+          <h2>Gửi chúng mình chút <span>yêu thương</span> 💌</h2>
+          <p>
+            Có câu hỏi, góp ý hoặc muốn tìm hiểu thêm về sản phẩm?
+            Chúng mình rất vui khi được lắng nghe cậu.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Liên hệ với 3CE 🌷</h3>
+            <p>
+              Đây là thông tin minh họa. Em nhớ thay bằng thông tin
+              chính xác của shop trước khi đưa website vào sử dụng.
+            </p>
+
+            <div class="contact-item">
+              <span>📍</span>
+              <div>
+                <strong>Địa chỉ</strong>
+                <small>Điền địa chỉ thật của shop tại đây</small>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span>📞</span>
+              <div>
+                <strong>Điện thoại</strong>
+                <small>Điền số điện thoại của shop</small>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span>✉️</span>
+              <div>
+                <strong>Email</strong>
+                <small>Điền email liên hệ của shop</small>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span>🕒</span>
+              <div>
+                <strong>Thời gian hoạt động</strong>
+                <small>Điền giờ mở cửa và đóng cửa</small>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <h3>Gửi lời nhắn cho chúng mình 💗</h3>
+            <p>Điền thông tin bên dưới để trải nghiệm biểu mẫu liên hệ.</p>
+
+            <div class="form-group">
+              <label for="contactName">Tên của cậu</label>
+              <input id="contactName" name="name" type="text"
+                     placeholder="Ví dụ: Hà Trang" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input id="contactEmail" name="email" type="email"
+                     placeholder="email@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage">Lời nhắn</label>
+              <textarea id="contactMessage" name="message"
+                        placeholder="Cậu muốn nhắn điều gì nè?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-pink" style="width:100%;">
+              Gửi lời nhắn 💌
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="#home">
+            <div class="logo-icon">🍓</div>
+            <div>
+              <div class="logo-name">3CE FOODS</div>
+              <div class="logo-sub">TASTY · HAPPY · LOVELY</div>
+            </div>
+          </a>
+
+          <p class="footer-description">
+            Một góc nhỏ dành cho những chiếc bụng đói và những tâm hồn
+            yêu đồ ăn. Mong cậu luôn có những bữa ăn ngon và những ngày vui! 🌿
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Khám phá</h4>
+          <a href="#home">Trang chủ</a>
+          <a href="#categories">Danh mục món ăn</a>
+          <a href="#menu">Thực đơn</a>
+          <a href="#about">Về chúng mình</a>
+        </div>
+
+        <div class="footer-column">
+          <h4>Ghé thăm chúng mình</h4>
+          <p>📍 Địa chỉ: cập nhật sau</p>
+          <p>📞 Hotline: cập nhật sau</p>
+          <p>✉️ Email: cập nhật sau</p>
+          <p>🌸 Cảm ơn cậu đã ghé thăm!</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="currentYear"></span> 3CE FOODS. Made with 💗 and a little sweetness.
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART OVERLAY -->
+  <div class="overlay" id="cartOverlay"></div>
+
+  <aside class="cart-drawer" id="cartDrawer"
+         aria-label="Giỏ hàng" aria-hidden="true">
+    <div class="cart-header">
+      <h2>Giỏ hàng của cậu 🛒</h2>
+      <button class="close-btn" id="closeCart" type="button"
+              aria-label="Đóng giỏ hàng">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Tổng cộng</span>
+        <strong id="cartTotal">0đ</strong>
+      </div>
+      <button class="btn btn-pink" id="checkoutButton" type="button">
+        Tiến hành đặt hàng 💗
+      </button>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal" id="checkoutModal" role="dialog"
+       aria-modal="true" aria-labelledby="checkoutTitle">
+    <div class="modal-content">
+      <div class="modal-heading">
+        <h2 id="checkoutTitle">Đặt món thôi! 🍓</h2>
+        <button class="close-btn" id="closeCheckout" type="button"
+                aria-label="Đóng biểu mẫu">×</button>
+      </div>
+
+      <p class="modal-description">
+        Điền thông tin để xem trước quy trình đặt hàng mẫu.
+      </p>
+
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label for="customerName">Họ và tên</label>
+          <input id="customerName" name="customerName" type="text"
+                 placeholder="Tên người nhận hàng" required>
+        </div>
+
+        <div class="form-group">
+          <label for="customerPhone">Số điện thoại</label>
+          <input id="customerPhone" name="customerPhone" type="tel"
+                 inputmode="tel" placeholder="Số điện thoại liên hệ" required>
+        </div>
+
+        <div class="form-group">
+          <label for="customerAddress">Địa chỉ nhận hàng</label>
+          <textarea id="customerAddress" name="customerAddress"
+                    placeholder="Số nhà, đường, phường/xã..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="customerNote">Ghi chú (không bắt buộc)</label>
+          <input id="customerNote" name="customerNote" type="text"
+                 placeholder="Ví dụ: ít cay, không hành...">
+        </div>
+
+        <div class="checkout-total">
+          <span>Tổng đơn hàng</span>
+          <strong id="checkoutTotal">0đ</strong>
+        </div>
+
+        <button class="btn btn-pink" type="submit" style="width:100%;">
+          Xác nhận đơn mẫu 🌷
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // =========================================
+    // DỮ LIỆU SẢN PHẨM - CÓ THỂ CHỈNH SỬA Ở ĐÂY
+    // =========================================
+
+    const products = [
+      {
+        id: 1,
+        name: "Mì trộn bò thơm ngon",
+        category: "mi",
+        categoryName: "Mì & Bún",
+        price: 35000,
+        tag: "Bán chạy",
+        description: "Mì dai, bò mềm, sốt đậm đà hấp dẫn.",
+        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 2,
+        name: "Mì ramen Nhật Bản",
+        category: "mi",
+        categoryName: "Mì & Bún",
+        price: 45000,
+        tag: "Được yêu thích",
+        description: "Tô mì nóng hổi với nước dùng thơm ngon.",
+        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 3,
+        name: "Bún trộn rau củ",
+        category: "mi",
+        categoryName: "Mì & Bún",
+        price: 30000,
+        tag: "Nhẹ nhàng",
+        description: "Rau củ nhiều màu, vị thanh mát dễ ăn.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 4,
+        name: "Mì cay Hàn Quốc",
+        category: "mi",
+        categoryName: "Mì & Bún",
+        price: 40000,
+        tag: "Cay xé lưỡi",
+        description: "Dành cho những chiếc bụng mê vị cay.",
+        image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 5,
+        name: "Cơm gà sốt đặc biệt",
+        category: "com",
+        categoryName: "Cơm ngon",
+        price: 40000,
+        tag: "No bụng",
+        description: "Cơm nóng cùng thịt gà vàng thơm.",
+        image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 6,
+        name: "Cơm bò rau củ",
+        category: "com",
+        categoryName: "Cơm ngon",
+        price: 45000,
+        tag: "Đủ chất",
+        description: "Thịt bò mềm ăn cùng rau củ tươi ngon.",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 7,
+        name: "Cơm cuộn rong biển",
+        category: "com",
+        categoryName: "Cơm ngon",
+        price: 35000,
+        tag: "Xinh xắn",
+        description: "Những cuộn cơm nhỏ gọn, tiện thưởng thức.",
+        image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 8,
+        name: "Trà đào cam sả",
+        category: "douong",
+        categoryName: "Đồ uống",
+        price: 25000,
+        tag: "Mát lạnh",
+        description: "Vị trà thơm, đào ngọt và cam thanh mát.",
+        image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 9,
+        name: "Trà sữa trân châu",
+        category: "douong",
+        categoryName: "Đồ uống",
+        price: 30000,
+        tag: "Best seller",
+        description: "Trà sữa béo thơm cùng trân châu dai mềm.",
+        image: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 10,
+        name: "Matcha latte",
+        category: "douong",
+        categoryName: "Đồ uống",
+        price: 32000,
+        tag: "Green mood",
+        description: "Matcha xanh dịu, thơm nhẹ và béo mịn.",
+        image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 11,
+        name: "Nước ép cam tươi",
+        category: "douong",
+        categoryName: "Đồ uống",
+        price: 28000,
+        tag: "Tươi mát",
+        description: "Thức uống trái cây với màu sắc rực rỡ.",
+        image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 12,
+        name: "Sinh tố dâu tây",
+        category: "douong",
+        categoryName: "Đồ uống",
+        price: 35000,
+        tag: "Pink mood",
+        description: "Ly sinh tố hồng ngọt ngào, thơm vị dâu.",
+        image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 13,
+        name: "Khoai tây chiên",
+        category: "anvat",
+        categoryName: "Ăn vặt",
+        price: 25000,
+        tag: "Giòn rụm",
+        description: "Khoai vàng giòn, nhâm nhi cực vui.",
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 14,
+        name: "Gà rán giòn tan",
+        category: "anvat",
+        categoryName: "Ăn vặt",
+        price: 39000,
+        tag: "Giòn ngon",
+        description: "Lớp vỏ vàng ruộm, hấp dẫn từ cái nhìn đầu tiên.",
+        image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 15,
+        name: "Bánh ngọt mini",
+        category: "anvat",
+        categoryName: "Ăn vặt",
+        price: 22000,
+        tag: "Ngọt ngào",
+        description: "Món bánh nhỏ xinh cho giờ nghỉ giải lao.",
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 16,
+        name: "Sandwich trứng",
+        category: "anvat",
+        categoryName: "Ăn vặt",
+        price: 28000,
+        tag: "Tiện lợi",
+        description: "Bánh mì mềm cùng phần nhân thơm béo.",
+        image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 17,
+        name: "Salad rau củ",
+        category: "anvat",
+        categoryName: "Ăn vặt",
+        price: 30000,
+        tag: "Fresh",
+        description: "Rau xanh và rau củ nhiều màu sắc.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
+      }
+    ];
+
+    // =========================================
+    // CÁC BIẾN VÀ HÀM CHÍNH
+    // =========================================
+
+    let activeCategory = "all";
+    let searchKeyword = "";
+    let cart = {};
+
+    const productGrid = document.getElementById("productGrid");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+    const cartCount = document.getElementById("cartCount");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutTotal = document.getElementById("checkoutTotal");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const checkoutModal = document.getElementById("checkoutModal");
+    const toast = document.getElementById("toast");
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+        maximumFractionDigits: 0
+      }).format(price);
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, function (char) {
+        const entities = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        };
+        return entities[char];
+      });
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+    }
+
+    // =========================================
+    // HIỂN THỊ SẢN PHẨM
+    // =========================================
+
+    function renderProducts() {
+      const filteredProducts = products.filter(product => {
+        const matchesCategory =
+          activeCategory === "all" ||
+          product.category === activeCategory;
+
+        const keyword = searchKeyword.trim().toLocaleLowerCase("vi");
+
+        const searchableText =
+          (product.name + " " + product.description + " " +
+           product.categoryName).toLocaleLowerCase("vi");
+
+        return matchesCategory && searchableText.includes(keyword);
+      });
+
+      productGrid.innerHTML = filteredProducts.map(product => `
+        <article class="product-card">
+          <div class="product-image">
+            <img
+              src="${escapeHTML(product.image)}"
+              alt="${escapeHTML(product.name)}"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='https://placehold.co/700x500/fff1f5/c56d89?text=3CE+FOODS';"
+            >
+            <span class="product-tag">${escapeHTML(product.tag)}</span>
+          </div>
+
+          <div class="product-info">
+            <div class="product-category">${escapeHTML(product.categoryName)}</div>
+            <h3>${escapeHTML(product.name)}</h3>
+            <p class="product-description">${escapeHTML(product.description)}</p>
+
+            <div class="product-bottom">
+              <span class="product-price">${formatPrice(product.price)}</span>
+              <button
+                class="add-btn"
+                type="button"
+                data-add="${product.id}"
+                aria-label="Thêm ${escapeHTML(product.name)} vào giỏ hàng"
+                title="Thêm vào giỏ hàng"
+              >+</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      emptyState.style.display = filteredProducts.length ? "none" : "block";
+    }
+
+    document.querySelectorAll("[data-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.filter;
+
+        document.querySelectorAll("[data-filter]").forEach(item => {
+          item.classList.toggle("active", item === button);
+        });
+
+        renderProducts();
+      });
+    });
+
+    document.querySelectorAll("[data-category-link]").forEach(link => {
+      link.addEventListener("click", () => {
+        activeCategory = link.dataset.categoryLink;
+
+        document.querySelectorAll("[data-filter]").forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === activeCategory
+          );
+        });
+
+        renderProducts();
+      });
+    });
+
+    searchInput.addEventListener("input", event => {
+      searchKeyword = event.target.value;
+      renderProducts();
+    });
+
+    // =========================================
+    // GIỎ HÀNG
+    // =========================================
+
+    function addToCart(productId) {
+      const product = products.find(item => item.id === productId);
+      if (!product) return;
+
+      if (cart[productId]) {
+        cart[productId].quantity += 1;
+      } else {
+        cart[productId] = {
+          product,
+          quantity: 1
+        };
+      }
+
+      renderCart();
+      showToast("Đã thêm " + product.name + " vào giỏ hàng 💗");
+    }
+
+    function changeQuantity(productId, amount) {
+      if (!cart[productId]) return;
+
+      cart[productId].quantity += amount;
+
+      if (cart[productId].quantity <= 0) {
+        delete cart[productId];
+      }
+
+      renderCart();
+    }
+
+    function removeFromCart(productId) {
+      if (!cart[productId]) return;
+
+      delete cart[productId];
+      renderCart();
+      showToast("Đã xóa món khỏi giỏ hàng.");
+    }
+
+    function getCartQuantity() {
+      return Object.values(cart).reduce(
+        (sum, item) => sum + item.quantity, 0
+      );
+    }
+
+    function getCartTotal() {
+      return Object.values(cart).reduce(
+        (sum, item) => sum + item.product.price * item.quantity, 0
+      );
+    }
+
+    function renderCart() {
+      cartCount.textContent = getCartQuantity();
+
+      const entries = Object.values(cart);
+
+      if (!entries.length) {
+        cartItems.innerHTML = `
+          <div class="cart-empty">
+            <span>🧺</span>
+            <h3>Giỏ hàng còn trống nè!</h3>
+            <p>Chọn vài món ngon để bắt đầu nhé.</p>
+          </div>
+        `;
+      } else {
+        cartItems.innerHTML = entries.map(({ product, quantity }) => `
+          <div class="cart-item">
+            <img
+              src="${escapeHTML(product.image)}"
+              alt="${escapeHTML(product.name)}"
+              onerror="this.onerror=null;this.src='https://placehold.co/200x200/fff1f5/c56d89?text=3CE';"
+            >
+
+            <div>
+              <h4>${escapeHTML(product.name)}</h4>
+              <div class="cart-item-price">
+                ${formatPrice(product.price * quantity)}
+              </div>
+
+              <div class="quantity-control">
+                <button type="button" data-minus="${product.id}"
+                        aria-label="Giảm số lượng">−</button>
+                <span>${quantity}</span>
+                <button type="button" data-plus="${product.id}"
+                        aria-label="Tăng số lượng">+</button>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="remove-btn"
+              data-remove="${product.id}"
+              aria-label="Xóa ${escapeHTML(product.name)}"
+              title="Xóa món"
+            >✕</button>
+          </div>
+        `).join("");
+      }
+
+      cartTotal.textContent = formatPrice(getCartTotal());
+      checkoutTotal.textContent = formatPrice(getCartTotal());
+    }
+
+    productGrid.addEventListener("click", event => {
+      const button = event.target.closest("[data-add]");
+      if (!button) return;
+
+      addToCart(Number(button.dataset.add));
+    });
+
+    cartItems.addEventListener("click", event => {
+      const minusButton = event.target.closest("[data-minus]");
+      const plusButton = event.target.closest("[data-plus]");
+      const removeButton = event.target.closest("[data-remove]");
+
+      if (minusButton) {
+        changeQuantity(Number(minusButton.dataset.minus), -1);
+      }
+
+      if (plusButton) {
+        changeQuantity(Number(plusButton.dataset.plus), 1);
+      }
+
+      if (removeButton) {
+        removeFromCart(Number(removeButton.dataset.remove));
+      }
+    });
+
+    function openCart() {
+      cartDrawer.classList.add("open");
+      cartOverlay.classList.add("show");
+      cartDrawer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      document.getElementById("closeCart").focus();
+    }
+
+    function closeCart() {
+      cartDrawer.classList.remove("open");
+      cartOverlay.classList.remove("show");
+      cartDrawer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("openCart").addEventListener("click", openCart);
+    document.getElementById("closeCart").addEventListener("click", closeCart);
+    cartOverlay.addEventListener("click", closeCart);
+
+    // =========================================
+    // ĐẶT HÀNG MẪU
+    // =========================================
+
+    document.getElementById("checkoutButton").addEventListener("click", () => {
+      if (getCartQuantity() === 0) {
+        showToast("Cậu hãy chọn ít nhất một món trước nhé! 🍓");
+        return;
+      }
+
+      closeCart();
+      checkoutTotal.textContent = formatPrice(getCartTotal());
+      checkoutModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+      document.getElementById("customerName").focus();
+    });
+
+    function closeCheckout() {
+      checkoutModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("closeCheckout").addEventListener(
+      "click", closeCheckout
+    );
+
+    checkoutModal.addEventListener("click", event => {
+      if (event.target === checkoutModal) {
+        closeCheckout();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeCheckout();
+        closeCart();
+      }
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (!getCartQuantity()) {
+        closeCheckout();
+        showToast("Giỏ hàng đang trống.");
+        return;
+      }
+
+      const form = event.currentTarget;
+      const customerName = form.customerName.value.trim();
+
+      /*
+        BẢN DEMO:
+        Đơn hàng chưa được gửi đến máy chủ.
+        Cần tích hợp backend hoặc dịch vụ nhận đơn để sử dụng thật.
+      */
+
+      const orderSummary = Object.values(cart).map(({ product, quantity }) =>
+        `${product.name} x ${quantity}`
+      ).join(", ");
+
+      console.log("Đơn hàng demo:", {
+        customerName,
+        items: orderSummary,
+        total: getCartTotal()
+      });
+
+      cart = {};
+      renderCart();
+      form.reset();
+      closeCheckout();
+
+      showToast(
+        "Cảm ơn " + customerName +
+        " nhé! Đây là bản demo, đơn chưa được gửi đến shop. 💗"
+      );
+    });
+
+    // =========================================
+    // FORM LIÊN HỆ MẪU
+    // =========================================
+
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const name = form.name.value.trim();
+
+      /*
+        BẢN DEMO:
+        Biểu mẫu chưa gửi email hay lưu thông tin lên máy chủ.
+      */
+
+      console.log("Tin nhắn liên hệ demo:", {
+        name,
+        email: form.email.value.trim(),
+        message: form.message.value.trim()
+      });
+
+      form.reset();
+      showToast(
+        "Cảm ơn cậu đã nhắn tin! Đây là bản demo, tin nhắn chưa được gửi đi. 💌"
+      );
+    });
+
+    // =========================================
+    // KHỞI TẠO WEBSITE
+    // =========================================
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    renderProducts();
     renderCart();
-    showToast("Đã xóa món khỏi giỏ hàng.");
-  }
-});
-
-document.getElementById("cartFooter").addEventListener("click", event => {
-  if (event.target.id !== "checkoutButton") return;
-  if (!cart.size) return;
-  const order = [...cart.values()].map(row =>
-    `${row.item.name} x ${row.quantity} = ${money(row.item.price * row.quantity)}`
-  ).join("\n");
-  const confirmed = confirm("XÁC NHẬN ĐƠN HÀNG DEMO\n\n" + order +
-    "\n\nTổng cộng: " + money(totalPrice()) +
-    "\n\nWebsite chưa kết nối hệ thống nhận đơn. Bạn có muốn tiếp tục xem thông báo demo không?");
-  if (confirmed) {
-    showToast("Đơn hàng demo đã được tạo trên giao diện. Chưa gửi đến cửa hàng.");
-    closeCart();
-  }
-});
-
-document.getElementById("openCart").addEventListener("click", openCart);
-document.getElementById("closeCart").addEventListener("click", closeCart);
-document.getElementById("overlay").addEventListener("click", closeCart);
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeCart();
-    document.getElementById("chatBox").classList.remove("open");
-  }
-});
-document.getElementById("goMenu").addEventListener("click", () => {
-  document.getElementById("menu-section").scrollIntoView({behavior:"smooth"});
-});
-
-document.getElementById("contactForm").addEventListener("submit", event => {
-  event.preventDefault();
-  showToast("Cảm ơn bạn đã gửi lời nhắn! 💗");
-  event.target.reset();
-});
-
-const chatBox = document.getElementById("chatBox");
-const chatMessages = document.getElementById("chatMessages");
-function addChatMessage(text, sender) {
-  const div = document.createElement("div");
-  div.className = "chat-message " + sender;
-  div.textContent = text;
-  chatMessages.appendChild(div);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-document.getElementById("chatToggle").addEventListener("click", () => chatBox.classList.toggle("open"));
-document.getElementById("closeChat").addEventListener("click", () => chatBox.classList.remove("open"));
-document.getElementById("chatForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const input = document.getElementById("chatInput");
-  const message = input.value.trim();
-  if (!message) return;
-  addChatMessage(message, "user");
-  input.value = "";
-  setTimeout(() => addChatMessage(
-    "Dạ 3CE FOODS đã nhận được tin nhắn! Đây là khung chat demo, bạn vui lòng liên hệ cửa hàng qua thông tin chính thức để được hỗ trợ nhé. 💗",
-    "bot"
-  ), 450);
-});
-
-document.getElementById("year").textContent = new Date().getFullYear();
-renderTabs();
-renderMenu();
-renderCart();
-</script>
+  </script>
 </body>
 </html>

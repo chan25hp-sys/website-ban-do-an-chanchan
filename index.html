@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ec4899">
+<meta name="description" content="3CE FOODS - Thiên đường mì trộn, cơm ngon và đồ ăn vặt.">
+<title>3CE FOODS | Thiên đường ẩm thực</title>
+
+<style>
+:root {
+  --pink: #ec4899;
+  --pink-dark: #db2777;
+  --pink-light: #fdf2f8;
+  --green: #34d399;
+  --green-dark: #059669;
+  --text: #292633;
+  --muted: #777481;
+  --white: #fff;
+  --border: #f5dce9;
+  --shadow: 0 10px 30px rgba(219,39,119,.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fffafd;
+  color: var(--text);
+  line-height: 1.6;
+}
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+button:focus-visible, a:focus-visible, input:focus-visible,
+textarea:focus-visible { outline: 3px solid #f9a8d4; outline-offset: 3px; }
+
+.container { width: min(1180px, 92%); margin: auto; }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  min-height: 76px; display: flex; align-items: center;
+  justify-content: space-between; gap: 18px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-icon {
+  width: 45px; height: 45px; border-radius: 15px;
+  display: grid; place-items: center; color: white;
+  background: linear-gradient(135deg,#f472b6,#ec4899);
+  font-size: 25px; box-shadow: 0 5px 15px #fbcfe8;
+}
+.brand-name { color: var(--pink); font-size: 24px; font-weight: 900; }
+.tagline { display: block; color: var(--green-dark); font-size: 11px; font-weight: 700; }
+.cart-button, .primary-button {
+  border: 0; border-radius: 14px; padding: 12px 18px;
+  font-weight: 800; transition: .2s;
+}
+.cart-button { background: var(--pink-light); color: var(--pink-dark); }
+.cart-button:hover { background: #fce7f3; }
+.cart-count {
+  display: inline-grid; place-items: center; min-width: 23px;
+  height: 23px; margin-left: 5px; padding: 0 5px;
+  border-radius: 20px; background: var(--green); color: white;
+}
+.hero {
+  position: relative; overflow: hidden; text-align: center;
+  padding: 85px 20px 90px;
+  background: linear-gradient(135deg,#fce7f3,#fff1f7 48%,#d1fae5);
+}
+.hero::before, .hero::after {
+  content: ""; position: absolute; border-radius: 50%;
+  pointer-events: none; opacity: .45;
+}
+.hero::before { width: 250px; height: 250px; background: #f9a8d4; top: -130px; left: -70px; }
+.hero::after { width: 300px; height: 300px; background: #6ee7b7; right: -130px; bottom: -180px; }
+.hero-content { position: relative; z-index: 1; max-width: 820px; margin: auto; }
+.eyebrow {
+  display: inline-block; background: white; color: var(--pink-dark);
+  padding: 8px 18px; border: 1px solid var(--border);
+  border-radius: 30px; font-weight: 800; font-size: 13px;
+}
+.hero h1 { font-size: clamp(36px,6vw,66px); line-height: 1.12; margin: 23px 0; font-weight: 900; }
+.gradient-text {
+  background: linear-gradient(90deg,var(--pink),var(--green-dark));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero p { max-width: 660px; margin: 0 auto 30px; color: #66616f; font-size: 17px; }
+.primary-button { background: var(--pink); color: white; box-shadow: 0 8px 20px #fbcfe8; }
+.primary-button:hover { background: var(--pink-dark); transform: translateY(-2px); }
+
+.section { padding: 65px 0; }
+.section-heading { text-align: center; margin-bottom: 35px; }
+.section-heading h2 { font-size: clamp(27px,4vw,38px); margin: 0 0 8px; }
+.section-heading p { margin: 0; color: var(--muted); }
+.menu-tools { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+.search {
+  flex: 1; min-width: 200px; padding: 13px 16px; border-radius: 14px;
+  border: 1px solid var(--border); background: white; color: var(--text);
+}
+.tabs { display: flex; gap: 9px; overflow-x: auto; padding: 3px 2px 12px; margin-bottom: 22px; }
+.tab {
+  white-space: nowrap; padding: 11px 17px; border-radius: 13px;
+  border: 1px solid var(--border); background: white; color: #6b6571;
+  font-weight: 800;
+}
+.tab.active { background: var(--pink); color: white; border-color: var(--pink); }
+.menu-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 22px; }
+.product {
+  display: flex; flex-direction: column; min-width: 0;
+  background: white; border: 1px solid #f6e7ef; border-radius: 22px;
+  overflow: hidden; box-shadow: 0 4px 15px rgba(60,20,45,.035);
+  transition: transform .2s, box-shadow .2s;
+}
+.product:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.product img { width: 100%; height: 190px; object-fit: cover; background: var(--pink-light); }
+.product-info { padding: 17px; display: flex; flex-direction: column; flex: 1; }
+.product-category { color: var(--green-dark); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .7px; }
+.product h3 { font-size: 16px; line-height: 1.4; margin: 7px 0; }
+.product p { font-size: 13px; color: var(--muted); margin: 0 0 15px; flex: 1; }
+.product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-top: 1px solid #f8edf3; padding-top: 13px; }
+.price { color: var(--green-dark); font-weight: 900; font-size: 18px; }
+.add-button {
+  border: 0; border-radius: 11px; padding: 9px 12px;
+  background: var(--pink-light); color: var(--pink-dark); font-weight: 900;
+}
+.add-button:hover { background: var(--pink); color: white; }
+.empty-state { text-align: center; padding: 45px 10px; color: var(--muted); grid-column: 1/-1; }
+
+.contact-section { background: white; border-top: 1px solid var(--border); }
+.contact-form {
+  max-width: 750px; margin: auto; padding: 28px;
+  background: #fff8fc; border: 1px solid var(--border); border-radius: 25px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+.field label { font-weight: 800; font-size: 14px; }
+.field input, .field textarea {
+  width: 100%; border: 1px solid var(--border); border-radius: 12px;
+  padding: 12px 14px; background: white;
+}
+.field textarea { resize: vertical; }
+.contact-form .primary-button { width: 100%; }
+
+footer { background: #fce7f3; padding: 48px 0 22px; color: #7f1d50; }
+.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 35px; }
+footer h3 { color: var(--pink-dark); margin-top: 0; }
+footer p, footer li { font-size: 14px; }
+footer ul { padding-left: 18px; }
+.footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #f3c8dd; font-size: 13px; }
+
+.overlay {
+  position: fixed; inset: 0; z-index: 29;
+  background: rgba(30,20,30,.4); opacity: 0; visibility: hidden; transition: .25s;
+}
+.overlay.open { opacity: 1; visibility: visible; }
+.cart-panel {
+  position: fixed; top: 0; right: 0; z-index: 30; height: 100dvh;
+  width: min(460px,100%); background: white; display: flex; flex-direction: column;
+  transform: translateX(105%); transition: transform .3s ease;
+  box-shadow: -10px 0 35px rgba(0,0,0,.1);
+}
+.cart-panel.open { transform: translateX(0); }
+.cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: var(--pink-light); }
+.cart-header h2 { margin: 0; font-size: 22px; }
+.icon-button { border: 0; background: transparent; font-size: 27px; color: var(--pink-dark); }
+.cart-items { flex: 1; overflow-y: auto; padding: 16px; }
+.cart-row { display: grid; grid-template-columns: 76px 1fr; gap: 13px; padding: 13px 0; border-bottom: 1px solid #f7e9f1; }
+.cart-row img { width: 76px; height: 76px; object-fit: cover; border-radius: 12px; }
+.cart-row h3 { margin: 0 0 4px; font-size: 14px; }
+.cart-row .price { font-size: 14px; }
+.cart-row-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 9px; }
+.quantity { display: flex; align-items: center; gap: 12px; }
+.quantity button { width: 29px; height: 29px; border: 0; border-radius: 9px; background: var(--pink-light); color: var(--pink-dark); font-weight: 900; }
+.remove-button { border: 0; background: transparent; color: #e11d48; font-size: 13px; }
+.cart-footer { padding: 20px; border-top: 1px solid var(--border); }
+.total-line { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 17px; }
+.total-line strong { color: var(--pink-dark); font-size: 24px; }
+.cart-footer .primary-button { width: 100%; }
+.cart-empty { text-align: center; padding: 50px 10px; color: var(--muted); }
+
+.toast {
+  position: fixed; left: 50%; bottom: 25px; z-index: 60;
+  transform: translate(-50%,20px); opacity: 0; pointer-events: none;
+  background: #292633; color: white; padding: 13px 20px; border-radius: 14px;
+  box-shadow: var(--shadow); transition: .25s; width: max-content; max-width: 90%;
+}
+.toast.show { opacity: 1; transform: translate(-50%,0); }
+
+.chat-toggle {
+  position: fixed; bottom: 22px; right: 22px; z-index: 25;
+  width: 58px; height: 58px; border: 0; border-radius: 50%;
+  background: var(--green); color: white; font-size: 25px;
+  box-shadow: 0 8px 22px #a7f3d0;
+}
+.chat-box {
+  position: fixed; bottom: 92px; right: 22px; z-index: 25;
+  width: min(350px,calc(100% - 30px)); background: white;
+  border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,.13); display: none;
+}
+.chat-box.open { display: block; }
+.chat-header { padding: 15px; background: var(--pink); color: white; font-weight: 900; display: flex; justify-content: space-between; align-items: center; }
+.chat-messages { height: 245px; overflow-y: auto; padding: 13px; background: #fffafd; display: flex; flex-direction: column; gap: 10px; }
+.chat-message { max-width: 85%; border-radius: 13px; padding: 10px 12px; font-size: 13px; overflow-wrap: anywhere; }
+.chat-message.bot { align-self: flex-start; background: white; border: 1px solid var(--border); }
+.chat-message.user { align-self: flex-end; background: var(--green); color: white; }
+.chat-form { display: flex; gap: 7px; padding: 10px; border-top: 1px solid var(--border); }
+.chat-form input { min-width: 0; flex: 1; border: 1px solid var(--border); border-radius: 20px; padding: 9px 12px; }
+.chat-form button { border: 0; border-radius: 50%; width: 40px; background: var(--pink); color: white; }
+
+@media(max-width:1000px) {
+  .menu-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:700px) {
+  .menu-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
+  .product img { height: 155px; }
+  .product-info { padding: 12px; }
+  .product h3 { font-size: 14px; }
+  .product p { font-size: 12px; }
+  .price { font-size: 16px; }
+  .add-button { padding: 8px 10px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+  .hero { padding: 65px 16px; }
+  .hero p { font-size: 15px; }
+  .form-grid { grid-template-columns: 1fr; gap: 0; }
+  .contact-form { padding: 20px; }
+  .tagline { max-width: 180px; }
+}
+@media(max-width:380px) {
+  .brand-name { font-size: 20px; }
+  .brand-icon { width: 39px; height: 39px; }
+  .cart-button { padding: 10px; font-size: 13px; }
+  .product img { height: 130px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="3CE FOODS - Trang chủ">
+      <span class="brand-icon">♥</span>
+      <span>
+        <span class="brand-name">3CE FOODS</span>
+        <span class="tagline">Ăn vặt không no - Không lo bị péoooo ✨</span>
+      </span>
+    </a>
+    <button class="cart-button" id="openCart" type="button">
+      🛒 Giỏ hàng <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="eyebrow">🎉 Chào mừng đến với thiên đường ẩm thực</span>
+    <h1>Thưởng Thức Hương Vị<br><span class="gradient-text">Tuyệt Hảo Mỗi Ngày</span></h1>
+    <p>Từ những tô mì trộn đậm đà đến những phần ăn vặt hấp dẫn. 3CE FOODS mong muốn mang đến cho bạn bữa ăn ngon miệng và niềm vui trọn vẹn!</p>
+    <button class="primary-button" id="goMenu" type="button">Đặt Món Ngay 🤤</button>
+  </div>
+</section>
+
+<main>
+<section class="section container" id="menu-section">
+  <div class="section-heading">
+    <h2>🍜 Thực Đơn Nhà 3CE</h2>
+    <p>Chọn món yêu thích và thêm ngay vào giỏ hàng nhé!</p>
+  </div>
+  <div class="menu-tools">
+    <input class="search" type="search" id="searchInput" placeholder="🔎 Tìm tên món ăn..." aria-label="Tìm món ăn">
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="section-heading">
+      <h2>💌 Góc Nhỏ Tâm Tình</h2>
+      <p>Bạn có góp ý hay muốn nhắn gửi điều gì cho 3CE FOODS không?</p>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-grid">
+        <div class="field">
+          <label for="phone">Số điện thoại *</label>
+          <input id="phone" name="phone" type="tel" required placeholder="Nhập số điện thoại">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Email (không bắt buộc)">
+        </div>
+      </div>
+      <div class="field">
+        <label for="message">Bạn muốn nhắn gửi điều gì? *</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Viết lời nhắn của bạn ở đây nhé..."></textarea>
+      </div>
+      <button class="primary-button" type="submit">Gửi Tâm Tình ➤</button>
+      <p style="font-size:12px;color:#777;margin-bottom:0">Biểu mẫu hiện chỉ hiển thị thông báo trên website, chưa gửi dữ liệu đến cửa hàng.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>3CE FOODS ♥</h3>
+        <p><strong>“Ăn vặt không no - Không lo bị péoooo”</strong></p>
+        <p>📍 Cung đường ẩm thực số 1, Quận Ăn Uống, TP. Hạnh Phúc</p>
+        <p>☎ Hotline: 1900 xxxx</p>
+        <p><small>Địa chỉ và hotline mẫu — hãy thay bằng thông tin thật của shop.</small></p>
+      </div>
+      <div>
+        <h3>Chính Sách</h3>
+        <ul>
+          <li><a href="#contact">Chăm sóc khách hàng</a></li>
+          <li><a href="#contact">Chính sách hoạt động</a></li>
+          <li><a href="#contact">Chính sách và quy định</a></li>
+          <li><a href="#contact">Bảo mật thông tin</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kết Nối Với Chúng Mình</h3>
+        <p>Theo dõi để không bỏ lỡ những ưu đãi ngọt ngào nhất!</p>
+        <a href="#contact">💗 Liên hệ 3CE FOODS</a>
+        <p><small>Thêm link Facebook thật của shop khi có.</small></p>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> 3CE FOODS. All rights reserved. Designed with ❤️</div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="cart-panel" id="cartPanel" aria-label="Giỏ hàng" aria-hidden="true">
+  <div class="cart-header">
+    <h2>🛒 Giỏ Hàng <span id="cartSummary">0 món</span></h2>
+    <button class="icon-button" id="closeCart" type="button" aria-label="Đóng giỏ hàng">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter"></div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    <span>💬 3CE FOODS Hỗ trợ</span>
+    <button class="icon-button" id="closeChat" type="button" aria-label="Đóng chat" style="color:white">×</button>
+  </div>
+  <div class="chat-messages" id="chatMessages" aria-live="polite">
+    <div class="chat-message bot">Chào bạn! 3CE FOODS có thể giúp gì cho bạn hôm nay ạ? 🌸</div>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" type="text" placeholder="Nhập tin nhắn..." required aria-label="Tin nhắn">
+    <button type="submit" aria-label="Gửi tin nhắn">➤</button>
+  </form>
+</div>
+<button class="chat-toggle" id="chatToggle" type="button" aria-label="Mở chat">☏</button>
+
+<script>
+"use strict";
+
+const MENU_DATA = [
+  {
+    id: "mi", name: "Mì", items: [
+      {id:"m1",name:"Mì trộn Indomie Long Môn Ngự Yến",desc:"Sợi mì Indomie dai mềm cùng sốt trộn, rau củ, xúc xích, cá viên, tôm surimi, viên mực và hải sản phô mai.",price:40000,img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80"},
+      {id:"m2",name:"Mì trộn Indomie Tứ Hải Hội Tụ",desc:"Mì Indomie quyện sốt đậm đà, rau củ, xúc xích, cá viên và tôm surimi.",price:35000,img:"https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=600&q=80"},
+      {id:"m3",name:"Mì trộn Indomie Thanh Vân Ngọc Thực",desc:"Mì dai mềm óng ánh sốt trộn đậm vị, kết hợp rau củ tươi xanh.",price:20000,img:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"},
+      {id:"m4",name:"Mì cay Đế Vương Bò Wagyu",desc:"Mì cay nóng hổi với bắp cải, ngô non, xúc xích và thịt bò.",price:65000,img:"https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&w=600&q=80"},
+      {id:"m5",name:"Mì thập cẩm Hải Sơn Thiên Địa",desc:"Mì nước súp đậm vị với tôm, mực, bò ba chỉ và xúc xích.",price:80000,img:"https://images.unsplash.com/photo-1626804475297-41609ea004eb?auto=format&fit=crop&w=600&q=80"},
+      {id:"m6",name:"Mì cay Busan Xúc Xích",desc:"Mì dai ngon, xúc xích thơm lừng và rau củ tươi xanh.",price:45000,img:"https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=600&q=80"},
+      {id:"m7",name:"Mì cay bò Vương Giả Tứ Xuyên",desc:"Mì cay với thịt bò mềm và nước lèo đậm đà.",price:60000,img:"https://images.unsplash.com/photo-1598515061611-37d45e7f1604?auto=format&fit=crop&w=600&q=80"},
+      {id:"m8",name:"Mì Hắc Long Bá Vương",desc:"Mì dai ngon, sốt tương đen mặn ngọt, rau củ tươi giòn.",price:50000,img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80"},
+      {id:"m9",name:"Mì Ý Bò Bằm Hoàng Kim",desc:"Mì Ý cùng sốt cà chua bò bằm đậm đà, thơm ngon.",price:55000,img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=600&q=80"}
+    ]
+  },
+  {
+    id: "com", name: "Cơm", items: [
+      {id:"c1",name:"Cơm Rang Kim Ngưu Khai Vị",desc:"Cơm rang tơi thơm, dưa cải chua thanh và thịt bò mềm.",price:45000,img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80"},
+      {id:"c2",name:"Cơm Gà Kim Kê Ngự Yến",desc:"Cơm nóng dẻo thơm cùng thịt gà chiên vàng giòn.",price:55000,img:"https://images.unsplash.com/photo-1600688640154-150689b9ccbb?auto=format&fit=crop&w=600&q=80"},
+      {id:"c3",name:"Bibimbap Kim Ngọc Hoàng Triều",desc:"Cơm Hàn Quốc với bò xào, trứng, rau củ, kim chi và sốt Bibimbap.",price:60000,img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?auto=format&fit=crop&w=600&q=80"}
+    ]
+  },
+  {
+    id: "do-uong", name: "Đồ uống", items: [
+      {id:"du1",name:"Hồng Nhan Tuyết Lệ (Trà đào)",desc:"Trà thơm dịu nhẹ, đào ngâm ngọt thanh và đá mát lạnh.",price:25000,img:"https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80"},
+      {id:"du2",name:"Thanh Long Xuất Hải (Trà chanh)",desc:"Trà thanh mát, nước cốt chanh tươi chua ngọt hài hòa.",price:20000,img:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80"},
+      {id:"du3",name:"Bích Ngọc Tiên Trà (Trà tắc)",desc:"Trà thơm dịu, tắc tươi chua nhẹ, vị ngọt thanh dễ uống.",price:20000,img:"https://images.unsplash.com/photo-1509315703195-529879416a70?auto=format&fit=crop&w=600&q=80"},
+      {id:"du4",name:"Hỏa Diệm Sơn (Trà dâu)",desc:"Trà mát cùng dâu tây, vị chua ngọt hài hòa.",price:25000,img:"https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80"},
+      {id:"du5",name:"Tuyết Sơn Ngọc Ẩn (Trà sữa)",desc:"Trà thơm đậm vị, sữa béo ngậy và đá mát lạnh.",price:30000,img:"https://images.unsplash.com/photo-1588697669352-d04b39b039cb?auto=format&fit=crop&w=600&q=80"}
+    ]
+  },
+  {
+    id: "an-vat", name: "Ăn vặt", items: [
+      {id:"av1",name:"Khoai tây chiên Kim Giáp Hoàng Kim",desc:"Khoai tây vàng giòn, ngoài giòn trong mềm, thơm bùi.",price:25000,img:"https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=600&q=80"},
+      {id:"av2",name:"Khoai lắc phô mai Kim Ngọc Mãn Đường",desc:"Khoai tây chiên giòn lắc phô mai béo ngậy.",price:30000,img:"https://images.unsplash.com/photo-1630431341973-02e1b662ce3b?auto=format&fit=crop&w=600&q=80"},
+      {id:"av3",name:"Nem chua Trần Công Châu Hồng Môn",desc:"Nem chua dai giòn, chua nhẹ, đậm vị truyền thống.",price:6000,img:"https://images.unsplash.com/photo-1627042633145-b780684d09f6?auto=format&fit=crop&w=600&q=80"},
+      {id:"av4",name:"Phô mai que Bạch Ngọc Kim Tâm",desc:"Phô mai béo ngậy bọc trong lớp vỏ vàng giòn.",price:8000,img:"https://images.unsplash.com/photo-1536585149363-2287f3b5ebcd?auto=format&fit=crop&w=600&q=80"},
+      {id:"av5",name:"Khoai môn Lệ Phố Tử Ngọc",desc:"Khoai môn bùi thơm, vỏ giòn, nhân mềm ngọt.",price:30000,img:"https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80"},
+      {id:"av6",name:"Ngô chiên Kim Châu Ngự Tiệc",desc:"Ngô vàng giòn, thơm ngọt và đậm đà gia vị.",price:30000,img:"https://images.unsplash.com/photo-1508061461523-62580dfbf3d2?auto=format&fit=crop&w=600&q=80"},
+      {id:"av7",name:"Cút lộn xào me Hỏa Long Châu",desc:"Trứng cút lộn béo bùi, sốt me chua ngọt, rau răm và lạc rang.",price:50000,img:"https://images.unsplash.com/photo-1512152272829-4591a27e7fa1?auto=format&fit=crop&w=600&q=80"},
+      {id:"av8",name:"Bánh tráng nướng Hỏa Phụng Hoàng Cung",desc:"Bánh tráng giòn cùng trứng, xúc xích và topping.",price:25000,img:"https://images.unsplash.com/photo-1605634586526-9d665768e4a9?auto=format&fit=crop&w=600&q=80"},
+      {id:"av9",name:"Viên chiên Ngự Lâm Thập Bát Vị",desc:"Các loại viên chiên nóng giòn, dai ngon, ăn kèm sốt chấm.",price:10000,img:"https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=600&q=80"}
+    ]
+  }
+];
+
+const allItems = MENU_DATA.flatMap(category => category.items);
+const cart = new Map();
+let activeCategory = "tat-ca";
+let toastTimer;
+
+const money = value => new Intl.NumberFormat("vi-VN").format(value) + "đ";
+const getItem = id => allItems.find(item => item.id === id);
+const totalQuantity = () => [...cart.values()].reduce((sum, row) => sum + row.quantity, 0);
+const totalPrice = () => [...cart.values()].reduce((sum, row) => sum + row.item.price * row.quantity, 0);
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+}
+
+function renderTabs() {
+  const tabs = [{id:"tat-ca",name:"Tất cả món"}, ...MENU_DATA.map(c => ({id:c.id,name:c.name}))];
+  document.getElementById("tabs").innerHTML = tabs.map(tab =>
+    `<button type="button" class="tab ${activeCategory === tab.id ? "active" : ""}" data-category="${tab.id}">${tab.name}</button>`
+  ).join("");
+}
+
+function renderMenu() {
+  const search = document.getElementById("searchInput").value.trim().toLocaleLowerCase("vi");
+  const category = MENU_DATA.find(c => c.id === activeCategory);
+  const items = (activeCategory === "tat-ca" ? allItems : category.items)
+    .filter(item => (item.name + " " + item.desc).toLocaleLowerCase("vi").includes(search));
+
+  const grid = document.getElementById("menuGrid");
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty-state">Không tìm thấy món phù hợp. Em thử từ khóa khác nhé! 💗</div>';
+    return;
+  }
+
+  grid.innerHTML = items.map(item => {
+    const catName = MENU_DATA.find(c => c.items.some(i => i.id === item.id)).name;
+    return `
+      <article class="product">
+        <img src="${item.img}" alt="${item.name}" loading="lazy"
+          onerror="this.onerror=null;this.src='https://placehold.co/600x400/fce7f3/db2777?text=3CE+FOODS'">
+        <div class="product-info">
+          <span class="product-category">${catName}</span>
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <div class="product-bottom">
+            <span class="price">${money(item.price)}</span>
+            <button type="button" class="add-button" data-add="${item.id}">＋ Thêm</button>
+          </div>
+        </div>
+      </article>`;
+  }).join("");
+}
+
+function addToCart(id) {
+  const item = getItem(id);
+  if (!item) return;
+  const existing = cart.get(id);
+  if (existing) existing.quantity++;
+  else cart.set(id, {item, quantity:1});
+  renderCart();
+  showToast("Đã thêm " + item.name + " vào giỏ! 😋");
+}
+
+function changeQuantity(id, amount) {
+  const row = cart.get(id);
+  if (!row) return;
+  row.quantity += amount;
+  if (row.quantity <= 0) cart.delete(id);
+  renderCart();
+}
+
+function renderCart() {
+  const quantity = totalQuantity();
+  document.getElementById("cartCount").textContent = quantity;
+  document.getElementById("cartSummary").textContent = quantity + " món";
+
+  const list = document.getElementById("cartItems");
+  const footer = document.getElementById("cartFooter");
+
+  if (!cart.size) {
+    list.innerHTML = '<div class="cart-empty"><div style="font-size:50px">🛒</div><h3>Giỏ hàng đang trống</h3><p>Cùng chọn món ngon nào! 💗</p></div>';
+    footer.innerHTML = "";
+    return;
+  }
+
+  list.innerHTML = [...cart.entries()].map(([id,row]) => `
+    <div class="cart-row">
+      <img src="${row.item.img}" alt="${row.item.name}"
+        onerror="this.onerror=null;this.src='https://placehold.co/100x100/fce7f3/db2777?text=3CE'">
+      <div>
+        <h3>${row.item.name}</h3>
+        <span class="price">${money(row.item.price)}</span>
+        <div class="cart-row-controls">
+          <div class="quantity">
+            <button type="button" data-minus="${id}" aria-label="Giảm số lượng">−</button>
+            <strong>${row.quantity}</strong>
+            <button type="button" data-plus="${id}" aria-label="Tăng số lượng">＋</button>
+          </div>
+          <button type="button" class="remove-button" data-remove="${id}">Xóa</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  footer.innerHTML = `
+    <div class="total-line"><span>Tổng thanh toán:</span><strong>${money(totalPrice())}</strong></div>
+    <button type="button" class="primary-button" id="checkoutButton">Đặt hàng ngay ➜</button>
+    <p style="font-size:12px;color:#777;text-align:center;margin-bottom:0">Đây là bản demo; đơn hàng chưa được gửi đến cửa hàng.</p>
+  `;
+}
+
+function openCart() {
+  document.getElementById("overlay").classList.add("open");
+  document.getElementById("cartPanel").classList.add("open");
+  document.getElementById("cartPanel").setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeCart() {
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("cartPanel").classList.remove("open");
+  document.getElementById("cartPanel").setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("tabs").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+  if (!button) return;
+  activeCategory = button.dataset.category;
+  renderTabs();
+  renderMenu();
+});
+
+document.getElementById("menuGrid").addEventListener("click", event => {
+  const button = event.target.closest("[data-add]");
+  if (button) addToCart(button.dataset.add);
+});
+
+document.getElementById("searchInput").addEventListener("input", renderMenu);
+
+document.getElementById("cartItems").addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+  if (button.dataset.minus) changeQuantity(button.dataset.minus, -1);
+  if (button.dataset.plus) changeQuantity(button.dataset.plus, 1);
+  if (button.dataset.remove) {
+    cart.delete(button.dataset.remove);
+    renderCart();
+    showToast("Đã xóa món khỏi giỏ hàng.");
+  }
+});
+
+document.getElementById("cartFooter").addEventListener("click", event => {
+  if (event.target.id !== "checkoutButton") return;
+  if (!cart.size) return;
+  const order = [...cart.values()].map(row =>
+    `${row.item.name} x ${row.quantity} = ${money(row.item.price * row.quantity)}`
+  ).join("\n");
+  const confirmed = confirm("XÁC NHẬN ĐƠN HÀNG DEMO\n\n" + order +
+    "\n\nTổng cộng: " + money(totalPrice()) +
+    "\n\nWebsite chưa kết nối hệ thống nhận đơn. Bạn có muốn tiếp tục xem thông báo demo không?");
+  if (confirmed) {
+    showToast("Đơn hàng demo đã được tạo trên giao diện. Chưa gửi đến cửa hàng.");
+    closeCart();
+  }
+});
+
+document.getElementById("openCart").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+document.getElementById("overlay").addEventListener("click", closeCart);
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeCart();
+    document.getElementById("chatBox").classList.remove("open");
+  }
+});
+document.getElementById("goMenu").addEventListener("click", () => {
+  document.getElementById("menu-section").scrollIntoView({behavior:"smooth"});
+});
+
+document.getElementById("contactForm").addEventListener("submit", event => {
+  event.preventDefault();
+  showToast("Cảm ơn bạn đã gửi lời nhắn! 💗");
+  event.target.reset();
+});
+
+const chatBox = document.getElementById("chatBox");
+const chatMessages = document.getElementById("chatMessages");
+function addChatMessage(text, sender) {
+  const div = document.createElement("div");
+  div.className = "chat-message " + sender;
+  div.textContent = text;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+document.getElementById("chatToggle").addEventListener("click", () => chatBox.classList.toggle("open"));
+document.getElementById("closeChat").addEventListener("click", () => chatBox.classList.remove("open"));
+document.getElementById("chatForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const input = document.getElementById("chatInput");
+  const message = input.value.trim();
+  if (!message) return;
+  addChatMessage(message, "user");
+  input.value = "";
+  setTimeout(() => addChatMessage(
+    "Dạ 3CE FOODS đã nhận được tin nhắn! Đây là khung chat demo, bạn vui lòng liên hệ cửa hàng qua thông tin chính thức để được hỗ trợ nhé. 💗",
+    "bot"
+  ), 450);
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+renderTabs();
+renderMenu();
+renderCart();
+</script>
+</body>
+</html>

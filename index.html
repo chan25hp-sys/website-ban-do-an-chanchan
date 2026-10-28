@@ -1,1595 +1,533 @@
-
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff5f5">
-  <meta name="description" content="ChanChan Food – Một chút ngon, thêm chút vui. Khám phá những món ăn vặt, mì ngon, bánh ngọt và thức uống yêu thích.">
-  <title>ChanChan Food | Một chút ngon, thêm chút vui</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --pink: #f7cbd2;
-      --pink-light: #fff3f4;
-      --pink-dark: #c66d83;
-      --green: #718875;
-      --green-light: #edf2e9;
-      --ink: #343c35;
-      --muted: #777b75;
-      --white: #fff;
-      --border: #eee5e3;
-      --shadow: 0 8px 28px rgba(75, 61, 57, .07);
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: 'Be Vietnam Pro', sans-serif;
-      color: var(--ink);
-      background: #fffdfb;
-      line-height: 1.7;
-    }
-
-    button, input, textarea, select {
-      font: inherit;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button { cursor: pointer; }
-
-    .wrap {
-      width: min(1120px, 90%);
-      margin: auto;
-    }
-
-    .top-note {
-      background: var(--green);
-      color: white;
-      text-align: center;
-      padding: 8px 12px;
-      font-size: 12px;
-      letter-spacing: .3px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255,253,251,.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      color: var(--green);
-      font-size: 23px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      white-space: nowrap;
-    }
-
-    .logo span { color: var(--pink-dark); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .nav-links a:hover { color: var(--pink-dark); }
-
-    .cart-button, .primary-button {
-      border: 0;
-      border-radius: 999px;
-      background: var(--green);
-      color: white;
-      padding: 11px 18px;
-      font-weight: 600;
-      font-size: 13px;
-      transition: .2s;
-    }
-
-    .cart-button:hover, .primary-button:hover {
-      background: #536e58;
-      transform: translateY(-1px);
-    }
-
-    .hero {
-      padding: 58px 0 66px;
-      background:
-        radial-gradient(ellipse at 85% 25%, #f8e2df 0, transparent 38%),
-        linear-gradient(120deg, #fff7f4, #f5f5ed);
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.02fr .98fr;
-      align-items: center;
-      gap: 46px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      color: var(--green);
-      font-size: 12px;
-      font-weight: 700;
-      background: white;
-      padding: 7px 13px;
-      border-radius: 30px;
-      margin-bottom: 14px;
-    }
-
-    /* Tiêu đề được giới hạn cỡ chữ để không bị quá to */
-  .hero h1 {
-  font-size: clamp(32px, 4vw, 46px);
-  line-height: 1.35;
-  letter-spacing: -1px;
-  font-weight: 700;
-  margin: 0 0 18px;
-  max-width: 600px;
-}
-
-    .hero h1 em {
-      color: var(--pink-dark);
-      font-style: normal;
-    }
-
-    .hero p {
-      max-width: 510px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.95;
-      margin: 0 0 24px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .secondary-button {
-      display: inline-block;
-      border: 1px solid #d8dfd3;
-      border-radius: 999px;
-      padding: 10px 17px;
-      font-size: 13px;
-      font-weight: 600;
-      background: rgba(255,255,255,.75);
-    }
-
-    .hero-image {
-      position: relative;
-      padding: 12px;
-      background: white;
-      border-radius: 26px;
-      box-shadow: var(--shadow);
-      transform: rotate(1deg);
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 340px;
-      object-fit: cover;
-      border-radius: 19px;
-    }
-
-    .image-note {
-      position: absolute;
-      bottom: 27px;
-      left: -15px;
-      background: white;
-      border-radius: 14px;
-      padding: 12px 17px;
-      box-shadow: var(--shadow);
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .image-note span {
-      display: block;
-      color: var(--pink-dark);
-      font-size: 11px;
-      font-weight: 500;
-    }
-
-    .features {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 12px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .feature-icon {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--pink-light);
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    section.content-section { padding: 65px 0; }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    .section-heading .eyebrow { margin-bottom: 8px; }
-
-    .section-heading h2 {
-      font-size: clamp(23px, 3vw, 30px);
-      line-height: 1.4;
-      letter-spacing: -.7px;
-      margin: 0 0 8px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 0 auto;
-      max-width: 540px;
-    }
-
-    .menu-tools {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--ink);
-      border-radius: 30px;
-      padding: 8px 13px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--green);
-      border-color: var(--green);
-      color: white;
-    }
-
-    .search-box {
-      width: 220px;
-      max-width: 100%;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      outline: none;
-      background: white;
-      font-size: 12px;
-    }
-
-    .search-box:focus {
-      border-color: var(--green);
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: white;
-      border: 1px solid #f0e9e5;
-      border-radius: 17px;
-      overflow: hidden;
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .product-image {
-      position: relative;
-      background: #f4eee8;
-      overflow: hidden;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      transition: transform .35s;
-    }
-
-    .product-card:hover .product-image img {
-      transform: scale(1.04);
-    }
-
-    .product-tag {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      background: rgba(255,255,255,.94);
-      border-radius: 30px;
-      padding: 4px 9px;
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    .product-info { padding: 14px; }
-
-    .product-info h3 {
-      font-size: 14px;
-      line-height: 1.55;
-      margin: 0 0 5px;
-      font-weight: 700;
-    }
-
-    .product-desc {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.7;
-      min-height: 38px;
-      margin: 0 0 12px;
-    }
-
-    .product-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .price {
-      color: var(--pink-dark);
-      font-weight: 800;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .add-button {
-      border: 0;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-      background: var(--green-light);
-      color: var(--green);
-      font-size: 21px;
-      line-height: 1;
-      font-weight: 500;
-    }
-
-    .add-button:hover {
-      background: var(--green);
-      color: white;
-    }
-
-    .empty-message {
-      grid-column: 1 / -1;
-      text-align: center;
-      color: var(--muted);
-      padding: 35px 10px;
-    }
-
-    .about-section { background: #f5f6ef; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-      align-items: center;
-    }
-
-    .about-grid img {
-      width: 100%;
-      height: 310px;
-      object-fit: cover;
-      border-radius: 22px;
-    }
-
-    .about-copy h2 {
-      font-size: 27px;
-      line-height: 1.45;
-      margin: 0 0 14px;
-    }
-
-    .about-copy h2 span { color: var(--pink-dark); }
-
-    .about-copy p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 2;
-    }
-
-    .about-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .about-list span::first-letter { color: var(--green); }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 40px;
-    }
-
-    .contact-info {
-      background: var(--pink-light);
-      border-radius: 20px;
-      padding: 26px;
-    }
-
-    .contact-info h3 {
-      font-size: 20px;
-      margin: 0 0 10px;
-    }
-
-    .contact-info > p {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 22px;
-    }
-
-    .contact-line {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin: 16px 0;
-      font-size: 13px;
-    }
-
-    .contact-line strong {
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .contact-line small { color: var(--muted); }
-
-    .contact-form {
-      display: grid;
-      gap: 12px;
-      align-content: start;
-    }
-
-    .contact-form h3 {
-      font-size: 21px;
-      margin: 0 0 4px;
-    }
-
-    .contact-form > p {
-      color: var(--muted);
-      font-size: 12px;
-      margin: 0 0 8px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: white;
-      outline: none;
-      font-size: 13px;
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: var(--green);
-    }
-
-    .contact-form textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .contact-form .primary-button {
-      justify-self: start;
-    }
-
-    .faq-list {
-      max-width: 760px;
-      margin: auto;
-    }
-
-    details {
-      border-bottom: 1px solid var(--border);
-      padding: 16px 2px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    details p {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 0;
-    }
-
-    footer {
-      background: #35473a;
-      color: white;
-      padding: 34px 0 20px;
-    }
-
-    .footer-main {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      font-size: 23px;
-      font-weight: 800;
-    }
-
-    .footer-brand span { color: #f3b9c7; }
-
-    .footer-main p {
-      color: #dce3da;
-      font-size: 12px;
-      max-width: 360px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 17px;
-      flex-wrap: wrap;
-      font-size: 12px;
-    }
-
-    .copyright {
-      margin-top: 25px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,.16);
-      text-align: center;
-      font-size: 11px;
-      color: #dce3da;
-    }
-
-    /* Giỏ hàng */
-    .cart-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 40;
-      background: rgba(32,37,32,.35);
-      opacity: 0;
-      visibility: hidden;
-      transition: .25s;
-    }
-
-    .cart-overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .cart-panel {
-      position: fixed;
-      z-index: 41;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: min(410px, 100%);
-      background: #fffdfb;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      transform: translateX(100%);
-      transition: transform .25s;
-      box-shadow: -10px 0 35px rgba(0,0,0,.08);
-    }
-
-    .cart-panel.open { transform: translateX(0); }
-
-    .cart-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 14px;
-    }
-
-    .cart-header h2 {
-      font-size: 20px;
-      margin: 0;
-    }
-
-    .close-cart {
-      border: 0;
-      background: var(--pink-light);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      font-size: 22px;
-    }
-
-    .cart-items {
-      flex: 1;
-      overflow: auto;
-      padding: 10px 0;
-    }
-
-    .cart-empty {
-      color: var(--muted);
-      text-align: center;
-      padding: 40px 0;
-      font-size: 13px;
-    }
-
-    .cart-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .cart-item h4 {
-      font-size: 13px;
-      margin: 0 0 5px;
-    }
-
-    .cart-item small {
-      color: var(--pink-dark);
-      font-weight: 700;
-    }
-
-    .quantity {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 7px;
-    }
-
-    .quantity button {
-      border: 1px solid var(--border);
-      background: white;
-      border-radius: 7px;
-      width: 26px;
-      height: 26px;
-    }
-
-    .remove-item {
-      border: 0;
-      background: transparent;
-      color: #b45d70;
-      font-size: 11px;
-      margin-top: 5px;
-    }
-
-    .cart-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .cart-footer .primary-button { width: 100%; }
-
-    .checkout-form {
-      display: none;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .checkout-form.show { display: grid; }
-
-    .checkout-form input,
-    .checkout-form textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-      outline: none;
-      font-size: 12px;
-    }
-
-    .checkout-form textarea { min-height: 60px; }
-
-    .checkout-note {
-      color: var(--muted);
-      font-size: 11px;
-      margin: 10px 0 0;
-    }
-
-    .toast {
-      position: fixed;
-      z-index: 60;
-      bottom: 22px;
-      left: 50%;
-      transform: translate(-50%, 20px);
-      background: #35473a;
-      color: white;
-      border-radius: 30px;
-      padding: 11px 18px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: .25s;
-      max-width: 90%;
-      text-align: center;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-
-    @media (max-width: 900px) {
-      .menu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .hero-grid { gap: 28px; }
-      .hero-image img { height: 290px; }
-      .nav-links { gap: 13px; }
-    }
-
-    @media (max-width: 650px) {
-      .wrap { width: 91%; }
-
-      .top-note { font-size: 10px; }
-
-      .nav { min-height: 64px; gap: 8px; }
-
-      .logo { font-size: 20px; }
-
-      .nav-links {
-        gap: 12px;
-        font-size: 11px;
+import React, { useState, useRef, useEffect } from 'react';
+import { 
+  ShoppingCart, 
+  X, 
+  Plus, 
+  Minus, 
+  ChevronRight, 
+  Heart, 
+  CheckCircle2, 
+  MessageCircle,
+  Facebook,
+  Phone,
+  MapPin,
+  Mail,
+  Send,
+  Trash2,
+  Menu as MenuIcon
+} from 'lucide-react';
+
+// --- MENU DATA ---
+const MENU_DATA = [
+  {
+    id: 'mi',
+    name: 'Mì',
+    items: [
+      { id: 'm1', name: 'Mì trộn Indomie Long Môn Ngự Yến', desc: 'Bao gồm sợi mì Indomie dai mềm thấm đẫm sốt trộn độc quyền, rau củ tươi giòn, xúc xích thơm béo, cá viên dai ngon, tôm surimi đậm vị, viên mực xoắn sần sật và hải sản phô mai béo ngậy, hòa quyện tạo nên đại tiệc hương vị bùng nổ trong từng đĩa mì.', price: 40000, img: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm2', name: 'Mì trộn Indomie Tứ Hải Hội Tụ', desc: 'Bao gồm sợi mì Indomie dai ngon quyện cùng sốt trộn đậm đà, rau củ tươi xanh, xúc xích thơm lừng, cá viên dai giòn và tôm surimi hấp dẫn, hội tụ tinh hoa topping trong một phần mì trộn đầy đặn, cuốn vị khó quên.', price: 35000, img: 'https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm3', name: 'Mì trộn Indomie Thanh Vân Ngọc Thực', desc: 'Bao gồm sợi mì Indomie dai mềm óng ánh sốt trộn đậm vị, kết hợp cùng rau củ tươi xanh thanh mát, tạo nên tuyệt phẩm đơn giản mà cuốn hút, nhẹ nhàng nhưng vẫn đậm đà khó cưỡng.', price: 20000, img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm4', name: 'Mì cay Đế vương bò Wagyu', desc: 'Bao gồm mì, bắp cải, ngô non, xúc xích béo ngậy, thịt bò thơm mềm.', price: 65000, img: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm5', name: 'Mì thập cẩm Hải Sơn Thiên Địa', desc: 'Bao gồm mì, nước súp đỏ sóng sánh, tôm tươi, mực giòn, bò ba chỉ béo mềm, xúc xích đậm vị.', price: 80000, img: 'https://images.unsplash.com/photo-1626804475297-41609ea004eb?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm6', name: 'Mì cay Busan Xúc Xích', desc: 'Bao gồm mì dai ngon, xúc xích thơm lừng, rau củ tươi xanh.', price: 45000, img: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm7', name: 'Mì cay bò Vương Giả Tứ Xuyên', desc: 'Bao gồm mì dai ngon chuẩn vị, thịt bò mềm tan, nước lèo hầm đậm đà 8 tiếng.', price: 60000, img: 'https://images.unsplash.com/photo-1598515061611-37d45e7f1604?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm8', name: 'Mì Hắc Long Bá Vương', desc: 'Bao gồm mì dai ngon, sốt tương đen đậm đà, rau củ tươi giòn, hòa quyện cùng hương vị mặn ngọt đặc trưng.', price: 50000, img: 'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&q=80&w=600' },
+      { id: 'm9', name: 'Mì Ý Bò Bằm Hoàng Kim', desc: 'Bao gồm mì Ý dai mềm, sốt cà chua bò bằm đậm đà, thịt bò thơm ngon, hòa quyện cùng hương vị béo ngậy hấp dẫn.', price: 55000, img: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&q=80&w=600' },
+    ]
+  },
+  {
+    id: 'com',
+    name: 'Cơm',
+    items: [
+      { id: 'c1', name: 'Cơm Rang Kim Ngưu Khai Vị', desc: 'Bao gồm cơm rang tơi giòn, dưa cải chua thanh, thịt bò mềm thơm, hòa quyện cùng gia vị đậm đà.', price: 45000, img: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&q=80&w=600' },
+      { id: 'c2', name: 'Cơm Gà Kim Kê Ngự Yến', desc: 'Bao gồm cơm nóng dẻo thơm, thịt gà chiên vàng giòn, nước mắm đậm đà, thấm vị hấp dẫn.', price: 55000, img: 'https://images.unsplash.com/photo-1600688640154-150689b9ccbb?auto=format&fit=crop&q=80&w=600' },
+      { id: 'c3', name: 'Bibimbap Kim Ngọc Hoàng Triều', desc: 'Bao gồm cơm trắng dẻo thơm, thịt bò xào đậm vị, trứng ốp la béo ngậy, cà rốt, dưa leo, rau cải tươi xanh, nấm thơm ngon, kim chi chua cay và sốt Bibimbap đặc trưng Hàn Quốc, hòa quyện tạo nên hương vị hấp dẫn khó cưỡng.', price: 60000, img: 'https://images.unsplash.com/photo-1553163147-622ab57be1c7?auto=format&fit=crop&q=80&w=600' },
+    ]
+  },
+  {
+    id: 'do-uong',
+    name: 'Đồ Uống',
+    items: [
+      { id: 'du1', name: 'Hồng Nhan Tuyết Lệ (Trà đào)', desc: 'Bao gồm trà thơm dịu nhẹ, đào ngâm ngọt thanh, kết hợp cùng đá mát lạnh, mang đến hương vị tươi mát.', price: 25000, img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600' },
+      { id: 'du2', name: 'Thanh Long Xuất Hải (Trà chanh)', desc: 'Bao gồm trà thanh mát, nước cốt chanh tươi, vị chua ngọt hài hòa, giải khát sảng khoái.', price: 20000, img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600' },
+      { id: 'du3', name: 'Bích Ngọc Tiên Trà (Trà tắc)', desc: 'Bao gồm trà thơm dịu, tắc tươi chua nhẹ, vị ngọt thanh dễ uống.', price: 20000, img: 'https://images.unsplash.com/photo-1509315703195-529879416a70?auto=format&fit=crop&q=80&w=600' },
+      { id: 'du4', name: 'Hỏa Diệm Sơn (Trà dâu)', desc: 'Bao gồm trà thơm mát, dâu tây ngọt dịu, vị chua ngọt hài hòa, màu sắc hấp dẫn.', price: 25000, img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&q=80&w=600' },
+      { id: 'du5', name: 'Tuyết Sơn Ngọc Ẩn (Trà sữa)', desc: 'Bao gồm trà thơm đậm vị, sữa béo ngậy, vị ngọt dịu, kết hợp cùng đá mát lạnh.', price: 30000, img: 'https://images.unsplash.com/photo-1588697669352-d04b39b039cb?auto=format&fit=crop&q=80&w=600' },
+    ]
+  },
+  {
+    id: 'an-vat',
+    name: 'Ăn Vặt',
+    items: [
+      { id: 'av1', name: 'Khoai tây chiên Kim Giáp Hoàng Kim', desc: 'Bao gồm khoai tây vàng giòn, ngoài giòn trong mềm, thơm bùi hấp dẫn.', price: 25000, img: 'https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av2', name: 'Khoai lắc phô mai Kim Ngọc Mãn Đường', desc: 'Bao gồm khoai tây chiên giòn lắc phô mai béo ngậy, đậm vị.', price: 30000, img: 'https://images.unsplash.com/photo-1630431341973-02e1b662ce3b?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av3', name: 'Nem chua Trần Công Châu Hồng Môn', desc: 'Bao gồm nem chua dai giòn, chua nhẹ, đậm vị truyền thống.', price: 6000, img: 'https://images.unsplash.com/photo-1627042633145-b780684d09f6?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av4', name: 'Phô mai que Bạch Ngọc Kim Tâm', desc: 'Bao gồm phô mai kéo sợi béo ngậy, bọc vỏ vàng giòn.', price: 8000, img: 'https://images.unsplash.com/photo-1536585149363-2287f3b5ebcd?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av5', name: 'Khoai môn Lệ Phố Tử Ngọc', desc: 'Bao gồm khoai môn bùi thơm, vỏ giòn, nhân mềm ngọt.', price: 30000, img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av6', name: 'Ngô chiên Kim Châu Ngự Tiệc', desc: 'Bao gồm ngô vàng giòn, thơm ngọt, đậm đà gia vị.', price: 30000, img: 'https://images.unsplash.com/photo-1508061461523-62580dfbf3d2?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av7', name: 'Cút lộn xào me Hỏa Long Châu', desc: 'Bao gồm trứng cút lộn béo bùi, sốt me chua ngọt, rau răm và lạc rang.', price: 50000, img: 'https://images.unsplash.com/photo-1512152272829-4591a27e7fa1?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av8', name: 'Bánh tráng nướng Hỏa Phụng Hoàng Cung', desc: 'Bao gồm bánh tráng giòn, trứng, xúc xích và topping thơm ngon.', price: 25000, img: 'https://images.unsplash.com/photo-1605634586526-9d665768e4a9?auto=format&fit=crop&q=80&w=600' },
+      { id: 'av9', name: 'Viên chiên Ngự Lâm Thập Bát Vị', desc: 'Bao gồm các loại viên chiên nóng giòn, dai ngon, ăn kèm sốt chấm đậm vị.', price: 10000, img: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&q=80&w=600' },
+    ]
+  }
+];
+
+const formatPrice = (price) => {
+  return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
+};
+
+export default function App() {
+  const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('tat-ca');
+  
+  // Chat state
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState([{ sender: 'bot', text: 'Chào bạn! 3CE FOODS có thể giúp gì cho bạn hôm nay ạ? 🌸' }]);
+  const [currentMessage, setCurrentMessage] = useState('');
+
+  // Toast State
+  const [toast, setToast] = useState({ show: false, message: '' });
+  const toastTimeout = useRef(null);
+
+  const showToast = (message) => {
+    if (toastTimeout.current) clearTimeout(toastTimeout.current);
+    setToast({ show: true, message });
+    toastTimeout.current = setTimeout(() => setToast({ show: false, message: '' }), 3000);
+  };
+
+  const addToCart = (item) => {
+    setCart((prev) => {
+      const existing = prev.find((i) => i.id === item.id);
+      if (existing) {
+        return prev.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i));
       }
+      return [...prev, { ...item, quantity: 1 }];
+    });
+    showToast(`Đã thêm ${item.name} vào giỏ! 😋`);
+  };
 
-      .nav-links a:nth-child(2),
-      .nav-links a:nth-child(3) { display: none; }
+  const updateQuantity = (id, delta) => {
+    setCart((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          const newQ = item.quantity + delta;
+          return { ...item, quantity: newQ > 0 ? newQ : 1 };
+        }
+        return item;
+      })
+    );
+  };
 
-      .cart-button {
-        padding: 9px 12px;
-        font-size: 11px;
-      }
+  const removeFromCart = (id) => setCart((prev) => prev.filter((i) => i.id !== id));
 
-      .hero { padding: 38px 0 44px; }
+  const handleSendChat = (e) => {
+    e.preventDefault();
+    if (!currentMessage.trim()) return;
+    setChatMessages([...chatMessages, { sender: 'user', text: currentMessage }]);
+    setCurrentMessage('');
+    setTimeout(() => {
+      setChatMessages((prev) => [...prev, { sender: 'bot', text: 'Dạ 3CE FOODS đã nhận được tin nhắn! Nhân viên sẽ phản hồi bạn ngay ạ. 💖' }]);
+    }, 1000);
+  };
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  
+  const allItems = MENU_DATA.flatMap(cat => cat.items);
+  const activeItems = activeTab === 'tat-ca' ? allItems : MENU_DATA.find(cat => cat.id === activeTab)?.items || [];
+  const tabsList = [{ id: 'tat-ca', name: 'Tất cả món' }, ...MENU_DATA.map(cat => ({ id: cat.id, name: cat.name }))];
 
-    .hero h1 {
-  font-size: 32px;
-  line-height: 1.4;
-  letter-spacing: -.6px;
-}
+  return (
+    <div className="min-h-screen bg-pink-50 text-gray-800 font-sans selection:bg-emerald-200 selection:text-emerald-900">
+      
+      {/* --- STICKY HEADER --- */}
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-pink-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="bg-gradient-to-br from-pink-400 to-pink-500 p-2 md:p-3 rounded-2xl text-white shadow-lg shadow-pink-200/50 flex-shrink-0">
+              <Heart size={24} className="animate-pulse" />
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-2xl md:text-3xl font-black tracking-tight text-pink-500">
+                3CE FOODS
+              </h1>
+              <p className="text-[10px] md:text-xs font-bold text-emerald-500 hidden sm:block uppercase tracking-wider">
+                Ăn vặt không no - Không lo bị péoooo ✨
+              </p>
+            </div>
+          </div>
 
-      .hero p { font-size: 13px; }
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="relative flex items-center justify-center p-3 rounded-2xl bg-pink-50 text-pink-500 hover:bg-pink-100 transition-all active:scale-95 group"
+            >
+              <ShoppingCart size={22} className="group-hover:scale-110 transition-transform" />
+              <span className="hidden md:block ml-2 font-bold text-sm">Giỏ hàng</span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-emerald-400 text-white text-[11px] font-black h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
 
-      .hero-image img { height: 240px; }
-
-      .image-note { left: -5px; bottom: 20px; }
-
-      .feature-grid { gap: 8px; }
-
-      .feature {
-        flex-direction: column;
-        gap: 6px;
-        font-size: 10px;
-      }
-
-      .feature-icon {
-        width: 34px;
-        height: 34px;
-      }
-
-      section.content-section { padding: 46px 0; }
-
-      .section-heading h2 { font-size: 24px; }
-
-      .menu-tools { align-items: stretch; }
-
-      .filters {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 5px;
-      }
-
-      .filter-btn { white-space: nowrap; }
-
-      .search-box { width: 100%; }
-
-      .menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .product-image img { height: 145px; }
-
-      .product-info { padding: 10px; }
-
-      .product-info h3 { font-size: 12px; }
-
-      .product-desc {
-        font-size: 10px;
-        min-height: 48px;
-      }
-
-      .price { font-size: 12px; }
-
-      .add-button {
-        width: 31px;
-        height: 31px;
-      }
-
-      .product-tag {
-        font-size: 9px;
-        left: 7px;
-        top: 7px;
-      }
-
-      .about-grid, .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .about-grid img { height: 240px; }
-
-      .about-copy h2 { font-size: 24px; }
-
-      .contact-info { padding: 22px; }
-
-      .footer-main { gap: 15px; }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="top-note">♡ ChanChan Food · Một chút ngon, thêm chút vui ♡</div>
-
-  <header>
-    <div class="wrap nav">
-      <a href="#home" class="logo">ChanChan<span>Food</span></a>
-
-      <nav class="nav-links" aria-label="Điều hướng chính">
-        <a href="#home">Trang chủ</a>
-        <a href="#menu">Thực đơn</a>
-        <a href="#about">Về chúng mình</a>
-        <a href="#contact">Liên hệ</a>
-      </nav>
-
-      <button class="cart-button" id="openCart" type="button">
-        ♡ Giỏ hàng (<span id="cartCount">0</span>)
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="wrap hero-grid">
-        <div>
-          <span class="eyebrow">♡ Ngon lành từ những điều giản dị</span>
-
-          <h1>
-            Chọn món yêu thích,<br>
-            <em>tận hưởng ngày vui.</em>
-          </h1>
-
-          <p>
-            Chào bạn đến với ChanChan Food — góc nhỏ có đồ ăn ấm bụng,
-            thức uống mát lành và bánh ngọt xinh xắn.
-            Chọn món yêu thích rồi để chúng mình chăm chút phần còn lại nhé!
+      {/* --- HERO SECTION --- */}
+      <section className="relative w-full py-16 md:py-24 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-200 via-pink-100 to-emerald-50 z-0"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="inline-block bg-white/60 backdrop-blur-md px-6 py-2 rounded-full border border-pink-200 text-pink-600 font-bold text-sm mb-6 shadow-sm">
+            <span className="mr-2">🎉</span> Chào mừng đến với thiên đường ẩm thực
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+            Thưởng Thức Hương Vị <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-emerald-500">
+              Tuyệt Hảo Mỗi Ngày
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-medium">
+            Từ những tô mì trộn đậm đà đến những phần gà rán giòn rụm. 
+            3CE FOODS cam kết mang đến cho bạn bữa ăn ngon miệng và niềm vui trọn vẹn!
           </p>
-
-          <div class="hero-actions">
-            <a class="primary-button" href="#menu">Khám phá thực đơn ↗</a>
-            <a class="secondary-button" href="#about">Tìm hiểu ChanChan</a>
-          </div>
-        </div>
-
-        <div class="hero-image">
-          <img
-            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1000&q=85"
-            alt="Pizza nóng hổi với nhiều loại topping"
-            fetchpriority="high"
+          <button 
+            onClick={() => document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' })}
+            className="bg-pink-500 hover:bg-pink-600 text-white px-10 py-4 rounded-full font-black text-lg shadow-xl shadow-pink-500/30 transition-all hover:-translate-y-1 active:translate-y-0"
           >
-          <div class="image-note">
-            Một chút ngon, thêm chút vui ♡
-            <span>Ghé chọn món bạn thích nhé!</span>
-          </div>
+            Đặt Món Ngay 🤤
+          </button>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="features">
-      <div class="wrap feature-grid">
-        <div class="feature">
-          <span class="feature-icon">🍜</span>
-          <span>Nhiều món ngon để chọn</span>
-        </div>
-        <div class="feature">
-          <span class="feature-icon">🌷</span>
-          <span>Chăm chút từng đơn hàng</span>
-        </div>
-        <div class="feature">
-          <span class="feature-icon">🥤</span>
-          <span>Ăn ngon, vui mỗi ngày</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section" id="menu">
-      <div class="wrap">
-        <div class="section-heading">
-          <span class="eyebrow">Menu nhà ChanChan</span>
-          <h2>Hôm nay mình ăn gì nhỉ?</h2>
-          <p>Từ món ăn vặt giòn rụm đến những ly nước mát lành, chọn món bạn đang thèm nhé!</p>
+      {/* --- MENU SECTION --- */}
+      <main id="menu-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* Tabs */}
+        <div className="flex items-center overflow-x-auto gap-3 pb-4 mb-10 scrollbar-hide">
+          {tabsList.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-6 py-3.5 rounded-2xl font-bold text-sm whitespace-nowrap transition-all shadow-sm ${
+                activeTab === tab.id 
+                  ? 'bg-pink-500 text-white shadow-pink-500/40 shadow-lg scale-105 border-transparent' 
+                  : 'bg-white text-gray-600 hover:bg-pink-50 border border-pink-100 hover:border-pink-200'
+              }`}
+            >
+              {tab.name}
+            </button>
+          ))}
         </div>
 
-        <div class="menu-tools">
-          <div class="filters" id="filters">
-            <button class="filter-btn active" data-cat="all" type="button">Tất cả</button>
-            <button class="filter-btn" data-cat="mi" type="button">Mì & món nóng</button>
-            <button class="filter-btn" data-cat="snack" type="button">Ăn vặt</button>
-            <button class="filter-btn" data-cat="sweet" type="button">Bánh ngọt</button>
-            <button class="filter-btn" data-cat="drink" type="button">Đồ uống</button>
-          </div>
-
-          <input
-            class="search-box"
-            id="searchInput"
-            type="search"
-            placeholder="Tìm món bạn thích..."
-            aria-label="Tìm món ăn"
-          >
-        </div>
-
-        <div class="menu-grid" id="menuGrid"></div>
-      </div>
-    </section>
-
-    <section class="content-section about-section" id="about">
-      <div class="wrap about-grid">
-        <img
-          src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
-          alt="Bữa ăn được chuẩn bị với nhiều nguyên liệu tươi ngon"
-          loading="lazy"
-        >
-
-        <div class="about-copy">
-          <span class="eyebrow">Một góc nhỏ mang tên ChanChan</span>
-          <h2>Chút ngon lành,<br><span>chút yêu thương.</span></h2>
-
-          <p>
-            ChanChan Food mong muốn mang đến cho bạn những lựa chọn ăn uống
-            gần gũi, vui vẻ và phù hợp với những ngày bận rộn.
-            Dù là một bữa ăn nhanh, một món ăn vặt lúc xế chiều hay một ly
-            nước yêu thích, chúng mình hy vọng bạn sẽ tìm thấy niềm vui
-            nho nhỏ ở đây.
-          </p>
-
-          <div class="about-list">
-            <span>♡ Thực đơn đa dạng, dễ lựa chọn</span>
-            <span>♡ Giao diện đặt món đơn giản</span>
-            <span>♡ Luôn chào đón góp ý của bạn</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-section" id="contact">
-      <div class="wrap">
-        <div class="section-heading">
-          <span class="eyebrow">Chúng mình luôn ở đây</span>
-          <h2>Nhắn ChanChan nhé!</h2>
-          <p>Có điều gì muốn hỏi hoặc góp ý? Gửi lời nhắn cho chúng mình nha.</p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Ghé thăm chúng mình ♡</h3>
-            <p>ChanChan Food rất vui khi được nghe từ bạn.</p>
-
-            <div class="contact-line">
-              <span>📍</span>
-              <div>
-                <strong>Địa chỉ</strong>
-                <small>Xuân Đỉnh, Hà Nội</small>
+        {/* Menu Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+          {activeItems.map((item) => (
+            <div 
+              key={item.id} 
+              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-100/50 transition-all duration-300 group flex flex-col border border-pink-50"
+            >
+              <div className="relative h-48 md:h-56 overflow-hidden bg-pink-50">
+                <img 
+                  src={item.img} 
+                  alt={item.name} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                  loading="lazy"
+                />
+              </div>
+              
+              <div className="p-5 md:p-6 flex flex-col flex-grow">
+                <h4 className="text-lg font-black text-gray-800 mb-2 leading-snug group-hover:text-pink-500 transition-colors">
+                  {item.name}
+                </h4>
+                <p className="text-sm text-gray-500 mb-6 line-clamp-3 flex-grow leading-relaxed">
+                  {item.desc}
+                </p>
+                
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-pink-50">
+                  <span className="text-xl font-black text-emerald-500">
+                    {formatPrice(item.price)}
+                  </span>
+                  <button 
+                    onClick={() => addToCart(item)}
+                    className="bg-pink-100 hover:bg-pink-500 text-pink-600 hover:text-white px-4 py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm flex items-center gap-1 active:scale-95"
+                  >
+                    <Plus size={18} strokeWidth={3} /> <span className="hidden sm:inline">Thêm</span>
+                  </button>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
+      </main>
 
-            <div class="contact-line">
-              <span>☎️</span>
-              <div>
-                <strong>Số điện thoại</strong>
-                <small><a href="tel:091234567">091234567</a></small>
-              </div>
-            </div>
-
-            <div class="contact-line">
-              <span>💌</span>
-              <div>
-                <strong>Lời nhắn</strong>
-                <small>Chúng mình luôn trân trọng góp ý của bạn.</small>
-              </div>
-            </div>
+      {/* --- GÓC NHỎ TÂM TÌNH (CONTACT FORM) --- */}
+      <section className="bg-white py-16 border-t border-pink-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-black text-pink-500 mb-4">Góc Nhỏ Tâm Tình 💌</h2>
+            <p className="text-gray-500 font-medium">Bạn có góp ý hay muốn nhắn gửi điều gì cho 3CE FOODS không? Hãy chia sẻ nhé!</p>
           </div>
-
-          <form class="contact-form" id="contactForm">
-            <h3>Góc nhỏ tâm tình</h3>
-            <p>Điền thông tin bên dưới để soạn lời nhắn nhé.</p>
-
-            <input type="text" id="contactName" placeholder="Tên của bạn" required>
-            <input type="email" id="contactEmail" placeholder="Email của bạn" required>
-            <textarea id="contactMessage" placeholder="Bạn muốn nhắn gửi điều gì?" required></textarea>
-
-            <button class="primary-button" type="submit">Gửi lời nhắn ♡</button>
+          
+          <form className="bg-pink-50/50 p-6 md:p-8 rounded-3xl border border-pink-100 shadow-sm space-y-6" onSubmit={(e) => { e.preventDefault(); showToast("Cảm ơn bạn đã gửi tâm tình cho chúng mình! 🥰"); }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                  <Phone size={16} className="text-pink-400" /> Số điện thoại
+                </label>
+                <input 
+                  type="tel" 
+                  required
+                  placeholder="Nhập số điện thoại..." 
+                  className="w-full px-4 py-3 bg-white border border-pink-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition-shadow"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                  <Mail size={16} className="text-pink-400" /> Email
+                </label>
+                <input 
+                  type="email" 
+                  placeholder="Nhập email (không bắt buộc)..." 
+                  className="w-full px-4 py-3 bg-white border border-pink-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition-shadow"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                <MessageCircle size={16} className="text-pink-400" /> Bạn muốn nhắn gửi điều gì?
+              </label>
+              <textarea 
+                required
+                rows="4"
+                placeholder="Viết tâm tình của bạn ở đây nhé..." 
+                className="w-full px-4 py-3 bg-white border border-pink-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition-shadow resize-none"
+              ></textarea>
+            </div>
+            <button 
+              type="submit"
+              className="w-full bg-emerald-400 hover:bg-emerald-500 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-emerald-400/30 transition-all hover:-translate-y-0.5 flex justify-center items-center gap-2"
+            >
+              Gửi Tâm Tình <Send size={20} />
+            </button>
           </form>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="content-section" id="faq">
-      <div class="wrap">
-        <div class="section-heading">
-          <span class="eyebrow">Bạn hỏi, ChanChan trả lời</span>
-          <h2>Một vài điều bạn có thể muốn biết</h2>
-        </div>
-
-        <div class="faq-list">
-          <details>
-            <summary>Làm thế nào để chọn món?</summary>
-            <p>Chọn danh mục hoặc tìm tên món trong thực đơn, sau đó nhấn dấu cộng để thêm món vào giỏ hàng.</p>
-          </details>
-
-          <details>
-            <summary>Làm thế nào để gửi đơn đặt hàng?</summary>
-            <p>Mở giỏ hàng, kiểm tra các món đã chọn, điền thông tin liên hệ và nhấn nút đặt hàng để tạo nội dung đơn.</p>
-          </details>
-
-          <details>
-            <summary>Mình có thể góp ý cho ChanChan không?</summary>
-            <p>Có chứ! Em có thể dùng biểu mẫu liên hệ ở trên để soạn lời nhắn qua email.</p>
-          </details>
-
-          <details>
-            <summary>Giá trên website đã được xác nhận chưa?</summary>
-            <p>Đây là giá minh họa cho giao diện mẫu. Bạn nên cập nhật giá và thông tin món theo thực đơn thực tế trước khi nhận đơn.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="footer-main">
-        <div>
-          <div class="footer-brand">ChanChan<span>Food.</span></div>
-          <p>Một chút ngon, thêm chút vui. Cảm ơn bạn đã ghé thăm góc nhỏ của chúng mình!</p>
-        </div>
-
-        <div class="footer-links">
-          <a href="#home">Trang chủ</a>
-          <a href="#menu">Thực đơn</a>
-          <a href="#about">Về chúng mình</a>
-          <a href="#contact">Liên hệ</a>
-        </div>
-      </div>
-
-      <div class="copyright">
-        © <span id="year"></span> ChanChan Food · Made with ♡
-      </div>
-    </div>
-  </footer>
-
-  <!-- Giỏ hàng -->
-  <div class="cart-overlay" id="cartOverlay"></div>
-
-  <aside class="cart-panel" id="cartPanel" aria-label="Giỏ hàng">
-    <div class="cart-header">
-      <h2>Giỏ hàng của bạn ♡</h2>
-      <button class="close-cart" id="closeCart" type="button" aria-label="Đóng giỏ hàng">×</button>
-    </div>
-
-    <div class="cart-items" id="cartItems">
-      <p class="cart-empty">Giỏ hàng đang chờ những món ngon của bạn.</p>
-    </div>
-
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Tạm tính</span>
-        <span id="cartTotal">0đ</span>
-      </div>
-
-      <button class="primary-button" id="checkoutToggle" type="button">Tiến hành đặt hàng</button>
-
-      <form class="checkout-form" id="checkoutForm">
-        <input type="text" id="customerName" placeholder="Tên người nhận" required>
-        <input type="tel" id="customerPhone" placeholder="Số điện thoại" required>
-        <textarea id="customerAddress" placeholder="Địa chỉ nhận hàng" required></textarea>
-        <textarea id="customerNote" placeholder="Ghi chú cho đơn hàng (nếu có)"></textarea>
-        <button class="primary-button" type="submit">Tạo nội dung đơn hàng</button>
-      </form>
-
-      <p class="checkout-note">
-        Đây là website mẫu. Đơn hàng chưa được gửi đến hệ thống cửa hàng tự động.
-      </p>
-    </div>
-  </aside>
-
-  <div class="toast" id="toast" role="status"></div>
-
-  <script>
-    const products = [
-      {
-        id: 1, name: "Mì cay hải sản", price: 45000, cat: "mi",
-        tag: "Được yêu thích",
-        desc: "Mì cay nóng hổi cùng tôm, mực và rau xanh.",
-        image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 2, name: "Mì trộn bò", price: 40000, cat: "mi",
-        tag: "Đậm đà",
-        desc: "Mì trộn sốt đậm vị với thịt bò và rau ăn kèm.",
-        image: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 3, name: "Mì tương đen", price: 38000, cat: "mi",
-        tag: "Thơm ngon",
-        desc: "Mì sốt tương đen sánh mịn, hấp dẫn.",
-        image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 4, name: "Mì ramen", price: 45000, cat: "mi",
-        tag: "Nóng hổi",
-        desc: "Mì nước cùng topping phong phú và nước dùng thơm.",
-        image: "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 5, name: "Tokbokki", price: 35000, cat: "snack",
-        tag: "Cay nhẹ",
-        desc: "Bánh gạo dẻo mềm sốt cay ngọt kiểu Hàn.",
-        image: "https://images.unsplash.com/photo-1635363638580-c2809d049eee?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 6, name: "Khoai lang kén", price: 25000, cat: "snack",
-        tag: "Giòn rụm",
-        desc: "Những miếng khoai nhỏ vàng giòn, thơm bùi.",
-        image: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 7, name: "Khoai tây chiên", price: 25000, cat: "snack",
-        tag: "Ăn vặt",
-        desc: "Khoai tây cắt que chiên vàng, dùng kèm sốt.",
-        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 8, name: "Gà rán", price: 39000, cat: "snack",
-        tag: "Giòn ngon",
-        desc: "Gà rán lớp vỏ vàng giòn, thịt mềm mọng.",
-        image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 9, name: "Xúc xích chiên", price: 20000, cat: "snack",
-        tag: "Dễ ăn",
-        desc: "Xúc xích chiên nóng, phù hợp ăn nhẹ.",
-        image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 10, name: "Phô mai que", price: 25000, cat: "snack",
-        tag: "Béo thơm",
-        desc: "Lớp vỏ giòn cùng phô mai kéo sợi hấp dẫn.",
-        image: "https://images.unsplash.com/photo-1531749668029-2db88e4276c7?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 11, name: "Cá viên chiên", price: 25000, cat: "snack",
-        tag: "Ăn vặt",
-        desc: "Cá viên chiên vàng ăn kèm tương chấm.",
-        image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 12, name: "Bánh tráng trộn", price: 25000, cat: "snack",
-        tag: "Chua cay",
-        desc: "Bánh tráng trộn cùng rau răm, trứng và topping.",
-        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 13, name: "Pizza phô mai", price: 59000, cat: "snack",
-        tag: "Thơm béo",
-        desc: "Đế bánh nướng thơm với phô mai tan chảy.",
-        image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 14, name: "Hamburger bò", price: 45000, cat: "snack",
-        tag: "No bụng",
-        desc: "Bánh mềm kẹp bò, rau tươi và sốt.",
-        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 15, name: "Bánh pancake", price: 35000, cat: "sweet",
-        tag: "Ngọt ngào",
-        desc: "Bánh mềm xốp ăn cùng trái cây và siro.",
-        image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 16, name: "Bánh waffle", price: 35000, cat: "sweet",
-        tag: "Bánh ngọt",
-        desc: "Waffle vàng thơm với lớp topping hấp dẫn.",
-        image: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 17, name: "Bánh cupcake", price: 25000, cat: "sweet",
-        tag: "Xinh xắn",
-        desc: "Bánh nhỏ mềm mịn phủ kem ngọt dịu.",
-        image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 18, name: "Bánh donut", price: 22000, cat: "sweet",
-        tag: "Dễ thương",
-        desc: "Donut phủ lớp đường và trang trí bắt mắt.",
-        image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 19, name: "Trà đào cam sả", price: 30000, cat: "drink",
-        tag: "Thanh mát",
-        desc: "Trà trái cây thơm dịu, vị chua ngọt cân bằng.",
-        image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 20, name: "Trà sữa trân châu", price: 30000, cat: "drink",
-        tag: "Bán chạy",
-        desc: "Trà sữa béo thơm cùng trân châu dai mềm.",
-        image: "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 21, name: "Matcha latte", price: 35000, cat: "drink",
-        tag: "Vị trà xanh",
-        desc: "Matcha thơm dịu hòa quyện cùng sữa.",
-        image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=700&q=80"
-      },
-      {
-        id: 22, name: "Cà phê sữa đá", price: 25000, cat: "drink",
-        tag: "Đậm vị",
-        desc: "Cà phê thơm đậm, kết hợp sữa và đá mát lạnh.",
-        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80"
-      }
-    ];
-
-    const money = amount =>
-      amount.toLocaleString("vi-VN") + "đ";
-
-    const menuGrid = document.getElementById("menuGrid");
-    const searchInput = document.getElementById("searchInput");
-    const filterButtons = [...document.querySelectorAll(".filter-btn")];
-    const cartPanel = document.getElementById("cartPanel");
-    const cartOverlay = document.getElementById("cartOverlay");
-    const cartItems = document.getElementById("cartItems");
-    const cartCount = document.getElementById("cartCount");
-    const cartTotal = document.getElementById("cartTotal");
-    const checkoutForm = document.getElementById("checkoutForm");
-
-    let activeCategory = "all";
-    let cart = {};
-    let toastTimer;
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2400);
-    }
-
-    function renderMenu() {
-      const query = searchInput.value.trim().toLocaleLowerCase("vi");
-
-      const filtered = products.filter(product => {
-        const matchCategory =
-          activeCategory === "all" || product.cat === activeCategory;
-
-        const matchSearch =
-          (product.name + " " + product.desc)
-            .toLocaleLowerCase("vi")
-            .includes(query);
-
-        return matchCategory && matchSearch;
-      });
-
-      if (!filtered.length) {
-        menuGrid.innerHTML =
-          '<p class="empty-message">Chưa tìm thấy món phù hợp. Bạn thử tìm tên khác nhé ♡</p>';
-        return;
-      }
-
-      menuGrid.innerHTML = filtered.map(product => `
-        <article class="product-card">
-          <div class="product-image">
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-              loading="lazy"
-              onerror="this.onerror=null;this.src='https://placehold.co/600x400/fff3f4/718875?text=ChanChan+Food';"
-            >
-            <span class="product-tag">${product.tag}</span>
-          </div>
-
-          <div class="product-info">
-            <h3>${product.name}</h3>
-            <p class="product-desc">${product.desc}</p>
-
-            <div class="product-bottom">
-              <span class="price">${money(product.price)}</span>
-              <button
-                class="add-button"
-                type="button"
-                data-add="${product.id}"
-                aria-label="Thêm ${product.name} vào giỏ hàng"
-              >+</button>
-            </div>
-          </div>
-        </article>
-      `).join("");
-    }
-
-    filterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        activeCategory = button.dataset.cat;
-
-        filterButtons.forEach(item => {
-          item.classList.toggle("active", item === button);
-        });
-
-        renderMenu();
-      });
-    });
-
-    searchInput.addEventListener("input", renderMenu);
-
-    menuGrid.addEventListener("click", event => {
-      const button = event.target.closest("[data-add]");
-      if (!button) return;
-
-      const id = Number(button.dataset.add);
-      cart[id] = (cart[id] || 0) + 1;
-
-      renderCart();
-      showToast("Đã thêm món vào giỏ hàng ♡");
-    });
-
-    function renderCart() {
-      const entries = Object.entries(cart)
-        .filter(([, quantity]) => quantity > 0);
-
-      const totalQuantity = entries.reduce(
-        (sum, [, quantity]) => sum + quantity, 0
-      );
-
-      const totalPrice = entries.reduce((sum, [id, quantity]) => {
-        const product = products.find(item => item.id === Number(id));
-        return sum + product.price * quantity;
-      }, 0);
-
-      cartCount.textContent = totalQuantity;
-      cartTotal.textContent = money(totalPrice);
-
-      if (!entries.length) {
-        cartItems.innerHTML =
-          '<p class="cart-empty">Giỏ hàng đang chờ những món ngon của bạn.</p>';
-        checkoutForm.classList.remove("show");
-        return;
-      }
-
-      cartItems.innerHTML = entries.map(([id, quantity]) => {
-        const product = products.find(item => item.id === Number(id));
-
-        return `
-          <div class="cart-item">
-            <div>
-              <h4>${product.name}</h4>
-              <small>${money(product.price * quantity)}</small>
-
-              <div class="quantity">
-                <button type="button" data-change="${id}" data-delta="-1" aria-label="Giảm số lượng">−</button>
-                <span>${quantity}</span>
-                <button type="button" data-change="${id}" data-delta="1" aria-label="Tăng số lượng">+</button>
+      {/* --- FOOTER --- */}
+      <footer className="bg-pink-100 pt-16 pb-8 border-t border-pink-200 text-pink-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
+            
+            {/* Column 1: About */}
+            <div className="space-y-4">
+              <h3 className="text-2xl font-black text-pink-600 mb-4 flex items-center gap-2">
+                3CE FOODS <Heart size={20} className="fill-pink-500 text-pink-500"/>
+              </h3>
+              <p className="font-bold text-sm italic">"Ăn vặt không no - Không lo bị péoooo"</p>
+              <div className="space-y-3 mt-6 text-sm font-medium">
+                <p className="flex items-start gap-3">
+                  <MapPin size={18} className="text-pink-500 mt-0.5 flex-shrink-0" />
+                  <span>Cung đường ẩm thực số 1, Quận Ăn Uống, TP. Hạnh Phúc</span>
+                </p>
+                <p className="flex items-center gap-3">
+                  <Phone size={18} className="text-pink-500 flex-shrink-0" />
+                  <span className="font-bold">Hotline: 1900 xxxx</span>
+                </p>
               </div>
             </div>
 
-            <button class="remove-item" type="button" data-remove="${id}">Xóa</button>
+            {/* Column 2: Policies */}
+            <div>
+              <h3 className="text-lg font-black text-pink-600 mb-6">Chính Sách</h3>
+              <ul className="space-y-3 text-sm font-medium">
+                <li><a href="#" className="hover:text-pink-600 hover:underline transition-all">Chính sách chăm sóc khách hàng</a></li>
+                <li><a href="#" className="hover:text-pink-600 hover:underline transition-all">Chính sách hoạt động</a></li>
+                <li><a href="#" className="hover:text-pink-600 hover:underline transition-all">Chính sách và quy định</a></li>
+                <li><a href="#" className="hover:text-pink-600 hover:underline transition-all">Chính sách bảo mật thông tin</a></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Social */}
+            <div>
+              <h3 className="text-lg font-black text-pink-600 mb-6">Kết Nối Với Chúng Mình</h3>
+              <p className="text-sm font-medium mb-4">Theo dõi để không bỏ lỡ những ưu đãi ngọt ngào nhất!</p>
+              <a href="#" className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-2xl font-bold shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                <Facebook size={20} /> Đường liên kết qua Facebook
+              </a>
+            </div>
+            
           </div>
-        `;
-      }).join("");
-    }
+          
+          <div className="text-center text-sm font-medium text-pink-700/70 pt-8 border-t border-pink-200/50">
+            &copy; {new Date().getFullYear()} 3CE FOODS. All rights reserved. Designed with ❤️
+          </div>
+        </div>
+      </footer>
 
-    cartItems.addEventListener("click", event => {
-      const changeButton = event.target.closest("[data-change]");
-      const removeButton = event.target.closest("[data-remove]");
+      {/* --- CART SIDEBAR OVERLAY --- */}
+      <div 
+        className={`fixed inset-0 bg-gray-900/30 backdrop-blur-sm z-50 transition-opacity duration-300 ${
+          isCartOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        onClick={() => setIsCartOpen(false)}
+      ></div>
 
-      if (changeButton) {
-        const id = Number(changeButton.dataset.change);
-        const delta = Number(changeButton.dataset.delta);
+      {/* --- CART SIDEBAR --- */}
+      <div 
+        className={`fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white shadow-2xl z-50 flex flex-col transform transition-transform duration-400 ease-in-out ${
+          isCartOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex items-center justify-between p-6 border-b border-pink-100 bg-pink-50/50">
+          <h2 className="text-2xl font-black text-pink-600 flex items-center gap-2">
+            <ShoppingCart size={24} /> Giỏ Hàng
+            <span className="bg-white text-emerald-500 text-sm py-1 px-3 rounded-full font-bold shadow-sm ml-2">
+              {totalItems} món
+            </span>
+          </h2>
+          <button 
+            onClick={() => setIsCartOpen(false)}
+            className="p-2 text-gray-400 hover:bg-pink-100 hover:text-pink-500 rounded-full transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
 
-        cart[id] = (cart[id] || 0) + delta;
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-50/30">
+          {cart.length === 0 ? (
+            <div className="h-full flex flex-col items-center justify-center text-gray-400 space-y-4">
+              <div className="bg-pink-50 p-6 rounded-full">
+                <ShoppingCart size={64} className="text-pink-200" />
+              </div>
+              <p className="text-lg font-bold text-gray-500">Giỏ hàng trống trơn! 🥺</p>
+              <button 
+                onClick={() => setIsCartOpen(false)}
+                className="text-emerald-500 font-bold hover:underline bg-emerald-50 px-6 py-2 rounded-full"
+              >
+                Cùng chọn món ngon nào!
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {cart.map((item) => (
+                <div key={item.id} className="flex gap-4 items-center bg-white p-4 rounded-2xl border border-pink-100 shadow-sm">
+                  <img src={item.img} alt={item.name} className="w-20 h-20 object-cover rounded-xl shadow-sm" />
+                  <div className="flex-1">
+                    <h4 className="font-bold text-gray-800 text-sm mb-1 leading-snug">{item.name}</h4>
+                    <p className="text-emerald-500 font-black text-sm mb-3">{formatPrice(item.price)}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center bg-pink-50 border border-pink-100 rounded-xl overflow-hidden">
+                        <button 
+                          onClick={() => updateQuantity(item.id, -1)}
+                          className="w-8 h-8 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors"
+                        >
+                          <Minus size={14} strokeWidth={3} />
+                        </button>
+                        <span className="w-8 text-center font-bold text-sm text-gray-800">{item.quantity}</span>
+                        <button 
+                          onClick={() => updateQuantity(item.id, 1)}
+                          className="w-8 h-8 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors"
+                        >
+                          <Plus size={14} strokeWidth={3} />
+                        </button>
+                      </div>
+                      <button 
+                        onClick={() => removeFromCart(item.id)}
+                        className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-        if (cart[id] <= 0) delete cart[id];
+        {cart.length > 0 && (
+          <div className="p-6 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-gray-500 font-bold">Tổng thanh toán:</span>
+              <span className="text-3xl font-black text-pink-500">{formatPrice(totalPrice)}</span>
+            </div>
+            <button 
+              onClick={() => {
+                showToast("Chuyển đến trang thanh toán... 🚀");
+                setIsCartOpen(false);
+              }}
+              className="w-full bg-pink-500 hover:bg-pink-600 text-white py-4.5 rounded-2xl font-black text-lg shadow-lg shadow-pink-500/30 flex items-center justify-center gap-2 transition-all hover:-translate-y-1 active:translate-y-0"
+            >
+              Thanh Toán Ngay <ChevronRight size={22} />
+            </button>
+          </div>
+        )}
+      </div>
 
-        renderCart();
-      }
+      {/* --- FLOATING CHAT WIDGET --- */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+        {/* Chat Window */}
+        <div 
+          className={`mb-4 w-80 bg-white rounded-3xl shadow-2xl border border-pink-100 overflow-hidden transition-all duration-300 transform origin-bottom-right ${
+            isChatOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+          }`}
+        >
+          <div className="bg-pink-500 p-4 flex justify-between items-center text-white">
+            <div className="flex items-center gap-2 font-bold">
+              <MessageCircle size={18} /> 3CE FOODS Hỗ trợ
+            </div>
+            <button onClick={() => setIsChatOpen(false)} className="hover:bg-pink-600 p-1 rounded-full transition-colors">
+              <X size={18} />
+            </button>
+          </div>
+          <div className="h-64 bg-pink-50/30 p-4 overflow-y-auto flex flex-col gap-3">
+            {chatMessages.map((msg, idx) => (
+              <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[80%] p-3 rounded-2xl text-sm font-medium ${
+                  msg.sender === 'user' 
+                    ? 'bg-emerald-400 text-white rounded-br-sm' 
+                    : 'bg-white border border-pink-100 text-gray-700 rounded-bl-sm shadow-sm'
+                }`}>
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+          </div>
+          <form onSubmit={handleSendChat} className="p-3 bg-white border-t border-pink-100 flex gap-2">
+            <input 
+              type="text" 
+              value={currentMessage}
+              onChange={(e) => setCurrentMessage(e.target.value)}
+              placeholder="Nhập tin nhắn..."
+              className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-pink-300"
+            />
+            <button type="submit" className="bg-pink-500 text-white p-2 rounded-full hover:bg-pink-600 transition-colors flex-shrink-0">
+              <Send size={16} />
+            </button>
+          </form>
+        </div>
 
-      if (removeButton) {
-        delete cart[Number(removeButton.dataset.remove)];
-        renderCart();
-        showToast("Đã xóa món khỏi giỏ hàng.");
-      }
-    });
+        {/* Floating Button */}
+        <button 
+          onClick={() => setIsChatOpen(!isChatOpen)}
+          className="bg-emerald-400 hover:bg-emerald-500 text-white p-4 rounded-full shadow-xl shadow-emerald-400/40 transition-all hover:scale-110 active:scale-95 flex items-center justify-center"
+        >
+          {isChatOpen ? <X size={28} /> : <MessageCircle size={28} />}
+        </button>
+      </div>
 
-    function openCart() {
-      cartPanel.classList.add("open");
-      cartOverlay.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
+      {/* --- TOAST NOTIFICATION --- */}
+      <div 
+        className={`fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-3 bg-gray-900/90 backdrop-blur-md text-white px-6 py-4 rounded-full shadow-2xl transition-all duration-500 ease-out pointer-events-none ${
+          toast.show ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+        }`}
+      >
+        <CheckCircle2 className="text-emerald-400" size={24} />
+        <span className="font-bold text-sm">{toast.message}</span>
+      </div>
 
-    function closeCart() {
-      cartPanel.classList.remove("open");
-      cartOverlay.classList.remove("open");
-      document.body.style.overflow = "";
-    }
-
-    document.getElementById("openCart").addEventListener("click", openCart);
-    document.getElementById("closeCart").addEventListener("click", closeCart);
-    cartOverlay.addEventListener("click", closeCart);
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeCart();
-    });
-
-    document.getElementById("checkoutToggle").addEventListener("click", () => {
-      if (!Object.keys(cart).length) {
-        showToast("Em hãy chọn ít nhất một món trước nhé!");
-        return;
-      }
-
-      checkoutForm.classList.toggle("show");
-      checkoutForm.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
-
-    checkoutForm.addEventListener("submit", event => {
-      event.preventDefault();
-
-      if (!Object.keys(cart).length) {
-        showToast("Giỏ hàng đang trống.");
-        return;
-      }
-
-      const name = document.getElementById("customerName").value.trim();
-      const phone = document.getElementById("customerPhone").value.trim();
-      const address = document.getElementById("customerAddress").value.trim();
-      const note = document.getElementById("customerNote").value.trim();
-
-      const lines = Object.entries(cart).map(([id, quantity]) => {
-        const product = products.find(item => item.id === Number(id));
-        return `- ${product.name} x ${quantity}: ${money(product.price * quantity)}`;
-      });
-
-      const total = Object.entries(cart).reduce((sum, [id, quantity]) => {
-        const product = products.find(item => item.id === Number(id));
-        return sum + product.price * quantity;
-      }, 0);
-
-      const orderText = [
-        "ĐƠN ĐẶT HÀNG CHANCHAN FOOD",
-        "",
-        ...lines,
-        "",
-        `Tổng tiền hàng: ${money(total)}`,
-        `Người nhận: ${name}`,
-        `Số điện thoại: ${phone}`,
-        `Địa chỉ: ${address}`,
-        `Ghi chú: ${note || "Không có"}`
-      ].join("\n");
-
-      const emailSubject = encodeURIComponent("Đơn đặt hàng ChanChan Food");
-      const emailBody = encodeURIComponent(orderText);
-
-      showToast("Đang mở ứng dụng email để gửi đơn hàng.");
-
-      window.location.href =
-        `mailto:?subject=${emailSubject}&body=${emailBody}`;
-    });
-
-    document.getElementById("contactForm").addEventListener("submit", event => {
-      event.preventDefault();
-
-      const name = document.getElementById("contactName").value.trim();
-      const email = document.getElementById("contactEmail").value.trim();
-      const message = document.getElementById("contactMessage").value.trim();
-
-      const subject = encodeURIComponent("Lời nhắn gửi ChanChan Food");
-      const body = encodeURIComponent(
-        `Tên: ${name}\nEmail: ${email}\n\nLời nhắn:\n${message}`
-      );
-
-      showToast("Đang mở ứng dụng email để gửi lời nhắn.");
-
-      window.location.href =
-        `mailto:?subject=${subject}&body=${body}`;
-    });
-
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-
-    renderMenu();
-    renderCart();
-  </script>
-</body>
-</html>
+    </div>
+  );
+}

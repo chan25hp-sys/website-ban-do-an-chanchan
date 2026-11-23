@@ -913,6 +913,24 @@
       font-size: 12px;
     }
 
+    /* LIÊN KẾT TRANG QUẢN TRỊ */
+    .admin-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #8b7b81;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 0.8;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    .admin-link:hover {
+      color: #b95f7c;
+      opacity: 1;
+    }
+
     /* CART DRAWER */
     .overlay {
       display: none;
@@ -1769,6 +1787,8 @@
 
       <div class="footer-bottom">
         © <span id="currentYear"></span> 3CE FOODS. Made with 💗 and a little sweetness.
+        <br>
+        <a href="admin.html" class="admin-link">Trang quản trị</a>
       </div>
     </div>
   </footer>
@@ -1878,6 +1898,15 @@
       },
       {
         id: 3,
+        name: "Bún trộn rau củ",
+        category: "mi",
+        categoryName: "Mì & Bún",
+        price: 30000,
+        tag: "Nhẹ nhàng",
+        description: "Rau củ nhiều màu, vị thanh mát dễ ăn.",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80"
+      },
+
         name: "Bún trộn rau củ",
         category: "mi",
         categoryName: "Mì & Bún",
@@ -2178,6 +2207,7 @@
         cart[productId] = {
           product,
           quantity: 1
+
         };
       }
 

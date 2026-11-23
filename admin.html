@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChanFood | Quản trị</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f7f9;
+      color: #263238;
+    }
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px;
+      background: #263b32;
+      color: white;
+      padding: 28px 18px;
+    }
+    .brand { font-size: 25px; font-weight: bold; margin-bottom: 35px; }
+    .menu a {
+      display: block;
+      color: #e5eee8;
+      text-decoration: none;
+      padding: 14px;
+      margin: 7px 0;
+      border-radius: 8px;
+    }
+    .menu a:hover, .menu a.active {
+      background: #496c59;
+    }
+    main { flex: 1; padding: 30px; min-width: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      gap: 12px;
+    }
+    h1 { font-size: 26px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .card, .panel {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px #00000008;
+    }
+    .card p { color: #78847d; font-size: 14px; }
+    .card h2 { margin-top: 12px; font-size: 25px; }
+    .panel { margin-bottom: 22px; overflow-x: auto; }
+    .panel h2 { font-size: 19px; margin-bottom: 18px; }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #edf0ed;
+      text-align: left;
+      font-size: 14px;
+    }
+    th { color: #68756c; background: #f8faf8; }
+    select {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .status { color: #a36b15; font-weight: bold; }
+    .logout {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px 16px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+    @media(max-width: 900px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .sidebar { width: 190px; }
+    }
+    @media(max-width: 600px) {
+      .layout { display: block; }
+      .sidebar { width: 100%; }
+      .menu { display: flex; flex-wrap: wrap; }
+      .menu a { padding: 10px; }
+      main { padding: 18px; }
+      .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .card { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">ChanFood</div>
+    <nav class="menu">
+      <a href="#overview" class="active">Tổng quan</a>
+      <a href="#orders">Quản lý đơn hàng</a>
+      <a href="#products">Quản lý sản phẩm</a>
+      <a href="#revenue">Doanh thu</a>
+      <a href="index.html">Về trang bán hàng</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header>
+      <div>
+        <h1>Trang quản trị</h1>
+        <p style="color:#78847d;margin-top:7px">Chào mừng đến với hệ thống ChanFood</p>
+      </div>
+      <button class="logout" onclick="alert('Chức năng đăng xuất sẽ được bổ sung khi có đăng nhập.')">
+        Đăng xuất
+      </button>
+    </header>
+
+    <section id="overview" class="cards">
+      <div class="card">
+        <p>Tổng đơn hàng</p>
+        <h2 id="totalOrders">3</h2>
+      </div>
+      <div class="card">
+        <p>Đơn đang xử lý</p>
+        <h2 id="pendingOrders">2</h2>
+      </div>
+      <div class="card">
+        <p>Sản phẩm</p>
+        <h2>26</h2>
+      </div>
+      <div class="card">
+        <p>Doanh thu mẫu</p>
+        <h2>850.000đ</h2>
+      </div>
+    </section>
+
+    <section id="orders" class="panel">
+      <h2>Đơn hàng gần đây</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Mã đơn</th>
+            <th>Khách hàng</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody id="orderList">
+          <tr>
+            <td>#CF001</td>
+            <td>Nguyễn An</td>
+            <td>150.000đ</td>
+            <td><span class="status">Chờ xác nhận</span></td>
+          </tr>
+          <tr>
+            <td>#CF002</td>
+            <td>Trần Bình</td>
+            <td>250.000đ</td>
+            <td><span class="status">Đang giao</span></td>
+          </tr>
+          <tr>
+            <td>#CF003</td>
+            <td>Lê Minh</td>
+            <td>450.000đ</td>
+            <td><span class="status">Hoàn thành</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="products" class="panel">
+      <h2>Quản lý sản phẩm</h2>
+      <p>Danh sách sản phẩm và chức năng thêm, sửa, xóa sẽ được kết nối ở bước tiếp theo.</p>
+    </section>
+
+    <section id="revenue" class="panel">
+      <h2>Thống kê doanh thu</h2>
+      <p>Doanh thu sẽ được tính tự động từ các đơn hàng thực tế sau khi kết nối cơ sở dữ liệu.</p>
+    </section>
+  </main>
+</div>
+</body>
+</html>

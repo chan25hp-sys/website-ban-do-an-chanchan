@@ -2,183 +2,395 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChanFood | Quản trị</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f6f7f9;
-      color: #263238;
-    }
-    .layout { display: flex; min-height: 100vh; }
-    .sidebar {
-      width: 240px;
-      background: #263b32;
-      color: white;
-      padding: 28px 18px;
-    }
-    .brand { font-size: 25px; font-weight: bold; margin-bottom: 35px; }
-    .menu a {
-      display: block;
-      color: #e5eee8;
-      text-decoration: none;
-      padding: 14px;
-      margin: 7px 0;
-      border-radius: 8px;
-    }
-    .menu a:hover, .menu a.active {
-      background: #496c59;
-    }
-    main { flex: 1; padding: 30px; min-width: 0; }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 28px;
-      gap: 12px;
-    }
-    h1 { font-size: 26px; }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-    .card, .panel {
-      background: white;
-      padding: 22px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px #00000008;
-    }
-    .card p { color: #78847d; font-size: 14px; }
-    .card h2 { margin-top: 12px; font-size: 25px; }
-    .panel { margin-bottom: 22px; overflow-x: auto; }
-    .panel h2 { font-size: 19px; margin-bottom: 18px; }
-    table { width: 100%; border-collapse: collapse; min-width: 620px; }
-    th, td {
-      padding: 14px 12px;
-      border-bottom: 1px solid #edf0ed;
-      text-align: left;
-      font-size: 14px;
-    }
-    th { color: #68756c; background: #f8faf8; }
-    select {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-    .status { color: #a36b15; font-weight: bold; }
-    .logout {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 10px 16px;
-      border-radius: 7px;
-      cursor: pointer;
-    }
-    @media(max-width: 900px) {
-      .cards { grid-template-columns: repeat(2, 1fr); }
-      .sidebar { width: 190px; }
-    }
-    @media(max-width: 600px) {
-      .layout { display: block; }
-      .sidebar { width: 100%; }
-      .menu { display: flex; flex-wrap: wrap; }
-      .menu a { padding: 10px; }
-      main { padding: 18px; }
-      .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .card { padding: 15px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị viên | ChanFood</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #fff8fa;
+            color: #493b40;
+        }
+
+        button, input {
+            font-family: inherit;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* LOGIN */
+        #loginPage {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff0f4, #eef5e9);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 40px 32px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(120, 80, 95, 0.12);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 800;
+            color: #c66c89;
+            margin-bottom: 8px;
+        }
+
+        .login-card h2 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .login-card p {
+            color: #96858c;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .login-card input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #eadde2;
+            border-radius: 11px;
+            outline: none;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .login-card input:focus {
+            border-color: #cf819a;
+        }
+
+        .primary-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 11px;
+            background: #c66c89;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .primary-btn:hover {
+            background: #b65b79;
+        }
+
+        #loginError {
+            color: #d95368;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #9b8790;
+            text-decoration: none;
+        }
+
+        /* ADMIN */
+        .admin-header {
+            background: white;
+            padding: 18px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            gap: 15px;
+        }
+
+        .admin-header h1 {
+            color: #c66c89;
+            font-size: 25px;
+        }
+
+        .admin-header p {
+            color: #98868d;
+            font-size: 13px;
+        }
+
+        .logout-btn {
+            padding: 10px 17px;
+            border: 1px solid #e9cbd5;
+            background: white;
+            color: #b65b79;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 35px auto;
+            padding: 0 22px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+        .welcome p {
+            color: #98868d;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            padding: 23px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 3px 15px rgba(120,80,95,0.05);
+        }
+
+        .stat-card p {
+            color: #98868d;
+            font-size: 14px;
+        }
+
+        .stat-card h3 {
+            font-size: 27px;
+            color: #c66c89;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 15px rgba(120,80,95,0.05);
+        }
+
+        .section h3 {
+            font-size: 19px;
+            margin-bottom: 17px;
+        }
+
+        .notice {
+            padding: 15px;
+            border-radius: 10px;
+            background: #f3f7ef;
+            color: #637b56;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .empty {
+            padding: 25px;
+            text-align: center;
+            color: #a7979d;
+            background: #fff9fb;
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            color: #aa9aa0;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                padding: 15px 20px;
+            }
+
+            .admin-header h1 {
+                font-size: 21px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .section {
+                padding: 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="layout">
-  <aside class="sidebar">
-    <div class="brand">ChanFood</div>
-    <nav class="menu">
-      <a href="#overview" class="active">Tổng quan</a>
-      <a href="#orders">Quản lý đơn hàng</a>
-      <a href="#products">Quản lý sản phẩm</a>
-      <a href="#revenue">Doanh thu</a>
-      <a href="index.html">Về trang bán hàng</a>
-    </nav>
-  </aside>
 
-  <main>
-    <header>
-      <div>
-        <h1>Trang quản trị</h1>
-        <p style="color:#78847d;margin-top:7px">Chào mừng đến với hệ thống ChanFood</p>
-      </div>
-      <button class="logout" onclick="alert('Chức năng đăng xuất sẽ được bổ sung khi có đăng nhập.')">
-        Đăng xuất
-      </button>
-    </header>
+    <!-- TRANG ĐĂNG NHẬP -->
+    <section id="loginPage">
+        <div class="login-card">
+            <div class="logo">ChanFood</div>
+            <h2>Đăng nhập quản trị</h2>
+            <p>Vui lòng nhập mật khẩu để tiếp tục</p>
 
-    <section id="overview" class="cards">
-      <div class="card">
-        <p>Tổng đơn hàng</p>
-        <h2 id="totalOrders">3</h2>
-      </div>
-      <div class="card">
-        <p>Đơn đang xử lý</p>
-        <h2 id="pendingOrders">2</h2>
-      </div>
-      <div class="card">
-        <p>Sản phẩm</p>
-        <h2>26</h2>
-      </div>
-      <div class="card">
-        <p>Doanh thu mẫu</p>
-        <h2>850.000đ</h2>
-      </div>
+            <form id="loginForm">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Nhập mật khẩu quản trị"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Đăng nhập
+                </button>
+
+                <div id="loginError" role="alert"></div>
+            </form>
+
+            <a href="index.html" class="back-link">
+                ← Quay lại trang chủ
+            </a>
+        </div>
     </section>
 
-    <section id="orders" class="panel">
-      <h2>Đơn hàng gần đây</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Mã đơn</th>
-            <th>Khách hàng</th>
-            <th>Tổng tiền</th>
-            <th>Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody id="orderList">
-          <tr>
-            <td>#CF001</td>
-            <td>Nguyễn An</td>
-            <td>150.000đ</td>
-            <td><span class="status">Chờ xác nhận</span></td>
-          </tr>
-          <tr>
-            <td>#CF002</td>
-            <td>Trần Bình</td>
-            <td>250.000đ</td>
-            <td><span class="status">Đang giao</span></td>
-          </tr>
-          <tr>
-            <td>#CF003</td>
-            <td>Lê Minh</td>
-            <td>450.000đ</td>
-            <td><span class="status">Hoàn thành</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <!-- GIAO DIỆN QUẢN TRỊ -->
+    <div id="adminPage" class="hidden">
 
-    <section id="products" class="panel">
-      <h2>Quản lý sản phẩm</h2>
-      <p>Danh sách sản phẩm và chức năng thêm, sửa, xóa sẽ được kết nối ở bước tiếp theo.</p>
-    </section>
+        <header class="admin-header">
+            <div>
+                <h1>ChanFood Admin</h1>
+                <p>Hệ thống quản lý cửa hàng</p>
+            </div>
 
-    <section id="revenue" class="panel">
-      <h2>Thống kê doanh thu</h2>
-      <p>Doanh thu sẽ được tính tự động từ các đơn hàng thực tế sau khi kết nối cơ sở dữ liệu.</p>
-    </section>
-  </main>
-</div>
+            <button class="logout-btn" id="logoutBtn">
+                Đăng xuất
+            </button>
+        </header>
+
+        <main class="container">
+
+            <div class="welcome">
+                <h2>Xin chào, Quản trị viên!</h2>
+                <p>Chào mừng bạn đến với trang quản lý ChanFood.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <p>Tổng đơn hàng</p>
+                    <h3 id="totalOrders">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Đơn hàng mới</p>
+                    <h3 id="newOrders">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <p>Doanh thu</p>
+                    <h3 id="revenue">0đ</h3>
+                </div>
+            </div>
+
+            <section class="section">
+                <h3>Quản lý đơn hàng</h3>
+                <div class="notice">
+                    Đây là giao diện quản trị ban đầu. Website hiện chưa kết nối
+                    dữ liệu đơn hàng với cơ sở dữ liệu, vì vậy các chỉ số phía trên
+                    chưa phản ánh đơn hàng thực tế.
+                </div>
+
+                <div class="empty" style="margin-top: 15px;">
+                    Chưa có dữ liệu đơn hàng để hiển thị.
+                </div>
+            </section>
+
+            <section class="section">
+                <h3>Quản lý sản phẩm</h3>
+                <div class="notice">
+                    Khu vực này sẽ được sử dụng để thêm, sửa, xóa và cập nhật
+                    thông tin sản phẩm khi triển khai chức năng quản lý sản phẩm.
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            © 2026 ChanFood | Trang quản trị viên
+        </footer>
+
+    </div>
+
+    <script>
+        // ĐỔI MẬT KHẨU TẠI ĐÂY
+        const ADMIN_PASSWORD = "ChanFood123";
+
+        const loginPage = document.getElementById("loginPage");
+        const adminPage = document.getElementById("adminPage");
+        const loginForm = document.getElementById("loginForm");
+        const loginError = document.getElementById("loginError");
+
+        function showAdmin() {
+            loginPage.classList.add("hidden");
+            adminPage.classList.remove("hidden");
+        }
+
+        function showLogin() {
+            adminPage.classList.add("hidden");
+            loginPage.classList.remove("hidden");
+            document.getElementById("password").value = "";
+        }
+
+        // Kiểm tra trạng thái đăng nhập
+        if (sessionStorage.getItem("chanfood_admin") === "true") {
+            showAdmin();
+        }
+
+        // Xử lý đăng nhập
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+
+            if (password === ADMIN_PASSWORD) {
+                sessionStorage.setItem("chanfood_admin", "true");
+                loginError.textContent = "";
+                showAdmin();
+            } else {
+                loginError.textContent = "Mật khẩu không chính xác. Vui lòng thử lại!";
+            }
+        });
+
+        // Xử lý đăng xuất
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            sessionStorage.removeItem("chanfood_admin");
+            showLogin();
+        });
+    </script>
+
 </body>
 </html>

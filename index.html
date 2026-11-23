@@ -2536,12 +2536,16 @@
           };
         });
 
-        products.splice(0, products.length, ...mapped);
-        renderProducts();
-        renderCart();
-
-        if (!mapped.length) {
-          showToast("Database chưa có sản phẩm đang mở bán.");
+        // Chỉ thay danh sách mẫu khi Supabase thực sự trả về sản phẩm.
+        // Nếu bảng đang trống hoặc chưa khớp cấu trúc, giữ nguyên menu cũ.
+        if (mapped.length > 0) {
+          products.splice(0, products.length, ...mapped);
+          renderProducts();
+          renderCart();
+        } else {
+          console.warn("Supabase chưa có sản phẩm hợp lệ; giữ nguyên menu mặc định.");
+          renderProducts();
+          renderCart();
         }
       } catch (error) {
         console.error("Không tải được sản phẩm từ Supabase:", error);

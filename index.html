@@ -1876,6 +1876,11 @@
     // DỮ LIỆU SẢN PHẨM - CÓ THỂ CHỈNH SỬA Ở ĐÂY
     // =========================================
 
+    // SUPABASE: dùng chung một project cho website và trang quản trị
+    const SUPABASE_URL = 'https://mdoxmbtussyrinarupyu.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_7Pmy3dO3zDuDp3-0ddacZw_0lR8red7';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
     const products = [
       {
         id: 1,
@@ -2201,6 +2206,10 @@
     function addToCart(productId) {
       const product = products.find(item => item.id === productId);
       if (!product) return;
+      if (Number.isFinite(product.stock) && product.stock <= 0) {
+        showToast("Món này hiện đã hết hàng.");
+        return;
+      }
 
       if (cart[productId]) {
         cart[productId].quantity += 1;
@@ -2383,9 +2392,8 @@
       }
     });
 
-    document.getElementById("checkoutForm").addEventListener("submit", event => {
+    document.getElementById("checkoutForm").addEventListener("submit", async event => {
       event.preventDefault();
-
       if (!getCartQuantity()) {
         closeCheckout();
         showToast("Giỏ hàng đang trống.");
@@ -2393,33 +2401,69 @@
       }
 
       const form = event.currentTarget;
-      const customerName = form.customerName.value.trim();
+      const customerName = form.elements.customerName.value.trim();
+      const customerPhone = form.elements.customerPhone.value.trim();
+      const customerAddress = form.elements.customerAddress.value.trim();
+      const note = form.elements.customerNote.value.trim();
+      const submitButton = form.querySelector('button[type="submit"]');
+      const oldButtonText = submitButton.textContent;
 
-      /*
-        BẢN DEMO:
-        Đơn hàng chưa được gửi đến máy chủ.
-        Cần tích hợp backend hoặc dịch vụ nhận đơn để sử dụng thật.
-      */
+      submitButton.disabled = true;
+      submitButton.textContent = "Đang gửi đơn hàng...";
 
-      const orderSummary = Object.values(cart).map(({ product, quantity }) =>
-        `${product.name} x ${quantity}`
-      ).join(", ");
+      try {
+        const subtotal = getCartTotal();
+        const orderCode = "CC" + Date.now().toString().slice(-10);
+        const orderPayload = {
+          order_code: orderCode,
+          customer_name: customerName,
+          customer_phone: customerPhone,
+          shipping_address: customerAddress,
+          subtotal: subtotal,
+          shipping_fee: 0,
+          discount_amount: 0,
+          status: "pending",
+          payment_status: "unpaid",
+          note: note || null
+        };
 
-      console.log("Đơn hàng demo:", {
-        customerName,
-        items: orderSummary,
-        total: getCartTotal()
-      });
+        const { data: order, error: orderError } = await supabaseClient
+          .from("orders")
+          .insert(orderPayload)
+          .select("id, order_code")
+          .single();
 
-      cart = {};
-      renderCart();
-      form.reset();
-      closeCheckout();
+        if (orderError) throw orderError;
 
-      showToast(
-        "Cảm ơn " + customerName +
-        " nhé! Đây là bản demo, đơn chưa được gửi đến shop. 💗"
-      );
+        const orderItems = Object.values(cart).map(({ product, quantity }) => ({
+          order_id: order.id,
+          product_id: product.id,
+          product_name: product.name,
+          quantity: quantity,
+          unit_price: product.price
+        }));
+
+        const { error: itemsError } = await supabaseClient
+          .from("order_items")
+          .insert(orderItems);
+
+        if (itemsError) {
+          await supabaseClient.from("orders").delete().eq("id", order.id);
+          throw itemsError;
+        }
+
+        cart = {};
+        renderCart();
+        form.reset();
+        closeCheckout();
+        showToast("Đặt hàng thành công! Mã đơn: " + (order.order_code || orderCode));
+      } catch (error) {
+        console.error("Lỗi gửi đơn hàng:", error);
+        showToast("Chưa gửi được đơn hàng: " + (error.message || "Vui lòng thử lại."));
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = oldButtonText;
+      }
     });
 
     // =========================================
@@ -2449,6 +2493,62 @@
       );
     });
 
+    // TẢI SẢN PHẨM VÀ DANH MỤC THẬT TỪ SUPABASE
+    async function loadProductsFromSupabase() {
+      try {
+        const [{ data: dbProducts, error: productError }, { data: dbCategories, error: categoryError }] = await Promise.all([
+          supabaseClient
+            .from("products")
+            .select("id,category_id,name,description,price,sale_price,image_url,stock_quantity,is_available")
+            .eq("is_available", true)
+            .order("name"),
+          supabaseClient
+            .from("categories")
+            .select("id,name,slug,is_active")
+            .eq("is_active", true)
+            .order("sort_order")
+        ]);
+
+        if (productError) throw productError;
+        if (categoryError) throw categoryError;
+
+        const categoryMap = new Map((dbCategories || []).map(c => [String(c.id), c]));
+        const mapped = (dbProducts || []).map(p => {
+          const category = categoryMap.get(String(p.category_id));
+          const rawSlug = String(category?.slug || "").toLowerCase();
+          const rawName = String(category?.name || "").toLowerCase();
+          let filter = rawSlug;
+          if (/m[iì]|b[uú]n/.test(rawSlug + " " + rawName)) filter = "mi";
+          else if (/c[oơ]m/.test(rawSlug + " " + rawName)) filter = "com";
+          else if (/u[oố]ng|n[uư][oớ]c|tr[aà]/.test(rawSlug + " " + rawName)) filter = "douong";
+          else if (/[aă]n.?v[aặ]t|snack/.test(rawSlug + " " + rawName)) filter = "anvat";
+
+          return {
+            id: p.id,
+            name: p.name,
+            category: filter,
+            categoryName: category?.name || "Món ngon",
+            price: Number(p.sale_price ?? p.price ?? 0),
+            tag: "Món ngon",
+            description: p.description || "Món ngon từ 3CE FOODS.",
+            image: p.image_url || "https://placehold.co/700x500/fff1f5/c56d89?text=3CE+FOODS",
+            stock: Number(p.stock_quantity ?? 0)
+          };
+        });
+
+        products.splice(0, products.length, ...mapped);
+        renderProducts();
+        renderCart();
+
+        if (!mapped.length) {
+          showToast("Database chưa có sản phẩm đang mở bán.");
+        }
+      } catch (error) {
+        console.error("Không tải được sản phẩm từ Supabase:", error);
+        showToast("Không tải được sản phẩm từ database: " + (error.message || "Lỗi kết nối."));
+      }
+    }
+
     // =========================================
     // KHỞI TẠO WEBSITE
     // =========================================
@@ -2458,6 +2558,7 @@
 
     renderProducts();
     renderCart();
+    loadProductsFromSupabase();
   </script>
 </body>
 </html>
